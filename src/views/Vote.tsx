@@ -45,13 +45,11 @@ export default function Vote({
   const handleProceedToStep2 = (e: React.FormEvent) => {
     e.preventDefault()
     setStep(2)
-    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   // Step 2 -> Step 3
   const handleProceedToStep3 = () => {
     setStep(3)
-    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   // Click a province on the 2D SVG Map (Step 3)
@@ -116,7 +114,6 @@ export default function Vote({
 
     setReceiptCode(generatedReceipt)
     setStep(4)
-    window.scrollTo({ top: 0, behavior: "smooth" })
 
     const voterPhone =
       phone.trim() || "098***" + Math.floor(1000 + Math.random() * 9000)

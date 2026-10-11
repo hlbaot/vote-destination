@@ -251,7 +251,6 @@ export default function Detail({
                   onToggleFavorite={onToggleFavorite}
                   onOpen={() => {
                     onOpenDetail(item)
-                    window.scrollTo({ top: 0, behavior: "smooth" })
                   }}
                 />
               ))}

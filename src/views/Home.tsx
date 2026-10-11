@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Destination, Page } from "@/types"
 import DestinationCard from "../components/DestinationCard"
 import Icon from "../components/Icon"
+import "@/scss/_home-hero.scss"
 
 export default function Home({
   go,
@@ -43,7 +44,7 @@ export default function Home({
   const topDestinations = destinations.slice(0, 3)
 
   return (
-    <>
+    <div className="home-page">
       {/* ============================================================ */}
       {/* WANDERLUST SIGNATURE HERO                                     */}
       {/* ============================================================ */}
@@ -294,12 +295,17 @@ export default function Home({
       <section className="section section-lead-vote">
         <div className="container">
           <div className="section-heading">
-            <div>
+            <div className="section-heading-text">
               <span className="eyebrow">ĐIỂM ĐẾN NỔI BẬT</span>
               <h2>Các hồ sơ đang được quan tâm</h2>
             </div>
-            <button className="btn btn-secondary" onClick={() => go("explore")}>
-              Xem danh sách điểm đến <Icon name="arrow" size={18} />
+            <button
+              type="button"
+              className="btn btn-secondary home-explore-btn"
+              onClick={() => go("explore")}
+            >
+              <span>Xem danh sách điểm đến</span>
+              <Icon name="arrow" size={18} />
             </button>
           </div>
           <div className="card-grid">
@@ -321,63 +327,133 @@ export default function Home({
       {/* SECTION 3: 3 REGIONS PREVIEW (NỘI DUNG GIỮ NGUYÊN)            */}
       {/* ============================================================ */}
       <section className="region-preview-section">
+        {/* Bản đồ Việt Nam mờ làm watermark nền trang nhã */}
+        <div className="region-map-watermark" aria-hidden="true" />
+
         <div className="container">
           <div className="section-heading">
-            <div>
+            <div className="section-heading-text">
               <span className="eyebrow">GIỚI THIỆU TỔNG QUAN</span>
               <h2>Tra cứu điểm đến theo vùng miền</h2>
             </div>
-            <span className="eyebrow light desktop-only">
+            <span className="eyebrow light desktop-only region-subtag">
               BẮC • TRUNG • NAM
             </span>
           </div>
           <div className="region-grid">
-            <div className="region-card" onClick={() => go("explore")}>
-              <div className="region-badge">MIỀN BẮC</div>
-              <h3>Kỳ vĩ non ngàn & Di sản trầm tích</h3>
-              <p>Hạ Long, Tràng An, Mù Cang Chải, Cao nguyên đá Đồng Văn</p>
-              <span className="region-link">
-                Khám phá miền Bắc <Icon name="arrow" size={16} />
-              </span>
+            {/* MIỀN BẮC */}
+            <div
+              className="region-card region-card-north"
+              onClick={() => go("explore")}
+            >
+              <div className="region-card-backdrop" />
+              <div className="region-card-inner">
+                <div className="region-badge">MIỀN BẮC</div>
+                <h3>Kỳ vĩ non ngàn & Di sản trầm tích</h3>
+                <p className="region-places-list">
+                  Hạ Long, Tràng An, Mù Cang Chải, Cao nguyên đá Đồng Văn
+                </p>
+                <div className="region-chips">
+                  <span className="region-chip">Hạ Long</span>
+                  <span className="region-chip">Tràng An</span>
+                  <span className="region-chip">Mù Cang Chải</span>
+                  <span className="region-chip">Đồng Văn</span>
+                </div>
+                <div className="region-card-bottom">
+                  <span className="region-link">
+                    <span>Khám phá miền Bắc</span>
+                    <Icon name="arrow" size={16} />
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="region-card" onClick={() => go("explore")}>
-              <div className="region-badge">MIỀN TRUNG</div>
-              <h3>Di sản vàng son & Biển biếc cát trắng</h3>
-              <p>Phố cổ Hội An, Cố đô Huế, Phong Nha - Kẻ Bàng, Đà Lạt</p>
-              <span className="region-link">
-                Khám phá miền Trung <Icon name="arrow" size={16} />
-              </span>
+
+            {/* MIỀN TRUNG */}
+            <div
+              className="region-card region-card-central"
+              onClick={() => go("explore")}
+            >
+              <div className="region-card-backdrop" />
+              <div className="region-card-inner">
+                <div className="region-badge">MIỀN TRUNG</div>
+                <h3>Di sản vàng son & Biển biếc cát trắng</h3>
+                <p className="region-places-list">
+                  Phố cổ Hội An, Cố đô Huế, Phong Nha - Kẻ Bàng, Đà Lạt
+                </p>
+                <div className="region-chips">
+                  <span className="region-chip">Phố cổ Hội An</span>
+                  <span className="region-chip">Cố đô Huế</span>
+                  <span className="region-chip">Phong Nha - Kẻ Bàng</span>
+                  <span className="region-chip">Đà Lạt</span>
+                </div>
+                <div className="region-card-bottom">
+                  <span className="region-link">
+                    <span>Khám phá miền Trung</span>
+                    <Icon name="arrow" size={16} />
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="region-card" onClick={() => go("explore")}>
-              <div className="region-badge">MIỀN NAM</div>
-              <h3>Thiên đường biển đảo & Sông nước mênh mang</h3>
-              <p>Đảo ngọc Phú Quốc, Côn Đảo linh thiêng, Chợ nổi Cái Răng</p>
-              <span className="region-link">
-                Khám phá miền Nam <Icon name="arrow" size={16} />
-              </span>
+
+            {/* MIỀN NAM */}
+            <div
+              className="region-card region-card-south"
+              onClick={() => go("explore")}
+            >
+              <div className="region-card-backdrop" />
+              <div className="region-card-inner">
+                <div className="region-badge">MIỀN NAM</div>
+                <h3>Thiên đường biển đảo & Sông nước mênh mang</h3>
+                <p className="region-places-list">
+                  Đảo ngọc Phú Quốc, Côn Đảo linh thiêng, Chợ nổi Cái Răng
+                </p>
+                <div className="region-chips">
+                  <span className="region-chip">Đảo ngọc Phú Quốc</span>
+                  <span className="region-chip">Côn Đảo linh thiêng</span>
+                  <span className="region-chip">Chợ nổi Cái Răng</span>
+                </div>
+                <div className="region-card-bottom">
+                  <span className="region-link">
+                    <span>Khám phá miền Nam</span>
+                    <Icon name="arrow" size={16} />
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* SECTION 4: STORY STRIP (NỘI DUNG GIỮ NGUYÊN)                  */}
+      {/* SECTION 4: STORY STRIP / BANNER TIN TỨC & CTA (NỘI DUNG GIỮ)  */}
       {/* ============================================================ */}
       <section className="story-strip">
-        <div className="container story-grid">
-          <div>
-            <span className="eyebrow light">TIN TỨC & THÔNG BÁO</span>
-            <h2>Cập nhật lịch bình chọn, thể lệ và kết quả nổi bật</h2>
-          </div>
-          <div>
-            <p>
-              Trang chủ tập trung các thông báo quan trọng của hội thi, trạng
-              thái mở cổng bình chọn, hồ sơ được đề xuất và đường dẫn nhanh để
-              người dân tham gia bình chọn ngay trên mọi thiết bị.
-            </p>
-            <button className="btn btn-light" onClick={() => go("vote")}>
-              Tham gia bình chọn ngay <Icon name="arrow" size={18} />
-            </button>
+        <div className="container">
+          <div className="story-banner-card">
+            <div className="story-banner-deco" aria-hidden="true" />
+            <div className="story-grid">
+              <div className="story-grid-left">
+                <span className="eyebrow light">TIN TỨC & THÔNG BÁO</span>
+                <h2 className="story-banner-title">
+                  Cập nhật lịch bình chọn, thể lệ và kết quả nổi bật
+                </h2>
+              </div>
+              <div className="story-grid-right">
+                <p className="story-banner-desc">
+                  Trang chủ tập trung các thông báo quan trọng của hội thi, trạng
+                  thái mở cổng bình chọn, hồ sơ được đề xuất và đường dẫn nhanh để
+                  người dân tham gia bình chọn ngay trên mọi thiết bị.
+                </p>
+                <button
+                  type="button"
+                  className="btn btn-cta-vote"
+                  onClick={() => go("vote")}
+                >
+                  <span>Tham gia bình chọn ngay</span>
+                  <Icon name="arrow" size={18} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -435,6 +511,6 @@ export default function Home({
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }

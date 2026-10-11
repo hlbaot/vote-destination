@@ -209,16 +209,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // Navigation router mapper
   const navigate = useCallback(
     (next: Page) => {
-      if (next === "home") router.push("/")
-      else if (next === "explore") router.push("/explore")
-      else if (next === "vote") router.push("/vote")
-      else if (next === "cms") router.push("/cms")
-      else if (next === "guide") router.push("/guide")
+      if (next === "home") router.push("/", { scroll: false })
+      else if (next === "explore") router.push("/explore", { scroll: false })
+      else if (next === "vote") router.push("/vote", { scroll: false })
+      else if (next === "cms") router.push("/cms", { scroll: false })
+      else if (next === "guide") router.push("/guide", { scroll: false })
       else if (next === "detail") {
-        router.push(`/destination/${selectedDestination?.id || "01"}`)
-      }
-      if (typeof window !== "undefined") {
-        window.scrollTo({ top: 0, behavior: "smooth" })
+        router.push(`/destination/${selectedDestination?.id || "01"}`, {
+          scroll: false,
+        })
       }
     },
     [router, selectedDestination],
@@ -278,19 +277,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // Open destination in detail
   const handleOpenDetail = (dest: Destination) => {
     setSelectedDestination(dest)
-    router.push(`/destination/${dest.id}`)
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    }
+    router.push(`/destination/${dest.id}`, { scroll: false })
   }
 
   // Start voting for a specific destination
   const handleStartVote = (dest: Destination) => {
     setSelectedDestination(dest)
-    router.push(`/vote?id=${dest.id}`)
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    }
+    router.push(`/vote?id=${dest.id}`, { scroll: false })
   }
 
   // Record a successful vote

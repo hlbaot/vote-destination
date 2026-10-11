@@ -1,0 +1,555 @@
+// ============================================================
+// HOME PAGE REDESIGN (CONTINUOUS CANVAS, JADE PALETTE, 3-COL GRID)
+// ============================================================
+
+.home-page {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  background: #061817;
+
+  /* Continuous multilayer canvas background across all sections */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 600px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background:
+      radial-gradient(ellipse 65% 50% at 85% 25%, rgba(94, 211, 168, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 45% at 15% 55%, rgba(232, 115, 90, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(94, 211, 168, 0.09) 0%, transparent 70%),
+      linear-gradient(180deg, #061817 0%, #082623 18%, #0b3430 45%, #082926 78%, #0F3D3A 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+/* Ensure container is perfectly centered and max 1200px */
+.container {
+  width: min(1200px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+  position: relative;
+}
+
+/* ============================================================
+   SHARED HOME BUTTONS & HEADINGS
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 9999px;
+  padding: 12px 24px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-secondary {
+  background: rgba(94, 211, 168, 0.12);
+  border: 1px solid rgba(94, 211, 168, 0.35);
+  color: #5ED3A8;
+  font-size: 13.5px;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(94, 211, 168, 0.22);
+    border-color: #5ED3A8;
+    color: #FFFFFF;
+    box-shadow: 0 0 20px rgba(94, 211, 168, 0.3);
+  }
+}
+
+.btn-cta-vote {
+  background: linear-gradient(135deg, #E8735A 0%, #D8593F 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF !important;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 32px;
+  box-shadow: 0 8px 24px rgba(232, 115, 90, 0.45);
+
+  &:hover {
+    background: linear-gradient(135deg, #f28068 0%, #E8735A 100%);
+    box-shadow: 0 12px 30px rgba(232, 115, 90, 0.65);
+    transform: translateY(-2px) scale(1.02);
+  }
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  gap: 20px;
+
+  .section-heading-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .eyebrow {
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #E8735A;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(30px, 3.8vw, 44px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: -0.015em;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ============================================================
+   SECTION 2: ĐIỂM ĐẾN NỔI BẬT (3-COLUMN DESKTOP GRID)
+   ============================================================ */
+
+.section-lead-vote {
+  position: relative;
+  z-index: 2;
+  padding: 100px 0 80px;
+
+  /* Card Grid: 3 columns desktop, 2 columns tablet, 1 column mobile */
+  .card-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 28px !important;
+    align-items: stretch;
+  }
+
+  /* Specific enhancements for Home Destination Cards */
+  .destination-card {
+    background: rgba(10, 38, 35, 0.82) !important;
+    border: 1px solid rgba(94, 211, 168, 0.22) !important;
+    border-radius: 22px !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35) !important;
+    min-height: 470px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      transform: translateY(-8px);
+      border-color: rgba(94, 211, 168, 0.5) !important;
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5), 0 0 28px rgba(94, 211, 168, 0.2) !important;
+    }
+  }
+
+  .card-media-wrapper {
+    height: 250px !important;
+  }
+
+  .card-overlay-name {
+    font-size: 20px !important;
+    font-weight: 700;
+  }
+
+  .card-overlay-place {
+    font-size: 13px !important;
+    color: #5ED3A8 !important;
+  }
+
+  .intro-snippet-text {
+    font-size: 13px !important;
+    color: rgba(251, 247, 240, 0.9) !important;
+  }
+
+  .metric-box-val {
+    font-size: 12.5px !important;
+  }
+}
+
+/* ============================================================
+   SECTION 3: GIỚI THIỆU TỔNG QUAN - TRA CỨU THEO VÙNG MIỀN
+   ============================================================ */
+
+.region-preview-section {
+  position: relative;
+  z-index: 2;
+  padding: 90px 0 85px;
+
+  /* Watermark Vietnam map background */
+  .region-map-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 820px;
+    height: 640px;
+    background: url("/vietnam-map.svg") no-repeat center center / contain;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .region-subtag {
+    background: rgba(94, 211, 168, 0.1);
+    border: 1px solid rgba(94, 211, 168, 0.28);
+    padding: 6px 16px;
+    border-radius: 9999px;
+    color: #5ED3A8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+  }
+
+  /* 3 Regional Cards Grid */
+  .region-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 28px !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .region-card {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    min-height: 410px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid rgba(94, 211, 168, 0.22);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      transform: translateY(-8px);
+      border-color: rgba(94, 211, 168, 0.55);
+      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), 0 0 24px rgba(94, 211, 168, 0.2);
+
+      .region-card-backdrop {
+        transform: scale(1.08);
+      }
+
+      .region-link {
+        color: #FFFFFF;
+
+        svg {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+
+  /* Distinct visual imagery per region */
+  .region-card-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(5, 22, 20, 0.3) 0%,
+        rgba(6, 26, 24, 0.72) 42%,
+        rgba(6, 24, 22, 0.95) 80%,
+        rgba(4, 18, 17, 0.98) 100%
+      );
+    }
+  }
+
+  .region-card-north .region-card-backdrop {
+    background-image: url("https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1000&q=80");
+  }
+
+  .region-card-central .region-card-backdrop {
+    background-image: url("https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1000&q=80");
+  }
+
+  .region-card-south .region-card-backdrop {
+    background-image: url("https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?auto=format&fit=crop&w=1000&q=80");
+  }
+
+  .region-card-inner {
+    position: relative;
+    z-index: 1;
+    padding: 32px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+    gap: 14px;
+  }
+
+  .region-badge {
+    align-self: flex-start;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: rgba(94, 211, 168, 0.16);
+    border: 1px solid rgba(94, 211, 168, 0.4);
+    color: #5ED3A8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: 23px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.3;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  }
+
+  .region-places-list {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: rgba(251, 247, 240, 0.85);
+    margin: 0;
+  }
+
+  .region-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 2px;
+  }
+
+  .region-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 9999px;
+    color: #FBF7F0;
+    font-size: 11.5px;
+    font-weight: 500;
+    backdrop-filter: blur(6px);
+  }
+
+  .region-card-bottom {
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .region-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #5ED3A8;
+    font-size: 13.5px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+
+    svg {
+      transition: transform 0.25s ease;
+    }
+  }
+}
+
+/* ============================================================
+   SECTION 4: TIN TỨC & THÔNG BÁO / CTA (BALANCED BANNER)
+   ============================================================ */
+
+.story-strip {
+  position: relative;
+  z-index: 2;
+  padding: 50px 0 110px;
+
+  .story-banner-card {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0F3D3A 0%, #155B53 52%, #197268 100%);
+    border: 1px solid rgba(94, 211, 168, 0.32);
+    box-shadow: 0 24px 64px rgba(7, 35, 32, 0.45);
+  }
+
+  .story-banner-deco {
+    position: absolute;
+    right: -40px;
+    bottom: -60px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(94, 211, 168, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .story-grid {
+    display: grid !important;
+    grid-template-columns: 1.15fr 1fr !important;
+    gap: 48px !important;
+    align-items: center;
+    padding: 56px 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-grid-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .eyebrow {
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      color: #5ED3A8;
+      text-transform: uppercase;
+    }
+  }
+
+  /* Sửa lỗi rớt chữ 'bật' lẻ loi bằng max-width cân bằng & text-wrap: balance */
+  .story-banner-title {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 600;
+    line-height: 1.25;
+    color: #FFFFFF;
+    margin: 0;
+    max-width: 530px;
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .story-grid-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .story-banner-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(251, 247, 240, 0.9);
+    margin: 0;
+    max-width: 480px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ============================================================ */
+
+@media (max-width: 960px) {
+  .section-lead-vote {
+    padding: 70px 0 50px;
+
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 20px !important;
+    }
+  }
+
+  .region-preview-section {
+    padding: 70px 0 60px;
+
+    .region-grid {
+      grid-template-columns: 1fr !important;
+      max-width: 600px;
+      margin: 0 auto;
+      gap: 24px !important;
+    }
+  }
+
+  .story-strip {
+    padding: 30px 0 80px;
+
+    .story-grid {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+      padding: 40px 32px;
+    }
+
+    .story-banner-title {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    .home-explore-btn {
+      width: 100%;
+    }
+  }
+
+  .section-lead-vote {
+    .card-grid {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+  }
+
+  .story-strip {
+    .story-grid {
+      padding: 32px 22px;
+    }
+
+    .story-banner-desc {
+      font-size: 14px;
+    }
+
+    .btn-cta-vote {
+      width: 100%;
+    }
+  }
+}
+
+/* Fade-in transitions respecting prefers-reduced-motion */
+@media (prefers-reduced-motion: no-preference) {
+  .section-lead-vote,
+  .region-preview-section,
+  .story-strip {
+    animation: homeFadeIn 0.75s ease-out both;
+  }
+}
+
+@keyframes homeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

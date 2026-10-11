@@ -1,8 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { Page } from "../types"
 import Icon from "./Icon"
+import { useAppContext } from "@/context/AppContext"
 
 export const pageLabels: Record<Page, string> = {
   home: "Trang chủ",
@@ -43,16 +45,33 @@ export function Logo({ compact = false }: { compact?: boolean }) {
 }
 
 export default function Header({
-  page,
-  setPage,
-  favoritesCount,
+  page: propPage,
+  setPage: propSetPage,
 }: {
-  page: Page
-  setPage: (page: Page) => void
-  favoritesCount: number
-}) {
+  page?: Page
+  setPage?: (page: Page) => void
+  favoritesCount?: number
+} = {}) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const context = useAppContext()
+
+  let detectedPage: Page = "home"
+  if (pathname?.startsWith("/cms")) {
+    detectedPage = "cms"
+  } else if (pathname?.startsWith("/destination")) {
+    detectedPage = "detail"
+  } else if (pathname?.startsWith("/explore")) {
+    detectedPage = "explore"
+  } else if (pathname?.startsWith("/vote")) {
+    detectedPage = "vote"
+  } else if (pathname?.startsWith("/guide")) {
+    detectedPage = "guide"
+  }
+
+  const page = propPage || detectedPage
+  const setPage = propSetPage || context?.navigate || (() => {})
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,7 +85,6 @@ export default function Header({
   const go = (next: Page) => {
     setPage(next)
     setOpen(false)
-    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
@@ -75,7 +93,7 @@ export default function Header({
         scrolled ? "is-scrolled" : "is-at-top"
       }`}
     >
-      {/* Dual Portal Switcher Topbar (Chia rõ ràng 2 trang: Công chúng & Quản trị) */}
+      {/* Dual Portal Switcher Topbar */}
       <div className="portal-switcher-strip">
         <div className="container portal-switcher-inner">
           <div className="portal-left-hint">
@@ -126,17 +144,12 @@ export default function Header({
               {item === "explore" && (
                 <span className="nav-dropdown-caret">⌵</span>
               )}
-              {item === "explore" && favoritesCount > 0 && (
-                <span className="nav-badge" title="Điểm đến đã yêu thích">
-                  ♥ {favoritesCount}
-                </span>
-              )}
             </button>
           ))}
         </nav>
 
         <div className="header-actions">
-          {/* Quick search icon matching reference */}
+          {/* Quick search icon */}
           <button
             onClick={() => go("explore")}
             className="wander-header-icon-btn desktop-only"
@@ -145,7 +158,7 @@ export default function Header({
             <Icon name="search" size={18} />
           </button>
 
-          {/* Language selector matching reference */}
+          {/* Language selector */}
           <div
             className="wander-lang-badge desktop-only"
             title="Ngôn ngữ hiển thị"
@@ -199,9 +212,6 @@ export default function Header({
           {(["home", "explore", "vote"] as Page[]).map((item) => (
             <button key={item} onClick={() => go(item)}>
               <span>{pageLabels[item]}</span>
-              {item === "explore" && favoritesCount > 0 && (
-                <span className="nav-badge">♥ {favoritesCount}</span>
-              )}
               <Icon name="arrow" size={18} />
             </button>
           ))}

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useRef, useState } from "react"
 import * as THREE from "three"
 import { ProvinceData, vietnamProvinces } from "../data/provinces"
@@ -25,12 +27,10 @@ function coordsToVector3(
 export default function VietnamMap3D({
   selectedProvinceId,
   onSelectProvince,
-  activeRegion,
-  searchKeyword,
 }: {
   selectedProvinceId?: string
   onSelectProvince: (prov: ProvinceData) => void
-  activeRegion: "all" | "Bắc" | "Trung" | "Nam"
+  activeRegion?: "all" | "Bắc" | "Trung" | "Nam"
   searchKeyword?: string
 }) {
   const mountRef = useRef<HTMLDivElement>(null)
@@ -168,6 +168,7 @@ export default function VietnamMap3D({
         roughness: 0.3,
       })
       const island = new THREE.Mesh(islandGeo, islandMat)
+      island.name = name
       island.rotation.x = Math.PI / 2
       island.position.set(x, y, 0.1)
       island.castShadow = true
@@ -242,9 +243,9 @@ export default function VietnamMap3D({
       markersGroup.add(topMesh)
 
       // Gắn dữ liệu tương tác
-      ;(topMesh as any).userData = { province: p }
-      ;(beaconMesh as any).userData = { province: p }
-      ;(baseMesh as any).userData = { province: p }
+      topMesh.userData = { province: p }
+      beaconMesh.userData = { province: p }
+      baseMesh.userData = { province: p }
 
       markerMeshes.push({
         mesh: topMesh,
@@ -270,7 +271,7 @@ export default function VietnamMap3D({
 
       if (intersects.length > 0) {
         const hit = intersects[0].object as THREE.Mesh
-        const p: ProvinceData = (hit as any).userData?.province
+        const p = hit.userData?.province as ProvinceData | undefined
         if (p) {
           setHoveredProvince(p)
           setTooltipPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
@@ -293,7 +294,7 @@ export default function VietnamMap3D({
 
       if (intersects.length > 0) {
         const hit = intersects[0].object as THREE.Mesh
-        const p: ProvinceData = (hit as any).userData?.province
+        const p = hit.userData?.province as ProvinceData | undefined
         if (p) {
           onSelectProvince(p)
         }
@@ -383,7 +384,7 @@ export default function VietnamMap3D({
 
     // 11. Render Loop with gentle idle animation
     let animationFrameId: number
-    let clock = new THREE.Clock()
+    const clock = new THREE.Clock()
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate)

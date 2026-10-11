@@ -12,6 +12,7 @@ try {
   const result = sass.compile(scssEntry, {
     style: "expanded",
     sourceMap: false,
+    silenceDeprecations: ["import"],
   });
 
   // Remove duplicate charset or font imports from compiled output

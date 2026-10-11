@@ -6640,6 +6640,738 @@ footer {
   padding: 0;
 }
 
+/* =========================================================================
+   TRANG 2: ADMIN LOGIN & MOCK ACCOUNTS
+   ========================================================================= */
+.admin-login-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 20%, #063632 0%, #021a18 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  overflow: hidden;
+}
+
+.login-backdrop-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.decor-circle-1 {
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.12) 0%, transparent 70%);
+}
+
+.decor-circle-2 {
+  position: absolute;
+  bottom: -150px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(225, 100, 74, 0.14) 0%, transparent 70%);
+}
+
+.admin-login-container {
+  position: relative;
+  z-index: 2;
+  width: min(1040px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-back-to-public {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.btn-back-to-public:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateX(-2px);
+}
+
+.portal-badge-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #5eead4;
+  background: rgba(4, 38, 35, 0.6);
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+}
+
+.login-grid-card {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  background: rgba(4, 34, 31, 0.85);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+}
+
+.login-form-side {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.login-brand-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.login-brand-header h2 {
+  font: 500 24px "Lora", serif;
+  color: white;
+  margin: 0;
+}
+
+.login-brand-header p {
+  font-size: 12px;
+  color: var(--mint);
+  margin: 3px 0 0;
+}
+
+.login-error-alert {
+  background: rgba(225, 29, 72, 0.15);
+  border: 1px solid #e11d48;
+  color: #fecdd3;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.login-input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-field-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 6px;
+}
+
+.input-icon-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-box svg {
+  position: absolute;
+  left: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+
+.input-icon-box input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  padding: 12px 14px 12px 42px;
+  color: white;
+  font-size: 13px;
+  outline: 0;
+  transition: all 0.2s ease;
+}
+
+.input-icon-box input:focus {
+  border-color: var(--coral);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(225, 100, 74, 0.2);
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: 0;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 4px;
+  cursor: pointer;
+}
+
+.toggle-password-btn:hover {
+  color: white;
+}
+
+.login-remember-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.security-tag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #5eead4;
+  font-size: 10.5px;
+}
+
+.btn-submit-login {
+  background: var(--coral);
+  color: white;
+  padding: 13px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+.btn-submit-login:hover {
+  background: #c84d34;
+  box-shadow: 0 4px 18px rgba(225, 100, 74, 0.5);
+}
+
+.login-footer-security {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.login-footer-security small {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.4;
+  display: block;
+}
+
+/* RIGHT: MOCK ACCOUNTS SIDE */
+.login-accounts-side {
+  background: rgba(2, 26, 24, 0.6);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.accounts-side-header {
+  margin-bottom: 20px;
+}
+
+.header-badge-tag {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--coral);
+  margin-bottom: 6px;
+}
+
+.accounts-side-header h3 {
+  font: 500 19px "Lora", serif;
+  color: white;
+  margin: 0 0 6px;
+}
+
+.accounts-side-header p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.mock-accounts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 480px;
+  padding-right: 4px;
+}
+
+.mock-account-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mock-account-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.mock-account-card.role-super:hover {
+  border-color: var(--coral);
+  box-shadow: 0 4px 16px rgba(225, 100, 74, 0.2);
+}
+
+.account-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-card-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.account-card-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-name-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.account-name-line strong {
+  font-size: 13px;
+  color: white;
+}
+
+.role-pill {
+  font-size: 8.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+}
+
+.role-pill.role-super {
+  background: rgba(225, 100, 74, 0.25);
+  color: #ff8a73;
+  border: 1px solid rgba(225, 100, 74, 0.4);
+}
+
+.role-pill.role-mod {
+  background: rgba(45, 212, 191, 0.2);
+  color: #5eead4;
+  border: 1px solid rgba(45, 212, 191, 0.35);
+}
+
+.role-pill.role-editor {
+  background: rgba(250, 204, 21, 0.2);
+  color: #fde047;
+  border: 1px solid rgba(250, 204, 21, 0.35);
+}
+
+.role-pill.role-operator {
+  background: rgba(56, 189, 248, 0.2);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.account-dept-line {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 1px;
+}
+
+.account-cred-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  font-size: 10px;
+}
+
+.account-cred-details code {
+  color: #93c5fd;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.pwd-hint {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.pwd-hint strong {
+  color: #fde047;
+}
+
+.btn-quick-login-action {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-quick-login-action:hover {
+  background: var(--coral);
+  border-color: var(--coral);
+}
+
+/* =========================================================================
+   CMS SIDEBAR USER & ADMIN MANAGEMENT STYLES
+   ========================================================================= */
+.sidebar-top-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-back-web {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  font-size: 11px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  justify-content: flex-start !important;
+  padding: 8px 12px !important;
+}
+
+.btn-back-web:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+
+.cms-nav-count {
+  margin-left: auto;
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 7px;
+  border-radius: 100px;
+  color: var(--mint);
+}
+
+.cms-current-user-card {
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.user-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--coral);
+}
+
+.user-card-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-card-meta strong {
+  font-size: 12px;
+  color: white;
+  line-height: 1.2;
+}
+
+.user-role-tag {
+  font-size: 9.5px;
+  color: var(--mint);
+}
+
+.user-card-email code {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-cms-logout {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(225, 29, 72, 0.15);
+  color: #fecdd3;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-cms-logout:hover {
+  background: #e11d48;
+  color: white;
+}
+
+.cms-topbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.topbar-left-meta small {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--coral);
+}
+
+.topbar-left-meta h1 {
+  font: 500 24px "Lora", serif;
+  color: var(--deep);
+  margin: 3px 0 0;
+}
+
+.btn-header-logout {
+  color: #e11d48 !important;
+  border-color: rgba(225, 29, 72, 0.3) !important;
+}
+
+.btn-header-logout:hover {
+  background: rgba(225, 29, 72, 0.08) !important;
+}
+
+/* ADMIN ACCOUNTS TABLE IN CMS */
+.search-admin-bar {
+  margin-bottom: 16px;
+}
+
+.table-header-admins,
+.table-row-admins {
+  display: grid;
+  grid-template-columns: 220px 200px 180px 180px 100px 1fr !important;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-profile-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-avatar-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.current-user-badge {
+  display: inline-block;
+  font-size: 9px;
+  color: #257049;
+  font-weight: 700;
+  background: #edf6f0;
+  padding: 1px 6px;
+  border-radius: 100px;
+}
+
+.current-session-row {
+  background: #f0fdf4 !important;
+  border-left: 3px solid #22c55e !important;
+}
+
+.admin-email-cell code {
+  display: block;
+  font-size: 11px;
+  color: var(--deep);
+}
+
+.admin-email-cell small {
+  font-size: 9.5px;
+  color: var(--muted);
+}
+
+.role-badge {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.role-badge.badge-super {
+  background: #fdf2ef;
+  color: var(--coral);
+}
+
+.role-badge.badge-mod {
+  background: #e6fffa;
+  color: #0d9488;
+}
+
+.role-badge.badge-editor {
+  background: #fefce8;
+  color: #ca8a04;
+}
+
+.role-badge.badge-operator {
+  background: #f0f9ff;
+  color: #0284c7;
+}
+
+.dept-text {
+  display: block;
+  font-size: 9.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.perms-summary-cell span {
+  display: block;
+  font-size: 11px;
+  color: var(--ink);
+}
+
+.perms-summary-cell small {
+  font-size: 9.5px;
+  color: var(--muted);
+}
+
+.status-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 100px;
+}
+
+.status-pill.status-active {
+  background: #edf6f0;
+  color: #257049;
+}
+
+.status-pill.status-locked {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.status-pill.status-inactive {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.admin-actions-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-switch-account {
+  border: 1px solid var(--deep);
+  background: white;
+  color: var(--deep);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-switch-account:hover {
+  background: var(--deep);
+  color: white;
+}
+
+.btn-toggle-lock {
+  border: 1px solid var(--line);
+  background: white;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-toggle-lock.lock {
+  color: #dc2626;
+}
+
+.btn-toggle-lock.lock:hover {
+  background: #fee2e2;
+}
+
+.btn-toggle-lock.unlock {
+  color: #257049;
+}
+
+.btn-toggle-lock.unlock:hover {
+  background: #dcfce7;
+}
+
+.gallery-count-pill {
+  color: var(--coral);
+  font-weight: 600;
+}
+
 @media (max-width: 900px) {
   .container {
     width: min(100% - 32px, 680px);

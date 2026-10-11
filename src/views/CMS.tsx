@@ -9,8 +9,10 @@ import {
   AdminRole,
   IconName,
 } from "../types"
+
 import { Logo } from "../components/Header"
 import Icon from "../components/Icon"
+import "../scss/_cms.scss"
 import AddDestinationModal from "../components/AddDestinationModal"
 
 export type CMSTab = "Tổng quan" | "Điểm đến" | "Bình chọn" | "Tài khoản" | "Cử tri" | "Cài đặt"

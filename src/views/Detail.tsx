@@ -76,6 +76,7 @@ export default function Detail({
             dùng chung toàn hệ thống
           </h2>
           <p className="lead">{destination.shortDescription || destination.lead}</p>
+          {destination.imageCredit && <p><small>{destination.imageCredit}</small></p>}
           <p>{destination.introduction || destination.description}</p>
 
           {destination.highlights && (

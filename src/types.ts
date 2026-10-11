@@ -17,6 +17,7 @@ export interface Destination {
   category?: string
   thumbnail?: string
   image: string
+  imageCredit?: string
   secondaryImage: string
   gallery?: string[]
   videoUrl?: string | null

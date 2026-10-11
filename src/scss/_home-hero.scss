@@ -1,0 +1,1034 @@
+// ============================================================
+// WANDERLUST LUXURY HOME HERO & COMPONENTS
+// ============================================================
+
+/* Header customizations on home */
+.site-header.is-home-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 60;
+  border: none !important;
+  border-bottom: none !important;
+  transition: background-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease;
+}
+
+.site-header.is-home-header.is-at-top {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+.site-header.is-home-header.is-at-top .portal-switcher-strip {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.site-header.is-home-header .header-inner {
+  border: none !important;
+  border-bottom: none !important;
+}
+
+.site-header.is-home-header .portal-left-hint {
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.site-header.is-home-header .portal-tab-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.site-header.is-home-header .portal-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.site-header.is-home-header .portal-tab-btn.active {
+  background: rgba(16, 217, 162, 0.22);
+  border-color: rgba(16, 217, 162, 0.65);
+  color: #10d9a2;
+}
+
+.site-header.is-home-header.is-scrolled {
+  background: rgba(4, 18, 17, 0.88) !important;
+  border: none !important;
+  border-bottom: none !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+.site-header.is-home-header.is-scrolled .portal-switcher-strip {
+  background: rgba(2, 10, 10, 0.72) !important;
+  border: none !important;
+  border-bottom: none !important;
+}
+
+.site-header.is-home-header .desktop-nav button {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.site-header.is-home-header .desktop-nav button:hover,
+.site-header.is-home-header .desktop-nav button.active {
+  color: #10d9a2;
+}
+
+.site-header.is-home-header .logo-button {
+  color: #ffffff;
+}
+
+/* Wander Logo */
+.wander-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wander-logo-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(16, 217, 162, 0.15);
+  border: 1px solid rgba(16, 217, 162, 0.4);
+  color: #10d9a2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(16, 217, 162, 0.25);
+  transition: transform 0.2s;
+}
+
+.wander-logo-wrap:hover .wander-logo-mark {
+  transform: scale(1.05);
+}
+
+.wander-logo-svg {
+  width: 24px;
+  height: 18px;
+}
+
+.wander-brand-text {
+  text-align: left;
+}
+
+.wander-brand-name {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+}
+
+.wander-brand-sub {
+  display: block;
+  font-size: 7.5px;
+  letter-spacing: 0.14em;
+  color: #10d9a2;
+  margin-top: 1px;
+}
+
+.nav-dropdown-caret {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.wander-header-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wander-header-icon-btn:hover {
+  background: rgba(16, 217, 162, 0.2);
+  border-color: #10d9a2;
+  color: #10d9a2;
+}
+
+.wander-lang-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.wander-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #10d9a2;
+  color: #06241f;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(16, 217, 162, 0.35);
+  transition: all 0.25s ease;
+}
+
+.wander-cta-pill:hover {
+  background: #2fe4b3;
+  box-shadow: 0 8px 24px rgba(16, 217, 162, 0.5);
+  transform: translateY(-1px);
+}
+
+/* WANDERLUST SIGNATURE HERO */
+.wander-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 140px;
+  padding-bottom: 45px;
+  color: #ffffff;
+  overflow: hidden;
+  background: #061817;
+}
+
+.wander-hero-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.wander-hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 32%;
+  transform: scale(1.02);
+  filter: brightness(0.9) contrast(1.05);
+}
+
+.wander-hero-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 65% 30%, rgba(0, 0, 0, 0.02) 0%, rgba(3, 16, 15, 0.35) 55%, rgba(3, 16, 15, 0.9) 100%),
+    linear-gradient(180deg, rgba(3, 16, 15, 0.45) 0%, transparent 22%, rgba(3, 16, 15, 0.72) 75%, #051615 100%);
+}
+
+/* Dynamic Route Trail & Geo Pin */
+.wander-hero-trail-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wander-trail-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wander-trail-dash {
+  animation: wanderDashAnim 28s linear infinite;
+}
+
+@keyframes wanderDashAnim {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
+.wander-geo-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wander-geo-pin-ring {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #10d9a2;
+  animation: wanderPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes wanderPing {
+  0% {
+    transform: translateY(-50%) scale(0.6);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(-50%) scale(2.4);
+    opacity: 0;
+  }
+}
+
+.wander-geo-pin-core {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #10d9a2;
+  box-shadow: 0 0 20px #10d9a2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #072520;
+}
+
+.wander-geo-pin-tag {
+  background: rgba(6, 23, 22, 0.85);
+  border: 1px solid rgba(16, 217, 162, 0.4);
+  backdrop-filter: blur(16px);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+  animation: wanderFloat 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes wanderFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.wander-geo-pin-tag strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.wander-geo-pin-tag small {
+  display: block;
+  font-size: 10px;
+  color: #10d9a2;
+}
+
+/* Hero Content Container */
+.wander-hero-container {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 120px);
+}
+
+.wander-hero-main-row {
+  display: block;
+  max-width: 820px;
+  margin-top: 28px;
+  margin-bottom: 52px;
+}
+
+/* Left Hero Typography */
+.wander-hero-left {
+  max-width: 760px;
+}
+
+.wander-hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #10d9a2;
+  margin-bottom: 22px;
+}
+
+.wander-kicker-line {
+  width: 28px;
+  height: 2px;
+  background: #10d9a2;
+  border-radius: 2px;
+}
+
+.wander-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 5.8vw, 78px);
+  line-height: 1.05;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  margin: 0 0 24px 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.wander-hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: #c4f3e6;
+}
+
+.wander-hero-desc {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: rgba(230, 243, 240, 0.88);
+  max-width: 530px;
+  margin: 0 0 36px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.wander-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.wander-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #10d9a2;
+  color: #06231e;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 25px rgba(16, 217, 162, 0.35);
+}
+
+.wander-pill-btn:hover {
+  background: #2fe4b3;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(16, 217, 162, 0.55);
+}
+
+.wander-video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 4px;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.2s;
+}
+
+.wander-video-btn:hover .wander-play-disc {
+  background: rgba(16, 217, 162, 0.25);
+  border-color: #10d9a2;
+  transform: scale(1.08);
+}
+
+.wander-play-disc {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.wander-video-caption strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.wander-video-caption small {
+  display: block;
+  font-size: 11px;
+  color: rgba(220, 240, 235, 0.7);
+  margin-top: 1px;
+}
+
+/* Right Floating Booking Widget */
+.wander-hero-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wander-booking-card {
+  background: rgba(8, 25, 24, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-radius: 26px;
+  padding: 30px 28px;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  max-width: 450px;
+  width: 100%;
+}
+
+.wander-card-header h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.01em;
+}
+
+.wander-card-header p {
+  font-size: 12.5px;
+  color: rgba(220, 238, 234, 0.7);
+  margin: 0 0 18px 0;
+}
+
+.wander-tab-bar {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.wander-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.wander-tab-btn.active {
+  color: #10d9a2;
+  background: rgba(16, 217, 162, 0.12);
+  font-weight: 600;
+}
+
+.wander-booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.wander-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.wander-field-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 6px;
+}
+
+.wander-input-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 12px 14px;
+  transition: border-color 0.2s;
+}
+
+.wander-input-box:focus-within {
+  border-color: #10d9a2;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.wander-dot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.wander-dot-indicator.green {
+  background: #10d9a2;
+  box-shadow: 0 0 8px #10d9a2;
+}
+
+.wander-dot-indicator.teal {
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.wander-field-input,
+.wander-field-select {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 500;
+  outline: none;
+  width: 100%;
+}
+
+.wander-field-select option {
+  background: #081d1c;
+  color: #ffffff;
+}
+
+.wander-swap-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wander-swap-btn:hover {
+  background: rgba(16, 217, 162, 0.2);
+  color: #10d9a2;
+}
+
+.wander-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.wander-info-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 11px 12px;
+  color: #ffffff;
+  font-size: 12.5px;
+}
+
+.wander-submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #10d9a2;
+  color: #06231e;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 20px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 24px rgba(16, 217, 162, 0.35);
+  margin-top: 4px;
+}
+
+.wander-submit-btn:hover {
+  background: #2fe4b3;
+  box-shadow: 0 14px 30px rgba(16, 217, 162, 0.55);
+  transform: translateY(-1px);
+}
+
+/* Lower Hero Strip */
+.wander-lower-strip {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: flex-end;
+  margin-bottom: 28px;
+}
+
+/* Popular Destinations Mini Carousel */
+.wander-popular-block {
+  width: 100%;
+}
+
+.wander-popular-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.wander-popular-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wander-popular-title-wrap h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.wander-view-all-link {
+  background: transparent;
+  border: none;
+  color: #10d9a2;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.wander-carousel-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.wander-arrow-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.wander-arrow-btn:hover:not(:disabled) {
+  background: rgba(16, 217, 162, 0.2);
+  border-color: #10d9a2;
+  color: #10d9a2;
+}
+
+.wander-arrow-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.wander-popular-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.wander-popular-card {
+  position: relative;
+  height: 120px;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s ease;
+}
+
+.wander-popular-card:hover {
+  transform: translateY(-3px);
+  border-color: #10d9a2;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(16, 217, 162, 0.25);
+}
+
+.wander-pop-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.wander-popular-card:hover .wander-pop-card-img {
+  transform: scale(1.06);
+}
+
+.wander-pop-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(3, 16, 15, 0.82) 0%, transparent 55%);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.wander-pop-card-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+.wander-pop-card-sub {
+  font-size: 9.5px;
+  color: #10d9a2;
+  margin-top: 2px;
+}
+
+/* Trust Badges Strip */
+.wander-trust-strip {
+  background: rgba(8, 25, 24, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 18px;
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.wander-trust-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.wander-trust-icon-box {
+  color: #10d9a2;
+}
+
+.wander-trust-text strong {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.wander-trust-text small {
+  display: block;
+  font-size: 8.5px;
+  color: rgba(220, 240, 235, 0.65);
+  margin-top: 1px;
+}
+
+/* Bottom Metrics Counter Bar */
+.wander-metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.wander-metric-item strong {
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.wander-metric-item span {
+  display: block;
+  font-size: 11.5px;
+  color: rgba(220, 240, 235, 0.65);
+  margin-top: 4px;
+}
+
+.wander-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wander-rating-stars {
+  color: #facc15;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+/* Video Modal Dialog */
+.wander-video-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(3, 14, 13, 0.85);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: wanderFadeIn 0.25s ease-out;
+}
+
+@keyframes wanderFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.wander-video-modal-dialog {
+  position: relative;
+  background: #071e1d;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  overflow: hidden;
+  max-width: 720px;
+  width: 100%;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.wander-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wander-modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.wander-modal-media {
+  position: relative;
+  height: 420px;
+}
+
+.wander-modal-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wander-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(4, 20, 19, 0.92) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+  color: #ffffff;
+}
+
+.wander-modal-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  color: #10d9a2;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.wander-modal-overlay h3 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.wander-modal-overlay p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(230, 245, 240, 0.85);
+  margin: 0 0 20px 0;
+  max-width: 580px;
+}
+
+.wander-modal-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+/* Responsive adjustments for Wanderlust Hero */
+@media (max-width: 1024px) {
+  .wander-hero-main-row {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .wander-hero-right {
+    justify-content: flex-start;
+  }
+
+  .wander-booking-card {
+    max-width: 100%;
+  }
+
+  .wander-lower-strip {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wander-popular-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wander-trust-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .wander-metrics-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}

@@ -16,7 +16,7 @@ import {
   VoteRecord,
   AdminAccount,
 } from "@/types"
-import { initialDestinations } from "@/data/destinations"
+import { initialDestinations, refreshDestinationImages } from "@/data/destinations"
 import { initialVoteRecords } from "@/data/mockVotes"
 import { initialAdminAccounts } from "@/data/mockAdminAccounts"
 
@@ -71,7 +71,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
             Array.isArray(parsed) &&
             parsed.length === EXPECTED_DESTINATION_COUNT
           ) {
-            return parsed
+            return refreshDestinationImages(parsed)
           }
         }
       } catch (e) {

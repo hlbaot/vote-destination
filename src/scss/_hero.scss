@@ -1,0 +1,201 @@
+// ============================================================
+// HERO SECTION (FALLBACK/ORIGINAL) + SECTIONS
+// ============================================================
+
+/* HERO SECTION (FALLBACK/ORIGINAL) */
+.hero {
+  height: 720px;
+  min-height: calc(100vh - 82px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      90deg,
+      rgba(2, 35, 33, 0.92) 0%,
+      rgba(4, 47, 44, 0.65) 45%,
+      rgba(2, 30, 28, 0.15) 80%
+    ),
+    linear-gradient(0deg, rgba(2, 30, 28, 0.5), transparent 45%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 30px;
+}
+
+.hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 0.17em;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.hero-kicker span {
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background: var(--coral);
+}
+
+.hero h1,
+.page-intro h1,
+.detail-title h1,
+.vote-header h1 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  margin: 28px 0 22px;
+}
+
+h1 em,
+h2 em {
+  color: var(--mint);
+  font-weight: inherit;
+}
+
+.hero-content > p {
+  max-width: 580px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.button-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-top: 36px;
+}
+
+.text-link {
+  border: 0;
+  background: transparent;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.play {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 76px;
+}
+
+.hero-stats div {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  padding-left: 16px;
+}
+
+.hero-stats strong {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 27px;
+}
+
+.hero-stats span {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+.hero-index {
+  position: absolute;
+  right: 4vw;
+  bottom: 52px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+}
+
+.hero-index div {
+  width: 100px;
+  display: flex;
+  gap: 3px;
+}
+
+.hero-index i {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.35);
+  flex: 1;
+}
+
+.hero-index i:first-child {
+  background: white;
+}
+
+/* SECTIONS */
+.section {
+  padding: 100px 0;
+}
+
+.bg-light-sand {
+  background: #f7f3ec;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 38px;
+}
+
+.eyebrow {
+  color: var(--coral);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.eyebrow.light {
+  color: var(--mint);
+}
+
+.section-heading h2,
+.story-strip h2,
+.detail-copy h2,
+.guide-title h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+  margin: 12px 0 0;
+  letter-spacing: 0;
+}

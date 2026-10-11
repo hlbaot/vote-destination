@@ -1,0 +1,546 @@
+[
+  {
+    "id": 1,
+    "name": "Hồ Hoàn Kiếm và Phố cổ",
+    "province": "Hà Nội",
+    "angle": "mặt hồ xanh, phố nghề lâu đời, nhịp sống đô thị giàu ký ức",
+    "prompt": "Photorealistic Hồ Hoàn Kiếm and Old Quarter, Hanoi, Turtle Tower on green lake; natural light, authentic architecture, no text.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-c329adb6-d33e-49bb-adca-5440e9af5877.png"
+  },
+  {
+    "id": 2,
+    "name": "Hoàng thành Thăng Long",
+    "province": "Hà Nội",
+    "angle": "lớp trầm tích kinh đô, không gian khảo cổ và kiến trúc cung đình",
+    "prompt": "Use case: photorealistic-natural. Generate one landscape travel illustration of the real Vietnamese destination \"Hoàng thành Thăng Long\". Description: lớp trầm tích kinh đô, không gian khảo cổ và kiến trúc cung đình. Geographic context in dataset: Hà Nội. Depict the actual recognizable destination, authentic architecture and terrain, not a generic scene. Select one accurate signature view; do not combine geographically separate landmarks into a fictitious scene. Natural light, realistic texture, beautiful editorial travel photograph style, wide 3:2 framing. No text, labels, watermark, collage or invented structures.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-6b50b12e-4de3-4ffc-928b-39babba6df9a.png"
+  },
+  {
+    "id": 3,
+    "name": "Quần thể Di tích Cố đô Huế (Đại Nội)",
+    "province": "Huế",
+    "angle": "thành quách, điện miếu, sắc màu cung đình và nhịp sông Hương",
+    "prompt": "Use case: photorealistic-natural. Generate one landscape travel illustration of the real Vietnamese destination \"Quần thể Di tích Cố đô Huế (Đại Nội)\". Description: thành quách, điện miếu, sắc màu cung đình và nhịp sông Hương. Geographic context in dataset: Huế. Depict the actual recognizable destination, authentic architecture and terrain, not a generic scene. Select one accurate signature view; do not combine geographically separate landmarks into a fictitious scene. Natural light, realistic texture, beautiful editorial travel photograph style, wide 3:2 framing. No text, labels, watermark, collage or invented structures.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-0ffee6e1-0107-4ebf-94c5-3124be140e69.png"
+  },
+  {
+    "id": 4,
+    "name": "Chùa Thiên Mụ – Sông Hương",
+    "province": "Huế",
+    "angle": "ngôi chùa cổ bên dòng sông thơ mộng và khung cảnh yên tĩnh",
+    "prompt": "Use case: photorealistic-natural. Generate one landscape travel illustration of the real Vietnamese destination \"Chùa Thiên Mụ – Sông Hương\". Description: ngôi chùa cổ bên dòng sông thơ mộng và khung cảnh yên tĩnh. Geographic context in dataset: Huế. Depict the actual recognizable destination, authentic architecture and terrain, not a generic scene. Select one accurate signature view; do not combine geographically separate landmarks into a fictitious scene. Natural light, realistic texture, beautiful editorial travel photograph style, wide 3:2 framing. No text, labels, watermark, collage or invented structures.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-6ca5f2c6-e683-4e24-a8cd-07a9023d5700.png"
+  },
+  {
+    "id": 5,
+    "name": "Phố cổ Hội An",
+    "province": "Đà Nẵng",
+    "angle": "mái ngói rêu phong, đèn lồng, bến sông và nếp sống thương cảng",
+    "prompt": "Use case: photorealistic-natural. Generate one landscape travel illustration of the real Vietnamese destination \"Phố cổ Hội An\". Description: mái ngói rêu phong, đèn lồng, bến sông và nếp sống thương cảng. Geographic context in dataset: Đà Nẵng. Depict the actual recognizable destination, authentic architecture and terrain, not a generic scene. Select one accurate signature view; do not combine geographically separate landmarks into a fictitious scene. Natural light, realistic texture, beautiful editorial travel photograph style, wide 3:2 framing. No text, labels, watermark, collage or invented structures.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-333c2e49-afdd-48bf-9901-869dab0518e7.png"
+  },
+  {
+    "id": 6,
+    "name": "Bà Nà Hills",
+    "province": "Đà Nẵng",
+    "angle": "khí hậu mát, cảnh quan núi cao và các công trình tham quan nổi bật",
+    "prompt": "Use case: photorealistic-natural. Generate one landscape travel illustration of the real Vietnamese destination \"Bà Nà Hills\". Description: khí hậu mát, cảnh quan núi cao và các công trình tham quan nổi bật. Geographic context in dataset: Đà Nẵng. Depict the actual recognizable destination, authentic architecture and terrain, not a generic scene. Select one accurate signature view; do not combine geographically separate landmarks into a fictitious scene. Natural light, realistic texture, beautiful editorial travel photograph style, wide 3:2 framing. No text, labels, watermark, collage or invented structures.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-84e34ea3-3d41-4792-8ff6-d6bcf947b5af.png"
+  },
+  {
+    "id": 7,
+    "name": "Nhà thờ Đức Bà – Bưu điện Trung tâm",
+    "province": "TP. Hồ Chí Minh",
+    "angle": "dấu ấn kiến trúc đô thị, quảng trường trung tâm và nhịp sống hiện đại",
+    "prompt": "Use case: photorealistic-natural. Generate one landscape travel illustration of the real Vietnamese destination \"Nhà thờ Đức Bà – Bưu điện Trung tâm\". Description: dấu ấn kiến trúc đô thị, quảng trường trung tâm và nhịp sống hiện đại. Geographic context in dataset: TP. Hồ Chí Minh. Depict the actual recognizable destination, authentic architecture and terrain, not a generic scene. Select one accurate signature view; do not combine geographically separate landmarks into a fictitious scene. Natural light, realistic texture, beautiful editorial travel photograph style, wide 3:2 framing. No text, labels, watermark, collage or invented structures.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-651c16d5-20d4-4e4a-b559-4622349109d4.png"
+  },
+  {
+    "id": 8,
+    "name": "Côn Đảo",
+    "province": "TP. Hồ Chí Minh",
+    "angle": "biển xanh, rừng nguyên sinh, ký ức lịch sử và không gian lắng đọng",
+    "prompt": "Use case: photorealistic-natural. Generate one landscape travel illustration of the real Vietnamese destination \"Côn Đảo\". Description: biển xanh, rừng nguyên sinh, ký ức lịch sử và không gian lắng đọng. Geographic context in dataset: TP. Hồ Chí Minh. Depict the actual recognizable destination, authentic architecture and terrain, not a generic scene. Select one accurate signature view; do not combine geographically separate landmarks into a fictitious scene. Natural light, realistic texture, beautiful editorial travel photograph style, wide 3:2 framing. No text, labels, watermark, collage or invented structures.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-36d7b6b8-5517-4e1a-a78f-a9757585aaec.png"
+  },
+  {
+    "id": 9,
+    "name": "Đảo Cát Bà",
+    "province": "Hải Phòng",
+    "angle": "vịnh xanh, đảo đá, làng chài và hệ sinh thái ven biển",
+    "prompt": "Use case: photorealistic-natural. Generate one landscape travel illustration of the real Vietnamese destination \"Đảo Cát Bà\". Description: vịnh xanh, đảo đá, làng chài và hệ sinh thái ven biển. Geographic context in dataset: Hải Phòng. Depict the actual recognizable destination, authentic architecture and terrain, not a generic scene. Select one accurate signature view; do not combine geographically separate landmarks into a fictitious scene. Natural light, realistic texture, beautiful editorial travel photograph style, wide 3:2 framing. No text, labels, watermark, collage or invented structures.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-e345e693-68cf-4f97-8d42-3b06d15b4a65.png"
+  },
+  {
+    "id": 10,
+    "name": "Khu di tích Côn Sơn – Kiếp Bạc",
+    "province": "Hải Phòng",
+    "angle": "núi rừng thanh tĩnh, đền chùa cổ và câu chuyện lịch sử dân tộc",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Khu di tích Côn Sơn – Kiếp Bạc\", matching description \"núi rừng thanh tĩnh, đền chùa cổ và câu chuyện lịch sử dân tộc\". Dataset province: Hải Phòng (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-fd95f880-11b2-4710-ac31-9c3a104b069c.png"
+  },
+  {
+    "id": 11,
+    "name": "Chợ nổi Cái Răng",
+    "province": "Cần Thơ",
+    "angle": "ghe thuyền buôn bán, bữa sáng trên sông và sinh hoạt miền Tây",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Chợ nổi Cái Răng\", matching description \"ghe thuyền buôn bán, bữa sáng trên sông và sinh hoạt miền Tây\". Dataset province: Cần Thơ (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-8e7345b2-0036-48e0-a038-e7322d20746b.png"
+  },
+  {
+    "id": 12,
+    "name": "Bến Ninh Kiều",
+    "province": "Cần Thơ",
+    "angle": "bến sông, phố đi bộ, cầu ánh sáng và nhịp đêm đô thị",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Bến Ninh Kiều\", matching description \"bến sông, phố đi bộ, cầu ánh sáng và nhịp đêm đô thị\". Dataset province: Cần Thơ (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-1704e8f1-9081-4f0f-968f-67ecdb30ddcd.png"
+  },
+  {
+    "id": 13,
+    "name": "Cao nguyên đá Đồng Văn",
+    "province": "Tuyên Quang",
+    "angle": "núi đá tai mèo, cung đường đèo và văn hóa vùng cao",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Cao nguyên đá Đồng Văn\", matching description \"núi đá tai mèo, cung đường đèo và văn hóa vùng cao\". Dataset province: Tuyên Quang (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-fdb5c3b8-2cc7-48a0-a8a0-b732508a31c9.png"
+  },
+  {
+    "id": 14,
+    "name": "Khu di tích quốc gia đặc biệt Tân Trào",
+    "province": "Tuyên Quang",
+    "angle": "không gian căn cứ cách mạng, rừng núi và những địa chỉ tri ân",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Khu di tích quốc gia đặc biệt Tân Trào\", matching description \"không gian căn cứ cách mạng, rừng núi và những địa chỉ tri ân\". Dataset province: Tuyên Quang (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-9e9c8691-3858-465b-8445-82b09cb298cc.png"
+  },
+  {
+    "id": 15,
+    "name": "Sa Pa và Fansipan",
+    "province": "Lào Cai",
+    "angle": "biển mây, bản làng, ruộng bậc thang và đỉnh núi hùng vĩ",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Sa Pa và Fansipan\", matching description \"biển mây, bản làng, ruộng bậc thang và đỉnh núi hùng vĩ\". Dataset province: Lào Cai (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-ab47df29-a5f7-492c-b2e5-ec4d8e2be15f.png"
+  },
+  {
+    "id": 16,
+    "name": "Ruộng bậc thang Mù Cang Chải",
+    "province": "Lào Cai",
+    "angle": "mùa vàng, triền núi uốn lượn và kỹ thuật canh tác bản địa",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Ruộng bậc thang Mù Cang Chải\", matching description \"mùa vàng, triền núi uốn lượn và kỹ thuật canh tác bản địa\". Dataset province: Lào Cai (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-b8436435-3986-478e-a73f-11b363765c16.png"
+  },
+  {
+    "id": 17,
+    "name": "Hồ Ba Bể",
+    "province": "Thái Nguyên",
+    "angle": "mặt hồ xanh, núi đá, hang động và nếp sống ven hồ",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Hồ Ba Bể\", matching description \"mặt hồ xanh, núi đá, hang động và nếp sống ven hồ\". Dataset province: Thái Nguyên (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-2684b9f4-07e9-4477-ae0a-9ebae6aefdf8.png"
+  },
+  {
+    "id": 18,
+    "name": "Vùng chè Tân Cương",
+    "province": "Thái Nguyên",
+    "angle": "đồi chè xanh, văn hóa thưởng trà và khung cảnh trung du dịu mắt",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Vùng chè Tân Cương\", matching description \"đồi chè xanh, văn hóa thưởng trà và khung cảnh trung du dịu mắt\". Dataset province: Thái Nguyên (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-1c3eafcc-cf1e-4398-8d97-006d1d2060d8.png"
+  },
+  {
+    "id": 19,
+    "name": "Khu di tích Đền Hùng",
+    "province": "Phú Thọ",
+    "angle": "không gian nguồn cội, rừng núi Nghĩa Lĩnh và nghi lễ cộng đồng",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Khu di tích Đền Hùng\", matching description \"không gian nguồn cội, rừng núi Nghĩa Lĩnh và nghi lễ cộng đồng\". Dataset province: Phú Thọ (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-878bb59e-63b4-42aa-b24b-dcf432d07bb8.png"
+  },
+  {
+    "id": 20,
+    "name": "Vườn quốc gia Tam Đảo",
+    "province": "Phú Thọ",
+    "angle": "rừng núi mát lành, mây phủ và những tuyến đi bộ sinh thái",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Vườn quốc gia Tam Đảo\", matching description \"rừng núi mát lành, mây phủ và những tuyến đi bộ sinh thái\". Dataset province: Phú Thọ (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-43750bae-025d-4c0f-98aa-9df4194064c0.png"
+  },
+  {
+    "id": 21,
+    "name": "Chùa Bút Tháp – Không gian Quan họ",
+    "province": "Bắc Ninh",
+    "angle": "làng cổ, mái chùa, làn điệu quan họ và sinh hoạt cộng đồng",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Chùa Bút Tháp – Không gian Quan họ\", matching description \"làng cổ, mái chùa, làn điệu quan họ và sinh hoạt cộng đồng\". Dataset province: Bắc Ninh (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-4ace1942-825d-43ec-b2bc-8e0a12843bdf.png"
+  },
+  {
+    "id": 22,
+    "name": "Khu du lịch Tây Yên Tử",
+    "province": "Bắc Ninh",
+    "angle": "rừng núi, đường hành hương và không khí tĩnh tại của miền Phật tích",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Khu du lịch Tây Yên Tử\", matching description \"rừng núi, đường hành hương và không khí tĩnh tại của miền Phật tích\". Dataset province: Bắc Ninh (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-aabc1e55-729f-44f0-aaa6-38e98b56c900.png"
+  },
+  {
+    "id": 23,
+    "name": "Phố Hiến",
+    "province": "Hưng Yên",
+    "angle": "dấu xưa thương cảng, đình chùa cổ và nhịp sống ven sông",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Phố Hiến\", matching description \"dấu xưa thương cảng, đình chùa cổ và nhịp sống ven sông\". Dataset province: Hưng Yên (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-095214ce-8672-4d02-8e1c-049f0913fb6a.png"
+  },
+  {
+    "id": 24,
+    "name": "Chùa Keo",
+    "province": "Hưng Yên",
+    "angle": "kiến trúc gỗ truyền thống, sân chùa rộng và không gian lễ hội",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Chùa Keo\", matching description \"kiến trúc gỗ truyền thống, sân chùa rộng và không gian lễ hội\". Dataset province: Hưng Yên (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-54e54a06-686c-4a95-8803-e7627a630840.png"
+  },
+  {
+    "id": 25,
+    "name": "Quần thể danh thắng Tràng An",
+    "province": "Ninh Bình",
+    "angle": "sông nước, hang xuyên thủy, núi đá vôi và di tích cố đô",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Quần thể danh thắng Tràng An\", matching description \"sông nước, hang xuyên thủy, núi đá vôi và di tích cố đô\". Dataset province: Ninh Bình (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-a99762bd-5590-4548-a2e8-0d945c6257d2.png"
+  },
+  {
+    "id": 26,
+    "name": "Cố đô Hoa Lư",
+    "province": "Ninh Bình",
+    "angle": "đền cổ, thung lũng đá vôi và không gian tưởng nhớ kinh đô xưa",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Cố đô Hoa Lư\", matching description \"đền cổ, thung lũng đá vôi và không gian tưởng nhớ kinh đô xưa\". Dataset province: Ninh Bình (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-d0745045-bddf-4061-bce7-b917ed5a052f.png"
+  },
+  {
+    "id": 27,
+    "name": "Thành nhà Hồ",
+    "province": "Thanh Hóa",
+    "angle": "tường thành đá, cảnh quan làng quê và dấu ấn kiến trúc độc đáo",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Thành nhà Hồ\", matching description \"tường thành đá, cảnh quan làng quê và dấu ấn kiến trúc độc đáo\". Dataset province: Thanh Hóa (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-4f3b6ee8-69b3-4ad8-bb70-6c75d0e8971b.png"
+  },
+  {
+    "id": 28,
+    "name": "Biển Sầm Sơn",
+    "province": "Thanh Hóa",
+    "angle": "bãi cát dài, nhịp nghỉ dưỡng sôi động và hải sản ven biển",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Biển Sầm Sơn\", matching description \"bãi cát dài, nhịp nghỉ dưỡng sôi động và hải sản ven biển\". Dataset province: Thanh Hóa (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-0e5f3cb6-7584-4dc3-b2cc-d731afe9c2e8.png"
+  },
+  {
+    "id": 29,
+    "name": "Khu di tích Kim Liên (Quê Bác)",
+    "province": "Nghệ An",
+    "angle": "làng quê xứ Nghệ, nếp nhà truyền thống và câu chuyện lịch sử gần gũi",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Khu di tích Kim Liên (Quê Bác)\", matching description \"làng quê xứ Nghệ, nếp nhà truyền thống và câu chuyện lịch sử gần gũi\". Dataset province: Nghệ An (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-ff097e59-a552-46e0-b15c-c27cca19c546.png"
+  },
+  {
+    "id": 30,
+    "name": "Biển Cửa Lò",
+    "province": "Nghệ An",
+    "angle": "bờ cát rộng, làng biển và nhịp nghỉ dưỡng thân thiện",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Biển Cửa Lò\", matching description \"bờ cát rộng, làng biển và nhịp nghỉ dưỡng thân thiện\". Dataset province: Nghệ An (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-d06c6d99-28f9-4c40-8b5b-0d2b92bf9a34.png"
+  },
+  {
+    "id": 31,
+    "name": "Ngã ba Đồng Lộc",
+    "province": "Hà Tĩnh",
+    "angle": "không gian tưởng niệm, câu chuyện thanh niên xung phong và vùng đồi yên tĩnh",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Ngã ba Đồng Lộc\", matching description \"không gian tưởng niệm, câu chuyện thanh niên xung phong và vùng đồi yên tĩnh\". Dataset province: Hà Tĩnh (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-2c921c29-8ed7-4d0e-8240-06eba8a3d6de.png"
+  },
+  {
+    "id": 32,
+    "name": "Chùa Hương Tích (Hương Sơn)",
+    "province": "Hà Tĩnh",
+    "angle": "núi non, đường lên chùa và cảnh quan thanh tịnh miền Trung",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Chùa Hương Tích (Hương Sơn)\", matching description \"núi non, đường lên chùa và cảnh quan thanh tịnh miền Trung\". Dataset province: Hà Tĩnh (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-072e84e7-8d9a-43f2-a6cf-6cd1d76da0e0.png"
+  },
+  {
+    "id": 33,
+    "name": "Vườn quốc gia Phong Nha – Kẻ Bàng",
+    "province": "Quảng Trị",
+    "angle": "hang động, sông ngầm, rừng xanh và địa hình đá vôi kỳ vĩ",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Vườn quốc gia Phong Nha – Kẻ Bàng\", matching description \"hang động, sông ngầm, rừng xanh và địa hình đá vôi kỳ vĩ\". Dataset province: Quảng Trị (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-63be6d49-d9ee-446a-a149-009be5da86eb.png"
+  },
+  {
+    "id": 34,
+    "name": "Di tích Thành cổ Quảng Trị",
+    "province": "Quảng Trị",
+    "angle": "không gian tưởng niệm, tường thành và những ký ức chiến tranh",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Di tích Thành cổ Quảng Trị\", matching description \"không gian tưởng niệm, tường thành và những ký ức chiến tranh\". Dataset province: Quảng Trị (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-c48790c5-6b1a-4833-8ad6-d9a580ac2440.png"
+  },
+  {
+    "id": 35,
+    "name": "Đảo Lý Sơn",
+    "province": "Quảng Ngãi",
+    "angle": "đảo núi lửa, ruộng tỏi, biển xanh và đời sống làng chài",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Đảo Lý Sơn\", matching description \"đảo núi lửa, ruộng tỏi, biển xanh và đời sống làng chài\". Dataset province: Quảng Ngãi (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-2b8fbf8d-8327-414d-9bad-bf8839677a09.png"
+  },
+  {
+    "id": 36,
+    "name": "Khu du lịch sinh thái Măng Đen",
+    "province": "Quảng Ngãi",
+    "angle": "rừng thông, hồ thác, khí hậu mát và nhịp nghỉ dưỡng chậm",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Khu du lịch sinh thái Măng Đen\", matching description \"rừng thông, hồ thác, khí hậu mát và nhịp nghỉ dưỡng chậm\". Dataset province: Quảng Ngãi (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-d79d9182-6db7-4e6b-ad9e-99691d5b6f40.png"
+  },
+  {
+    "id": 37,
+    "name": "Kỳ Co – Eo Gió (Quy Nhơn)",
+    "province": "Gia Lai",
+    "angle": "vách đá ven biển, nước xanh và cung đường ngắm gió",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Kỳ Co – Eo Gió (Quy Nhơn)\", matching description \"vách đá ven biển, nước xanh và cung đường ngắm gió\". Dataset province: Gia Lai (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-18b379d9-d180-4a42-a449-d77410b7ad5f.png"
+  },
+  {
+    "id": 38,
+    "name": "Biển Hồ T'Nưng",
+    "province": "Gia Lai",
+    "angle": "mặt hồ núi lửa, rừng thông và sắc thái cao nguyên yên bình",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Biển Hồ T'Nưng\", matching description \"mặt hồ núi lửa, rừng thông và sắc thái cao nguyên yên bình\". Dataset province: Gia Lai (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-af9b255c-84ee-4ffa-b56e-57dd64519bef.png"
+  },
+  {
+    "id": 39,
+    "name": "Vịnh Nha Trang",
+    "province": "Khánh Hòa",
+    "angle": "vịnh biển xanh, đảo gần bờ, san hô và nhịp du lịch biển",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Vịnh Nha Trang\", matching description \"vịnh biển xanh, đảo gần bờ, san hô và nhịp du lịch biển\". Dataset province: Khánh Hòa (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-2d98031b-1b1e-425b-aa66-81fe38585323.png"
+  },
+  {
+    "id": 40,
+    "name": "Vịnh Vĩnh Hy",
+    "province": "Khánh Hòa",
+    "angle": "vịnh kín gió, núi đá, nước trong và trải nghiệm biển sinh thái",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Vịnh Vĩnh Hy\", matching description \"vịnh kín gió, núi đá, nước trong và trải nghiệm biển sinh thái\". Dataset province: Khánh Hòa (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-53e62324-6651-43c6-9135-54ee9a6fdadd.png"
+  },
+  {
+    "id": 41,
+    "name": "Thành phố Đà Lạt",
+    "province": "Lâm Đồng",
+    "angle": "rừng thông, hồ nước, phố núi và khí hậu se lạnh",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Thành phố Đà Lạt\", matching description \"rừng thông, hồ nước, phố núi và khí hậu se lạnh\". Dataset province: Lâm Đồng (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-be12dc06-79da-417d-9e58-0be72c9466ad.png"
+  },
+  {
+    "id": 42,
+    "name": "Mũi Né – Đồi cát bay",
+    "province": "Lâm Đồng",
+    "angle": "đồi cát, biển nắng, làng chài và sắc màu duyên hải",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Mũi Né – Đồi cát bay\", matching description \"đồi cát, biển nắng, làng chài và sắc màu duyên hải\". Dataset province: Lâm Đồng (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-93ed038d-d5bd-48f2-a890-86918005bf71.png"
+  },
+  {
+    "id": 43,
+    "name": "Buôn Đôn",
+    "province": "Đắk Lắk",
+    "angle": "nhà dài, bến nước, rừng khộp và câu chuyện đại ngàn",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Buôn Đôn\", matching description \"nhà dài, bến nước, rừng khộp và câu chuyện đại ngàn\". Dataset province: Đắk Lắk (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-c4409107-ab5e-48e8-a369-513d7a0d092d.png"
+  },
+  {
+    "id": 44,
+    "name": "Gành Đá Đĩa",
+    "province": "Đắk Lắk",
+    "angle": "những khối đá xếp lớp, sóng biển và cảnh quan địa chất lạ mắt",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Gành Đá Đĩa\", matching description \"những khối đá xếp lớp, sóng biển và cảnh quan địa chất lạ mắt\". Dataset province: Đắk Lắk (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-3c3b63fa-01fb-4708-9b85-df17515228d8.png"
+  },
+  {
+    "id": 45,
+    "name": "Vườn quốc gia Cát Tiên",
+    "province": "Đồng Nai",
+    "angle": "rừng nhiệt đới, tuyến trekking, cây cổ thụ và sinh cảnh hoang dã",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Vườn quốc gia Cát Tiên\", matching description \"rừng nhiệt đới, tuyến trekking, cây cổ thụ và sinh cảnh hoang dã\". Dataset province: Đồng Nai (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-1c90930f-ee0b-457b-a487-1c6c9f04caad.png"
+  },
+  {
+    "id": 46,
+    "name": "Vườn quốc gia Bù Gia Mập",
+    "province": "Đồng Nai",
+    "angle": "rừng nguyên sinh, suối thác và hệ sinh thái chuyển tiếp",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Vườn quốc gia Bù Gia Mập\", matching description \"rừng nguyên sinh, suối thác và hệ sinh thái chuyển tiếp\". Dataset province: Đồng Nai (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-404330ee-22ec-4260-9bcb-f92a700c0281.png"
+  },
+  {
+    "id": 47,
+    "name": "Núi Bà Đen",
+    "province": "Tây Ninh",
+    "angle": "núi cao, mây phủ, không gian hành hương và tầm nhìn rộng",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Núi Bà Đen\", matching description \"núi cao, mây phủ, không gian hành hương và tầm nhìn rộng\". Dataset province: Tây Ninh (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-82b96b6c-17dc-4801-b207-f80416889d6b.png"
+  },
+  {
+    "id": 48,
+    "name": "Tòa Thánh Tây Ninh",
+    "province": "Tây Ninh",
+    "angle": "màu sắc kiến trúc, nghi lễ tôn giáo và không gian văn hóa đặc trưng",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Tòa Thánh Tây Ninh\", matching description \"màu sắc kiến trúc, nghi lễ tôn giáo và không gian văn hóa đặc trưng\". Dataset province: Tây Ninh (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-86d16e53-e9d1-4f3e-85f3-3d6e015afef7.png"
+  },
+  {
+    "id": 49,
+    "name": "Cù lao An Bình",
+    "province": "Vĩnh Long",
+    "angle": "vườn cây, kênh rạch, nhà vườn và nhịp sống sông nước",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Cù lao An Bình\", matching description \"vườn cây, kênh rạch, nhà vườn và nhịp sống sông nước\". Dataset province: Vĩnh Long (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-f258ad63-87ba-4d2c-bf5f-a64e5889ae44.png"
+  },
+  {
+    "id": 50,
+    "name": "Cồn Phụng – Vùng sông nước Bến Tre",
+    "province": "Vĩnh Long",
+    "angle": "cù lao xanh, xuồng chèo, vườn dừa và trải nghiệm miệt vườn",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Cồn Phụng – Vùng sông nước Bến Tre\", matching description \"cù lao xanh, xuồng chèo, vườn dừa và trải nghiệm miệt vườn\". Dataset province: Vĩnh Long (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-d351b4e2-e1cd-471a-8985-3780840c2138.png"
+  },
+  {
+    "id": 51,
+    "name": "Vườn quốc gia Tràm Chim",
+    "province": "Đồng Tháp",
+    "angle": "đồng cỏ ngập nước, chim trời và sắc màu mùa nước nổi",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Vườn quốc gia Tràm Chim\", matching description \"đồng cỏ ngập nước, chim trời và sắc màu mùa nước nổi\". Dataset province: Đồng Tháp (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-6ecd1bba-54a9-4512-9540-d904f74e7733.png"
+  },
+  {
+    "id": 52,
+    "name": "Làng hoa Sa Đéc",
+    "province": "Đồng Tháp",
+    "angle": "vườn hoa rực rỡ, nhà vườn và nghề trồng hoa lâu đời",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Làng hoa Sa Đéc\", matching description \"vườn hoa rực rỡ, nhà vườn và nghề trồng hoa lâu đời\". Dataset province: Đồng Tháp (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-1593b505-eb19-4e8f-9492-66ea562324ad.png"
+  },
+  {
+    "id": 53,
+    "name": "Mũi Cà Mau",
+    "province": "Cà Mau",
+    "angle": "rừng ngập mặn, cột mốc cuối đất và đường chân trời biển",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Mũi Cà Mau\", matching description \"rừng ngập mặn, cột mốc cuối đất và đường chân trời biển\". Dataset province: Cà Mau (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-2bd24608-1c95-44c7-9a91-a1d94701dce2.png"
+  },
+  {
+    "id": 54,
+    "name": "Nhà Công tử Bạc Liêu",
+    "province": "Cà Mau",
+    "angle": "không gian nhà cổ, câu chuyện Nam Bộ và dấu ấn kiến trúc xưa",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Nhà Công tử Bạc Liêu\", matching description \"không gian nhà cổ, câu chuyện Nam Bộ và dấu ấn kiến trúc xưa\". Dataset province: Cà Mau (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-49436580-bc71-483f-baf5-04833c536112.png"
+  },
+  {
+    "id": 55,
+    "name": "Núi Sam – Miếu Bà Chúa Xứ",
+    "province": "An Giang",
+    "angle": "không gian hành hương, núi thấp, đồng bằng và văn hóa biên giới",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Núi Sam – Miếu Bà Chúa Xứ\", matching description \"không gian hành hương, núi thấp, đồng bằng và văn hóa biên giới\". Dataset province: An Giang (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-2b1f3230-84d9-4dd4-bf4b-2c9037cfd086.png"
+  },
+  {
+    "id": 56,
+    "name": "Đảo Phú Quốc",
+    "province": "An Giang",
+    "angle": "biển xanh, rừng nguyên sinh, làng chài và trải nghiệm nghỉ dưỡng",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Đảo Phú Quốc\", matching description \"biển xanh, rừng nguyên sinh, làng chài và trải nghiệm nghỉ dưỡng\". Dataset province: An Giang (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-0da8e07c-7168-41e0-96a8-170dac32bc48.png"
+  },
+  {
+    "id": 57,
+    "name": "Vịnh Hạ Long",
+    "province": "Quảng Ninh",
+    "angle": "núi đá vôi, mặt vịnh xanh và những hành trình du thuyền",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Vịnh Hạ Long\", matching description \"núi đá vôi, mặt vịnh xanh và những hành trình du thuyền\". Dataset province: Quảng Ninh (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-ec507b40-fb3e-469b-8c26-713ca9a513d1.png"
+  },
+  {
+    "id": 58,
+    "name": "Khu di tích Yên Tử",
+    "province": "Quảng Ninh",
+    "angle": "đường hành hương, rừng trúc, mây núi và dấu ấn Phật giáo",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Khu di tích Yên Tử\", matching description \"đường hành hương, rừng trúc, mây núi và dấu ấn Phật giáo\". Dataset province: Quảng Ninh (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-3f634261-e1a5-4ac6-9d1c-b8b0f374da77.png"
+  },
+  {
+    "id": 59,
+    "name": "Động Tam Thanh – Nhị Thanh",
+    "province": "Lạng Sơn",
+    "angle": "hang đá, chùa trong động, thơ khắc và không gian phố núi",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Động Tam Thanh – Nhị Thanh\", matching description \"hang đá, chùa trong động, thơ khắc và không gian phố núi\". Dataset province: Lạng Sơn (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-4549fcc0-3460-495b-b838-1128d428f0f3.png"
+  },
+  {
+    "id": 60,
+    "name": "Thung lũng Bắc Sơn",
+    "province": "Lạng Sơn",
+    "angle": "cánh đồng thung lũng, núi đá, bản làng và mùa vàng",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Thung lũng Bắc Sơn\", matching description \"cánh đồng thung lũng, núi đá, bản làng và mùa vàng\". Dataset province: Lạng Sơn (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-1b73d858-926d-4148-99b7-2edd3a872d7c.png"
+  },
+  {
+    "id": 61,
+    "name": "Thác Bản Giốc",
+    "province": "Cao Bằng",
+    "angle": "dòng thác nhiều tầng, sông xanh và cảnh quan biên giới",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Thác Bản Giốc\", matching description \"dòng thác nhiều tầng, sông xanh và cảnh quan biên giới\". Dataset province: Cao Bằng (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-d80a7dd6-9244-4d08-8ecb-a58422160037.png"
+  },
+  {
+    "id": 62,
+    "name": "Khu di tích Pác Bó",
+    "province": "Cao Bằng",
+    "angle": "suối trong, hang núi và câu chuyện cách mạng giữa rừng",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Khu di tích Pác Bó\", matching description \"suối trong, hang núi và câu chuyện cách mạng giữa rừng\". Dataset province: Cao Bằng (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-7d876ea1-3b84-4b9d-b137-610d152a568a.png"
+  },
+  {
+    "id": 63,
+    "name": "Đèo Ô Quy Hồ",
+    "province": "Lai Châu",
+    "angle": "cung đèo mây phủ, núi cao và tầm nhìn Tây Bắc hùng vĩ",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Đèo Ô Quy Hồ\", matching description \"cung đèo mây phủ, núi cao và tầm nhìn Tây Bắc hùng vĩ\". Dataset province: Lai Châu (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-3c7a1d07-a1ce-4b4d-9b37-26857317d55b.png"
+  },
+  {
+    "id": 64,
+    "name": "Cao nguyên Sìn Hồ",
+    "province": "Lai Châu",
+    "angle": "khí hậu mát, chợ vùng cao, núi non và bản làng yên bình",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Cao nguyên Sìn Hồ\", matching description \"khí hậu mát, chợ vùng cao, núi non và bản làng yên bình\". Dataset province: Lai Châu (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-4fb1ca33-d76b-47dc-b9f3-d65d5b48e880.png"
+  },
+  {
+    "id": 65,
+    "name": "Di tích Chiến trường Điện Biên Phủ",
+    "province": "Điện Biên",
+    "angle": "đồi di tích, bảo tàng, hầm chỉ huy và ký ức chiến thắng",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Di tích Chiến trường Điện Biên Phủ\", matching description \"đồi di tích, bảo tàng, hầm chỉ huy và ký ức chiến thắng\". Dataset province: Điện Biên (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-d7c831bf-9708-4865-9e89-6571224fb1c5.png"
+  },
+  {
+    "id": 66,
+    "name": "Hồ Pá Khoang",
+    "province": "Điện Biên",
+    "angle": "mặt hồ tĩnh, rừng xanh, bản làng và không khí núi cao",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Hồ Pá Khoang\", matching description \"mặt hồ tĩnh, rừng xanh, bản làng và không khí núi cao\". Dataset province: Điện Biên (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-aa846b07-41ed-4608-aae3-f56e9e663c5f.png"
+  },
+  {
+    "id": 67,
+    "name": "Cao nguyên Mộc Châu",
+    "province": "Sơn La",
+    "angle": "đồi chè, hoa theo mùa, thung lũng và sản vật cao nguyên",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Cao nguyên Mộc Châu\", matching description \"đồi chè, hoa theo mùa, thung lũng và sản vật cao nguyên\". Dataset province: Sơn La (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-fd72a2b4-a4b3-4ba8-8da0-0d0b368d04a0.png"
+  },
+  {
+    "id": 68,
+    "name": "Đỉnh Tà Xùa",
+    "province": "Sơn La",
+    "angle": "sống núi, biển mây, bình minh và nhịp trekking vùng cao",
+    "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Đỉnh Tà Xùa\", matching description \"sống núi, biển mây, bình minh và nhịp trekking vùng cao\". Dataset province: Sơn La (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
+    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-0d22b10f-0e7b-487d-976b-00d4337e236d.png"
+  }
+]

@@ -158,8 +158,8 @@ function buildIntroduction(item: DestinationSeed) {
 function toDestination(item: DestinationSeed): Destination {
   const slug = slugify(item.name)
   const tag = toTag(item.category)
-  const thumbnail = `https://picsum.photos/seed/${slug}/600/400`
-  const gallery = [1, 2, 3, 4].map((index) => `https://picsum.photos/seed/${slug}-${index}/1200/800`)
+  const thumbnail = `/images/destinations/${item.id}.webp`
+  const gallery = [thumbnail]
   const shortDescription = buildShortDescription(item)
   const introduction = buildIntroduction(item)
 
@@ -173,6 +173,7 @@ function toDestination(item: DestinationSeed): Destination {
     category: item.category,
     thumbnail,
     image: thumbnail,
+    imageCredit: "Ảnh minh họa tạo bằng AI",
     secondaryImage: gallery[0],
     gallery,
     videoUrl: videoIds.has(item.id) ? "https://www.youtube.com/watch?v=dQw4w9WgXcQ" : null,
@@ -204,6 +205,24 @@ function toDestination(item: DestinationSeed): Destination {
 }
 
 export const initialDestinations: Destination[] = seeds.map(toDestination)
+
+/** Refresh bundled artwork without resetting locally stored votes or visibility. */
+export function refreshDestinationImages(saved: Destination[]): Destination[] {
+  return saved.map((item) => {
+    const current = initialDestinations.find(
+      (seed) => seed.id === item.id && seed.name === item.name,
+    )
+    if (!current) return item
+    return {
+      ...item,
+      thumbnail: current.thumbnail,
+      image: current.image,
+      secondaryImage: current.secondaryImage,
+      gallery: current.gallery,
+      imageCredit: current.imageCredit,
+    }
+  })
+}
 
 export const news = [
   {

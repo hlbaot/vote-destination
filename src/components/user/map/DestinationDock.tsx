@@ -34,7 +34,7 @@ export default function DestinationDock({ node, votedToday, hasVotesLeft, onVote
   const stageColor = ["var(--color-secondary)", "var(--color-primary)", "var(--color-primary-hover)", "var(--color-accent)"][node.stage]
 
   return (
-    <div className="flex flex-col h-full bg-[var(--color-surface-tint)] border-l border-[var(--color-border)] overflow-hidden">
+    <div className="flex flex-col h-full bg-gradient-to-b from-[#F0F9ED] to-[#DCF0D8] border-l border-[var(--color-border)] overflow-hidden">
       {/* Image */}
       <div className="relative h-44 flex-shrink-0 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-hover)]">
         {node.thumbnail ? (
@@ -84,7 +84,7 @@ export default function DestinationDock({ node, votedToday, hasVotesLeft, onVote
         </div>
 
         {/* Vote count */}
-        <div className="bg-white/70 rounded-xl p-3 border border-[var(--color-border)]">
+        <div className="bg-[#E2F3DC]/90 rounded-xl p-3 border border-[var(--color-border)] shadow-sm">
           <div className="flex items-baseline gap-1.5">
             <span className="text-3xl font-bold text-[var(--color-primary-dark)]">{votes.toLocaleString("vi-VN")}</span>
             <span className="text-sm text-[var(--color-text-muted)]">phiếu bình chọn</span>

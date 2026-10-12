@@ -49,7 +49,7 @@ export default function Detail({
     .slice(0, 3)
 
   return (
-    <main>
+    <main className="destination-detail-page">
       <section className="detail-hero">
         <img src={displayedImage} alt={destination.name} />
         <div className="detail-overlay" />
@@ -226,7 +226,7 @@ export default function Detail({
 
       {/* Related suggestions */}
       {related.length > 0 && (
-        <section className="section bg-light-sand">
+        <section className="section detail-related-section">
           <div className="container">
             <div className="section-heading">
               <div>

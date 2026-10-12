@@ -266,27 +266,27 @@ img {
 }
 
 .wander-logo-mark {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-tint) 100%);
+  border: 1.5px solid var(--color-secondary);
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 16px rgba(94, 211, 168, 0.3);
   transition: transform 0.2s ease;
   flex-shrink: 0;
 }
 
 .wander-logo-wrap:hover .wander-logo-mark {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
-.wander-logo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+.wander-logo-svg {
+  width: 24px;
+  height: 18px;
 }
 
 .wander-brand-text {
@@ -300,17 +300,17 @@ img {
   font-size: 14.5px;
   font-weight: 800;
   letter-spacing: 0.16em;
-  color: #C88414 !important; /* Tone vàng lúa chín sang trọng, nổi bật trên nền sáng */
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+  color: var(--color-text) !important;
+  text-shadow: none;
   line-height: 1.2;
   white-space: nowrap !important;
 }
 
 .wander-brand-sub {
   display: block;
-  font-size: 8.5px;
-  letter-spacing: 0.15em;
-  color: #B87A0E !important; /* Tone vàng lúa ấm áp */
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: var(--color-primary) !important;
   font-weight: 700;
   margin-top: 2px;
   line-height: 1.2;
@@ -843,27 +843,26 @@ h2 em {
 }
 
 .wander-logo-mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(16, 217, 162, 0.15);
+  border: 1px solid rgba(16, 217, 162, 0.4);
+  color: var(--color-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none;
+  box-shadow: 0 0 16px rgba(16, 217, 162, 0.25);
   transition: transform 0.2s;
 }
 
 .wander-logo-wrap:hover .wander-logo-mark {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
-.wander-logo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+.wander-logo-svg {
+  width: 24px;
+  height: 18px;
 }
 
 .wander-brand-text {
@@ -872,20 +871,18 @@ h2 em {
 
 .wander-brand-name {
   display: block;
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.18em;
-  color: #F8C55A !important; /* Tone vàng lúa chín sáng trên nền tối */
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
 }
 
 .wander-brand-sub {
   display: block;
-  font-size: 8px;
+  font-size: 7.5px;
   letter-spacing: 0.14em;
-  color: #F5A623 !important; /* Tone vàng lúa ánh hổ phách */
+  color: var(--color-secondary);
   margin-top: 1px;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 .nav-dropdown-caret {
@@ -1119,14 +1116,14 @@ h2 em {
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #F8C55A; /* Tone vàng lúa sáng */
+  color: var(--color-secondary);
   margin-bottom: 22px;
 }
 
 .wander-kicker-line {
   width: 28px;
   height: 2px;
-  background: #F8C55A; /* Tone vàng lúa */
+  background: var(--color-secondary);
   border-radius: 2px;
 }
 
@@ -1144,8 +1141,7 @@ h2 em {
 .wander-hero-title em {
   font-style: italic;
   font-weight: 400;
-  color: #F8C55A; /* Tone vàng lúa */
-  text-shadow: 0 2px 14px rgba(248, 197, 90, 0.4);
+  color: #c4f3e6;
 }
 
 .wander-hero-desc {
@@ -2082,10 +2078,10 @@ h2 em {
   position: relative;
   min-height: 100vh;
   padding: 40px 0 100px;
-  background-color: var(--color-text);
-  background-image: radial-gradient(circle at 12% 18%, rgba(94, 211, 168, 0.12) 0%, transparent 45%), radial-gradient(circle at 88% 28%, rgba(232, 115, 90, 0.13) 0%, transparent 42%), radial-gradient(circle at 50% 85%, rgba(46, 158, 63, 0.1) 0%, transparent 55%), linear-gradient(180deg, var(--color-surface-tint) 0%, var(--color-surface-tint) 30%, var(--color-bg) 70%, var(--color-bg) 100%);
+  background-color: #E2F3DC;
+  background-image: radial-gradient(circle at 12% 18%, rgba(46, 158, 63, 0.15) 0%, transparent 45%), radial-gradient(circle at 88% 28%, rgba(200, 132, 20, 0.12) 0%, transparent 42%), radial-gradient(circle at 50% 85%, rgba(46, 158, 63, 0.12) 0%, transparent 55%), linear-gradient(180deg, #E8F5E5 0%, #DCF0D8 35%, #D0EAC6 70%, #C4E4B8 100%);
   background-attachment: fixed;
-  color: #FBF7F0;
+  color: #1F3A2B;
   overflow-x: hidden;
   /* Họa tiết mờ bản đồ Việt Nam phía sau */
 }
@@ -2097,12 +2093,12 @@ h2 em {
   width: min(720px, 50vw);
   height: 100vh;
   background: url("/maps/vietnam-map.svg") no-repeat center right/contain;
-  opacity: 0.055;
+  opacity: 0.08;
   pointer-events: none;
   z-index: 0;
 }
 
-/* 2. HERO: Đặt tự do trực tiếp trên nền, không dùng hộp trắng */
+/* 2. HERO: Đặt tự do trực tiếp trên nền, chữ nổi bật, không bị chìm */
 .explore-hero-container {
   position: relative;
   z-index: 2;
@@ -2116,8 +2112,8 @@ h2 em {
   gap: 8px;
   padding: 6px 14px;
   border-radius: 100px;
-  background: rgba(94, 211, 168, 0.1);
-  border: 1px solid rgba(94, 211, 168, 0.3);
+  background: rgba(15, 61, 52, 0.08);
+  border: 1px solid rgba(15, 61, 52, 0.2);
   margin-bottom: 16px;
   backdrop-filter: blur(10px);
 }
@@ -2132,7 +2128,7 @@ h2 em {
 }
 
 .explore-hero-top-badge .eyebrow {
-  color: var(--color-secondary);
+  color: #0F3D34;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -2141,10 +2137,10 @@ h2 em {
 
 .explore-hero-heading {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   font-size: clamp(38px, 5.5vw, 64px);
   line-height: 1.08;
-  color: #FFFFFF;
+  color: #0F3D34; /* Màu xanh rêu đậm sắc nét, đọc cực kỳ rõ */
   margin: 0 0 16px;
   letter-spacing: -0.02em;
 }
@@ -2152,17 +2148,18 @@ h2 em {
 .explore-hero-heading em {
   font-family: var(--font-heading);
   font-style: italic;
-  font-weight: 600;
-  color: var(--color-accent);
-  text-shadow: 0 0 25px rgba(232, 115, 90, 0.35);
+  font-weight: 700;
+  color: #C88414; /* Tone vàng lúa chín sang trọng */
+  text-shadow: 0 2px 10px rgba(200, 132, 20, 0.2);
   margin-left: 8px;
 }
 
 .explore-hero-description {
   max-width: 680px;
-  color: rgba(251, 247, 240, 0.78);
-  font-size: 15px;
+  color: #1F4532; /* Xanh đậm tương phản cao, dễ đọc */
+  font-size: 15.5px;
   line-height: 1.7;
+  font-weight: 500;
   margin: 0 0 24px;
 }
 
@@ -2173,9 +2170,10 @@ h2 em {
   gap: 16px;
   padding: 10px 20px;
   border-radius: 100px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(15, 61, 52, 0.16);
   backdrop-filter: blur(14px);
+  box-shadow: 0 4px 16px rgba(15, 61, 52, 0.05);
   flex-wrap: wrap;
 }
 
@@ -2188,18 +2186,18 @@ h2 em {
 .stat-pill-num {
   font-size: 17px;
   font-weight: 900;
-  color: var(--color-secondary);
+  color: #0F3D34;
   font-family: var(--font-mono);
 }
 
 .stat-pill-text {
-  font-size: 12px;
-  color: rgba(251, 247, 240, 0.7);
-  font-weight: 500;
+  font-size: 12.5px;
+  color: #2D5840;
+  font-weight: 600;
 }
 
 .stat-pill-sep {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(15, 61, 52, 0.3);
   font-size: 12px;
 }
 
@@ -2342,12 +2340,12 @@ h2 em {
 }
 
 .explore-chip-btn {
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(251, 247, 240, 0.85);
+  border: 1px solid rgba(15, 61, 52, 0.2);
+  background: rgba(255, 255, 255, 0.7);
+  color: #0F3D34;
   padding: 8px 16px;
   border-radius: 100px;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
@@ -2358,16 +2356,17 @@ h2 em {
   gap: 6px;
 }
 .explore-chip-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(94, 211, 168, 0.4);
-  color: #FFFFFF;
+  background: #FFFFFF;
+  border-color: #0F3D34;
+  color: #0F3D34;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 61, 52, 0.12);
 }
 .explore-chip-btn.is-active {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
-  border-color: var(--color-secondary);
-  color: var(--color-secondary);
-  box-shadow: 0 4px 16px rgba(94, 211, 168, 0.22);
+  background: #0F3D34 !important;
+  border-color: #0F3D34 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(15, 61, 52, 0.25);
   font-weight: 700;
 }
 
@@ -2382,10 +2381,10 @@ h2 em {
   gap: 8px;
   padding: 8px 16px;
   border-radius: 100px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(251, 247, 240, 0.8);
-  font-size: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 61, 52, 0.2);
+  color: #0F3D34;
+  font-size: 12.5px;
   font-weight: 600;
   backdrop-filter: blur(12px);
 }
@@ -2394,8 +2393,8 @@ h2 em {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--color-secondary);
-  box-shadow: 0 0 6px var(--color-secondary);
+  background: var(--color-primary);
+  box-shadow: 0 0 6px var(--color-primary);
 }
 
 /* 5. LƯỚI CARD ĐỘC LẬP & ANIMATION */
@@ -2616,6 +2615,13 @@ h2 em {
   }
 }
 /* DETAIL PAGE */
+.destination-detail-page,
+.detail-page {
+  background: linear-gradient(180deg, #F0F9ED 0%, #E7F6E4 40%, #DCF0D8 100%);
+  min-height: 100vh;
+  color: #1F3A2B;
+}
+
 .detail-hero {
   height: 540px;
   position: relative;
@@ -2672,31 +2678,35 @@ h2 em {
 }
 
 .detail-copy h2 {
-  color: var(--deep);
+  color: #0F3D34;
   margin-top: 14px;
+  font-weight: 700;
 }
 
 .detail-copy .lead {
   font-family: var(--font-heading);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 22px;
   line-height: 1.7;
-  color: var(--deep);
+  color: #144A32;
   margin: 20px 0;
 }
 
 .detail-copy > p:not(.lead) {
-  color: var(--muted);
+  color: #204A33;
   line-height: 1.9;
-  font-size: 15px;
+  font-size: 15.5px;
 }
 
 .facts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-block: 1px solid var(--line);
+  background: rgba(225, 245, 220, 0.7);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
   margin: 36px 0;
-  padding: 24px 0;
+  padding: 22px 26px;
+  gap: 16px;
 }
 
 .facts div {
@@ -2706,23 +2716,24 @@ h2 em {
 
 .facts strong {
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--deep);
+  font-weight: 700;
+  font-size: 24px;
+  color: #0F3D34;
 }
 
 .facts span {
-  color: var(--muted);
-  font-size: 11px;
+  color: #2E5A42;
+  font-size: 12px;
+  font-weight: 600;
   margin-top: 5px;
 }
 
 .detail-album-gallery {
   margin: 28px 0;
-  padding: 18px 20px;
-  background: var(--sand);
-  border-radius: 8px;
-  border: 1px solid var(--line);
+  padding: 20px 22px;
+  background: #EAF7E6;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
 }
 
 .album-gallery-head {
@@ -2736,15 +2747,15 @@ h2 em {
 
 .album-gallery-head h3 {
   font-family: var(--font-heading);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 18px;
-  color: var(--deep);
+  color: #0F3D34;
   margin: 0;
 }
 
 .album-gallery-head small {
-  font-size: 11px;
-  color: var(--muted);
+  font-size: 11.5px;
+  color: #356049;
 }
 
 .album-thumbnails-strip {
@@ -2758,18 +2769,18 @@ h2 em {
   flex-shrink: 0;
   width: 100px;
   height: 70px;
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: hidden;
   border: 2px solid transparent;
   padding: 0;
   cursor: pointer;
-  background: white;
+  background: #DCF0D8;
   transition: all 0.2s ease;
 }
 
 .album-thumb-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 10px rgba(15, 61, 52, 0.15);
 }
 
 .album-thumb-btn.active {
@@ -2786,8 +2797,9 @@ h2 em {
 .editorial-image {
   height: 440px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 12px;
   margin: 30px 0;
+  box-shadow: 0 8px 24px rgba(15, 61, 52, 0.12);
 }
 
 .detail-extra-text {
@@ -2796,26 +2808,27 @@ h2 em {
 
 .detail-extra-text h3 {
   font-family: var(--font-heading);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 22px;
-  color: var(--deep);
+  color: #0F3D34;
   margin-bottom: 12px;
 }
 
 .detail-extra-text p {
-  color: var(--muted);
-  line-height: 1.8;
-  font-size: 14px;
+  color: #204A33;
+  line-height: 1.85;
+  font-size: 15px;
 }
 
 /* STICKY VOTE ASIDE */
 .vote-aside {
   position: sticky;
   top: 105px;
-  background: white;
-  box-shadow: var(--shadow);
+  background: linear-gradient(180deg, #EBF8E7 0%, #DFECD9 100%);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 12px 32px rgba(15, 61, 52, 0.08);
   padding: 32px;
-  border-radius: 4px;
+  border-radius: 16px;
 }
 
 .live-label {
@@ -2851,8 +2864,9 @@ h2 em {
   }
 }
 .vote-aside > p {
-  color: var(--muted);
-  font-size: 12px;
+  color: #2D5840;
+  font-size: 13px;
+  font-weight: 500;
   margin-top: 24px;
 }
 
@@ -2864,29 +2878,29 @@ h2 em {
 
 .rank-line > strong {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 54px;
-  color: var(--deep);
+  color: #0F3D34;
 }
 
 .rank-line span {
   text-align: right;
-  font-weight: 600;
-  color: var(--deep);
+  font-weight: 700;
+  color: #0F3D34;
 }
 
 .rank-line small {
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 400;
+  color: #356049;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .progress {
-  height: 6px;
-  background: var(--mint-soft);
+  height: 8px;
+  background: #DCF0D8;
   margin: 20px 0;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .progress i {
@@ -2900,7 +2914,7 @@ h2 em {
   margin: 0 0 24px;
   line-height: 1.5;
   font-size: 13px;
-  color: var(--muted);
+  color: #2D5840;
 }
 
 .aside-actions {
@@ -2922,14 +2936,23 @@ h2 em {
 }
 
 .secure {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--color-border);
   margin-top: 24px;
   padding-top: 18px;
   display: flex;
   gap: 10px;
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.5;
+  color: #356049;
+  font-size: 11.5px;
+  line-height: 1.6;
+}
+
+.detail-related-section {
+  background: linear-gradient(180deg, #DCF0D8 0%, #D0EAC8 100%);
+  padding: 80px 0;
+  border-top: 1px solid var(--color-border);
+}
+.detail-related-section .section-heading h2 {
+  color: #0F3D34;
 }
 
 /* VOTE PAGE & WIZARD */
@@ -8202,29 +8225,28 @@ footer::before {
   gap: 12px;
 }
 .footer-logo-container .wander-logo-mark {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  border: 1.5px solid var(--color-secondary);
+  color: var(--color-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none;
+  box-shadow: 0 0 16px rgba(94, 211, 168, 0.35);
   flex-shrink: 0;
 }
-.footer-logo-container .wander-logo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+.footer-logo-container .wander-logo-svg {
+  width: 24px;
+  height: 18px;
 }
 .footer-logo-container .wander-brand-name {
   display: block;
   font-size: 15px;
   font-weight: 800;
   letter-spacing: 0.16em;
-  color: #F8C55A !important; /* Tone vàng lúa sáng trên nền xanh rêu đậm */
+  color: #FFFFFF !important;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   line-height: 1.2;
   -webkit-font-smoothing: antialiased;
@@ -8233,7 +8255,7 @@ footer::before {
   display: block;
   font-size: 8.5px;
   letter-spacing: 0.14em;
-  color: #F5A623 !important; /* Tone vàng lúa ánh hổ phách */
+  color: var(--color-secondary) !important;
   font-weight: 700;
   margin-top: 3px;
   line-height: 1.2;

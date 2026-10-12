@@ -214,7 +214,7 @@
   padding-bottom: 45px;
   color: #ffffff;
   overflow: hidden;
-  background: #E2F3DC;
+  background: transparent;
 }
 
 .wander-hero-bg-wrap {
@@ -230,15 +230,24 @@
   object-fit: cover;
   object-position: center 32%;
   transform: scale(1.02);
-  filter: brightness(1.08) saturate(1.08) contrast(0.98);
+  filter: none !important;
+  opacity: 1 !important;
 }
 
 .wander-hero-vignette {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 65% 30%, rgba(255, 255, 255, 0.44) 0%, rgba(46, 158, 63, 0.12) 55%, rgba(196, 228, 184, 0.62) 100%),
-    linear-gradient(180deg, rgba(232, 245, 229, 0.78) 0%, rgba(220, 240, 216, 0.36) 32%, rgba(208, 234, 198, 0.62) 76%, #E2F3DC 100%);
+  pointer-events: none;
+  /* Lớp làm mờ nhẹ nhàng, tinh tế: ảnh ruộng bậc thang vẫn hiện rõ vàng óng, làm dịu nhẹ để tôn chữ */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.05) 35%,
+    rgba(226, 243, 220, 0.12) 70%,
+    rgba(226, 243, 220, 0.45) 100%
+  );
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
 }
 
 /* Dynamic Route Trail & Geo Pin */

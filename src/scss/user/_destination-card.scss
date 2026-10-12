@@ -316,3 +316,174 @@
   transition: width 0.6s ease;
   box-shadow: 0 0 10px rgba(94, 211, 168, 0.5);
 }
+
+/* 3. Nút Bình chọn trực tiếp trên card */
+.vote-stat-number-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.vote-plus-one-badge {
+  position: absolute;
+  right: -28px;
+  top: -12px;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--color-secondary);
+  font-family: var(--font-mono);
+  animation: floatPlusOne 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+  text-shadow: 0 2px 8px rgba(94, 211, 168, 0.6);
+}
+
+.card-vote-action-wrap {
+  position: relative;
+  margin-top: 6px;
+  width: 100%;
+}
+
+.btn-card-vote {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  box-shadow: 0 4px 16px rgba(27, 106, 93, 0.38);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+
+  &:hover:not(:disabled):not(.is-voted):not(.is-out-of-votes) {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(94, 211, 168, 0.45);
+  }
+
+  &:active:not(:disabled):not(.is-voted):not(.is-out-of-votes) {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+
+  &.is-submitting {
+    opacity: 0.82;
+    cursor: wait;
+  }
+
+  &.is-voted {
+    background: rgba(94, 211, 168, 0.16);
+    border: 1px solid rgba(94, 211, 168, 0.35);
+    color: var(--color-secondary);
+    cursor: default;
+    box-shadow: none;
+    transform: none;
+  }
+
+  &.is-out-of-votes {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(251, 247, 240, 0.45);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+
+  @media (max-width: 640px) {
+    min-height: 44px;
+    font-size: 14px;
+  }
+}
+
+.vote-quota-hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 5px;
+  padding: 0 2px;
+  font-size: 11px;
+  color: rgba(251, 247, 240, 0.55);
+
+  .link-earn-votes {
+    color: var(--color-secondary);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: #FFFFFF;
+    }
+  }
+}
+
+/* Hiệu ứng lá bay khi vote */
+.leaf-burst-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.leaf-particle {
+  position: absolute;
+  font-size: 15px;
+  line-height: 1;
+  pointer-events: none;
+
+  &.leaf-1 { animation: leafBurst1 0.75s ease-out forwards; }
+  &.leaf-2 { animation: leafBurst2 0.75s ease-out forwards; }
+  &.leaf-3 { animation: leafBurst3 0.75s ease-out forwards; }
+  &.leaf-4 { animation: leafBurst4 0.75s ease-out forwards; }
+}
+
+@keyframes leafBurst1 {
+  0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+  100% { opacity: 0; transform: translate(-28px, -40px) scale(1.1) rotate(-45deg); }
+}
+
+@keyframes leafBurst2 {
+  0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+  100% { opacity: 0; transform: translate(28px, -38px) scale(1.1) rotate(45deg); }
+}
+
+@keyframes leafBurst3 {
+  0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+  100% { opacity: 0; transform: translate(-10px, -48px) scale(1) rotate(-15deg); }
+}
+
+@keyframes leafBurst4 {
+  0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+  100% { opacity: 0; transform: translate(14px, -46px) scale(1) rotate(20deg); }
+}
+
+@keyframes floatPlusOne {
+  0% { opacity: 0; transform: translateY(6px) scale(0.8); }
+  25% { opacity: 1; transform: translateY(-4px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-24px) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf-particle,
+  .vote-plus-one-badge {
+    animation: none !important;
+    display: none !important;
+  }
+}
+

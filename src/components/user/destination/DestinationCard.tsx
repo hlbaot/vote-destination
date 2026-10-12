@@ -1,8 +1,11 @@
 "use client"
 
 import React, { useMemo, useState } from "react"
+import Link from "next/link"
 import { Destination } from "@/types"
 import Icon from "@/components/shared/Icon"
+import { useVotes } from "@/lib/store/useVotes"
+import { useAppContext } from "@/context/AppContext"
 
 export default function DestinationCard({
   item,
@@ -19,8 +22,24 @@ export default function DestinationCard({
   onToggleFavorite: (id: string, e: React.MouseEvent) => void
   maxVotes?: number
 }) {
-  const [hasVoted, setHasVoted] = useState(isFavorite)
-  const [displayVotes, setDisplayVotes] = useState(item.rawVotes)
+  const { addToast, handleRecordVote } = useAppContext()
+  const {
+    votesByDestination,
+    remainingToday,
+    votedToday,
+    castVote,
+    isSubmittingVote,
+  } = useVotes()
+
+  const [showPlusOne, setShowPlusOne] = useState(false)
+  const [showBurst, setShowBurst] = useState(false)
+
+  // Lấy số phiếu thực tế từ store dùng chung, fallback rawVotes
+  const currentVotes = votesByDestination[item.id] ?? item.rawVotes
+  const hasVotedToday = votedToday.includes(item.id)
+  const isSubmitting = isSubmittingVote[item.id] || false
+  const isOutOfVotes = remainingToday <= 0 && !hasVotedToday
+  const isClosed = item.status !== "active"
 
   const displayRank = useMemo(() => {
     if (rank === undefined) return "#--"
@@ -28,30 +47,56 @@ export default function DestinationCard({
     return rank.startsWith("#") ? rank : `#${rank}`
   }, [rank])
 
-  const isClosed = item.status !== "active"
-  const isHeartActive = isFavorite || hasVoted
-  const voteLabel = isClosed
-    ? "Bình chọn đã kết thúc"
-    : isHeartActive
-      ? `Đã yêu thích ${item.name}`
-      : `Bình chọn cho ${item.name}`
-
-  // Tỉ lệ phần trăm so với điểm đứng đầu (tối thiểu 8% để hiển thị thanh)
+  // Tỉ lệ phần trăm so với điểm đứng đầu (tối thiểu 10% để hiển thị thanh)
   const votePercentage = useMemo(() => {
     if (!maxVotes || maxVotes <= 0) return 30
-    const pct = Math.round((displayVotes / maxVotes) * 100)
+    const pct = Math.round((currentVotes / maxVotes) * 100)
     return Math.max(10, Math.min(100, pct))
-  }, [displayVotes, maxVotes])
+  }, [currentVotes, maxVotes])
 
-  const handleVote = (event: React.MouseEvent<HTMLButtonElement>) => {
+  // Xử lý nút Yêu thích (nút tim) - tách biệt hoàn toàn với vote
+  const handleFavoriteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
     event.preventDefault()
-    if (isClosed) return
-    if (!hasVoted) {
-      setHasVoted(true)
-      setDisplayVotes((current) => current + 1)
-    }
     onToggleFavorite(item.id, event)
+  }
+
+  // Xử lý nút Bình chọn trực tiếp
+  const handleVoteClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation()
+    event.preventDefault()
+
+    if (isClosed || isSubmitting) return
+
+    if (hasVotedToday) {
+      addToast("info", `Bạn đã bình chọn cho ${item.name} hôm nay rồi.`)
+      return
+    }
+
+    if (isOutOfVotes) {
+      addToast(
+        "warning",
+        "Hết lượt hôm nay, làm mới lúc 00:00 (giờ Việt Nam). Bạn có thể làm nhiệm vụ để nhận thêm vote!",
+      )
+      return
+    }
+
+    const res = await castVote(item.id, item.name, (destName, stageName) => {
+      addToast("success", `Cây ${destName} đã lên giai đoạn ${stageName}! 🎉`)
+    })
+
+    if (res.success) {
+      // Kích hoạt animation nhẹ
+      setShowPlusOne(true)
+      setShowBurst(true)
+      setTimeout(() => setShowPlusOne(false), 850)
+      setTimeout(() => setShowBurst(false), 800)
+
+      handleRecordVote(item.id, "explore-card", `EXP-${Date.now()}`)
+      addToast("success", `Đã bình chọn ${item.name}! 🌿`)
+    } else {
+      addToast("warning", res.error || "Không thể thực hiện bình chọn.")
+    }
   }
 
   return (
@@ -95,17 +140,16 @@ export default function DestinationCard({
         {/* Nút tim yêu thích nổi ở góc trên bên phải ảnh */}
         <button
           type="button"
-          className={`card-heart-pill ${isHeartActive ? "is-favorited" : ""} ${isClosed ? "is-disabled" : ""
-            }`}
-          onClick={handleVote}
-          aria-label={voteLabel}
-          title={voteLabel}
+          className={`card-heart-pill ${isFavorite ? "is-favorited" : ""}`}
+          onClick={handleFavoriteClick}
+          aria-label={isFavorite ? `Bỏ yêu thích ${item.name}` : `Yêu thích ${item.name}`}
+          title={isFavorite ? "Đã yêu thích" : "Yêu thích"}
         >
           <Icon name="heart" size={18} />
         </button>
       </div>
 
-      {/* 2. Thân card: Giới thiệu 2 dòng, 3 chỉ số không bị cắt chữ, Lượt bình chọn & Progress bar */}
+      {/* 2. Thân card */}
       <div className="card-content-body">
         {/* Mục Giới thiệu (giới hạn tối đa 2 dòng) */}
         <div className="card-intro-section">
@@ -121,13 +165,20 @@ export default function DestinationCard({
           <strong className="card-rank-val">{displayRank}</strong>
         </div>
 
-        {/* Lượt bình chọn to lớn + Thanh tiến trình nhỏ so với điểm đứng đầu */}
+        {/* Lượt bình chọn & Thanh tiến trình */}
         <div className="card-vote-footer">
           <div className="vote-stat-header">
             <span className="vote-stat-label">Lượt bình chọn</span>
-            <strong className="vote-stat-number">
-              {displayVotes.toLocaleString("vi-VN")}
-            </strong>
+            <div className="vote-stat-number-wrapper" aria-live="polite">
+              <strong className="vote-stat-number">
+                {currentVotes.toLocaleString("vi-VN")}
+              </strong>
+              {showPlusOne && (
+                <span className="vote-plus-one-badge" aria-hidden="true">
+                  +1
+                </span>
+              )}
+            </div>
           </div>
 
           <div
@@ -139,8 +190,91 @@ export default function DestinationCard({
               style={{ width: `${votePercentage}%` }}
             />
           </div>
+
+          {/* NÚT BÌNH CHỌN TRỰC TIẾP */}
+          <div className="card-vote-action-wrap">
+            {showBurst && (
+              <div className="leaf-burst-container" aria-hidden="true">
+                <span className="leaf-particle leaf-1">🍃</span>
+                <span className="leaf-particle leaf-2">🌿</span>
+                <span className="leaf-particle leaf-3">🍃</span>
+                <span className="leaf-particle leaf-4">🌱</span>
+              </div>
+            )}
+
+            <button
+              type="button"
+              className={`btn-card-vote ${
+                isSubmitting
+                  ? "is-submitting"
+                  : hasVotedToday
+                    ? "is-voted"
+                    : isOutOfVotes
+                      ? "is-out-of-votes"
+                      : ""
+              }`}
+              onClick={handleVoteClick}
+              disabled={isSubmitting || hasVotedToday || isOutOfVotes || isClosed}
+              aria-label={`Bình chọn cho ${item.name}`}
+              aria-disabled={isSubmitting || hasVotedToday || isOutOfVotes || isClosed}
+              title={
+                hasVotedToday
+                  ? "Đã bình chọn điểm đến này hôm nay"
+                  : isOutOfVotes
+                    ? "Hết lượt hôm nay, làm mới lúc 00:00 (giờ Việt Nam)"
+                    : `Bình chọn cho ${item.name}`
+              }
+            >
+              {isSubmitting ? (
+                <>
+                  <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <circle cx="12" cy="12" r="10" strokeOpacity="0.25" />
+                    <path d="M12 2a10 10 0 0 1 10 10" />
+                  </svg>
+                  <span>Đang gửi…</span>
+                </>
+              ) : hasVotedToday ? (
+                <>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>Đã bình chọn ✓</span>
+                </>
+              ) : isOutOfVotes ? (
+                <>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+                  </svg>
+                  <span>Hết lượt hôm nay</span>
+                </>
+              ) : (
+                <>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                  </svg>
+                  <span>Bình chọn</span>
+                </>
+              )}
+            </button>
+
+            {isOutOfVotes && (
+              <div className="vote-quota-hint">
+                <span>Làm mới lúc 00:00 (giờ VN)</span>
+                <Link
+                  href="/ban-do-binh-chon"
+                  className="link-earn-votes"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Nhận thêm vote →
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </article>
   )
 }
+

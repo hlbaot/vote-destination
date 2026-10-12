@@ -76,8 +76,26 @@ const MOCK_VOTES: Record<string, number> = {
 
 let warnedMissingGeoJson = false
 
+import {
+  ALLOW_MULTIPLE_VOTES_PER_DESTINATION,
+  getVietnamDateString,
+  getStageFromVotes,
+} from "@/config/vote"
+
+const VOTES_OVERRIDE_KEY = "dest_votes_override_v1"
+
 export function getVotes(): Record<string, number> {
-  return { ...MOCK_VOTES }
+  const base = { ...MOCK_VOTES }
+  if (typeof window !== "undefined") {
+    try {
+      const saved = localStorage.getItem(VOTES_OVERRIDE_KEY)
+      if (saved) {
+        const overrides = JSON.parse(saved)
+        return { ...base, ...overrides }
+      }
+    } catch {}
+  }
+  return base
 }
 
 export function validateMapDestinationsDev(destinations: Destination[]) {
@@ -91,19 +109,30 @@ export function validateMapDestinationsDev(destinations: Destination[]) {
 }
 
 const DAILY_KEY = "map_daily_vote_v1"
-function getTodayStr() { const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}` }
 interface Store { date:string; used:number; bonus:number; votedIds:string[]; quizTries:number; quizBonusClaimed:boolean }
+
 function loadStore(): Store {
   if (typeof window === "undefined") return { date: "", used: 0, bonus: 0, votedIds: [], quizTries: 0, quizBonusClaimed: false }
-  const today = getTodayStr()
-  try { const r = localStorage.getItem(DAILY_KEY); if (r) { const p = JSON.parse(r); if (p.date === today) return p } } catch {}
-  return { date: today, used: 0, bonus: 0, votedIds: [], quizTries: 0, quizBonusClaimed: false }
+  const today = getVietnamDateString()
+  try {
+    const r = localStorage.getItem(DAILY_KEY)
+    if (r) {
+      const p = JSON.parse(r)
+      if (p.date === today) return p
+    }
+  } catch {}
+  const fresh = { date: today, used: 0, bonus: 0, votedIds: [], quizTries: 0, quizBonusClaimed: false }
+  saveStore(fresh)
+  return fresh
 }
-function saveStore(s: Store) { if (typeof window!=="undefined") localStorage.setItem(DAILY_KEY, JSON.stringify(s)) }
 
-export function getMapDestinations(destinations: Destination[]): MapDestinationNode[] {
+function saveStore(s: Store) {
+  if (typeof window !== "undefined") localStorage.setItem(DAILY_KEY, JSON.stringify(s))
+}
+
+export function getMapDestinations(destinations: Destination[], votesOverride?: Record<string, number>): MapDestinationNode[] {
   validateMapDestinationsDev(destinations)
-  const votesById = getVotes()
+  const votesById = votesOverride ?? getVotes()
   const sorted = [...destinations].sort((a,b)=>(votesById[b.id] ?? 0)-(votesById[a.id] ?? 0))
   const prov1st: Record<string,string> = {}
   for (const d of sorted) { const p=d.province||d.place; if(p&&!prov1st[p]) prov1st[p]=d.id }
@@ -119,8 +148,8 @@ export function getMapDestinations(destinations: Destination[]): MapDestinationN
   })
 }
 
-export function getLeaderboard(destinations: Destination[], top=15): LeaderboardEntry[] {
-  const votesById = getVotes()
+export function getLeaderboard(destinations: Destination[], top=15, votesOverride?: Record<string, number>): LeaderboardEntry[] {
+  const votesById = votesOverride ?? getVotes()
   return [...destinations].sort((a,b)=>(votesById[b.id] ?? 0)-(votesById[a.id] ?? 0)).slice(0,top).map((d,i) => {
     const rawVotes = votesById[d.id] ?? 0
     return {
@@ -130,8 +159,8 @@ export function getLeaderboard(destinations: Destination[], top=15): Leaderboard
   })
 }
 
-export function getProvinceMapData(destinations: Destination[]): ProvinceMapData[] {
-  const votesById = getVotes()
+export function getProvinceMapData(destinations: Destination[], votesOverride?: Record<string, number>): ProvinceMapData[] {
+  const votesById = votesOverride ?? getVotes()
   const map = new Map<string, { votes:number; count:number; region:string; x:number; y:number }>()
   for (const d of destinations) {
     const key = d.province || d.place
@@ -159,13 +188,35 @@ export function getDailyVoteStatus(): DailyVoteStatus {
     quizBonusClaimed:s.quizBonusClaimed, isLoggedIn:true }
 }
 
-export function castVote(destinationId: string): { success:boolean; error?:string } {
-  const s=loadStore()
-  const max=voteConfig.limitPerDay+s.bonus
-  if (s.used>=max) return { success:false, error:"Bạn đã dùng hết lượt bình chọn hôm nay." }
-  if (s.votedIds.includes(destinationId)) return { success:false, error:"Bạn đã bình chọn điểm đến này hôm nay." }
-  s.used+=1; s.votedIds=[...s.votedIds, destinationId]; saveStore(s)
-  return { success:true }
+export function castVote(destinationId: string): { success:boolean; error?:string; updatedVotes?:number } {
+  const s = loadStore()
+  const max = voteConfig.limitPerDay + s.bonus
+  if (s.used >= max) {
+    return { success:false, error:"Bạn đã dùng hết lượt bình chọn hôm nay. Làm mới lúc 00:00 (giờ Việt Nam)." }
+  }
+  if (!ALLOW_MULTIPLE_VOTES_PER_DESTINATION && s.votedIds.includes(destinationId)) {
+    return { success:false, error:"Bạn đã bình chọn điểm đến này hôm nay." }
+  }
+
+  const allVotes = getVotes()
+  const currentVotes = allVotes[destinationId] ?? 0
+  const updatedVotes = currentVotes + 1
+  allVotes[destinationId] = updatedVotes
+  MOCK_VOTES[destinationId] = updatedVotes
+
+  if (typeof window !== "undefined") {
+    try {
+      const saved = localStorage.getItem(VOTES_OVERRIDE_KEY)
+      const overrides = saved ? JSON.parse(saved) : {}
+      overrides[destinationId] = updatedVotes
+      localStorage.setItem(VOTES_OVERRIDE_KEY, JSON.stringify(overrides))
+    } catch {}
+  }
+
+  s.used += 1
+  s.votedIds = [...s.votedIds, destinationId]
+  saveStore(s)
+  return { success:true, updatedVotes }
 }
 
 const QUIZ_POOL = [

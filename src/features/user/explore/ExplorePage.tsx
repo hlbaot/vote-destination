@@ -1,9 +1,12 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import Link from "next/link"
 import { Destination, Region } from "@/types"
 import DestinationCard from "@/components/user/destination/DestinationCard"
 import Icon from "@/components/shared/Icon"
+import { useVotes } from "@/lib/store/useVotes"
+import MarqueeCards from "@/uiux/marqueeCards"
 
 const tagOptions = [
   "Tất cả",
@@ -22,28 +25,6 @@ const regionOptions: { label: string; value: Region | "all" }[] = [
   { label: "Miền Nam", value: "Nam" },
 ]
 
-const ITEMS_PER_PAGE = 4
-
-// Hàm tạo danh sách phân trang rút gọn dạng: 1 ... 7 8 9 ... 17
-function getPaginationItems(current: number, total: number): (number | "...")[] {
-  if (total <= 7) {
-    return Array.from({ length: total }, (_, i) => i + 1)
-  }
-
-  // Gần trang đầu: 1 2 3 4 5 ... total
-  if (current <= 4) {
-    return [1, 2, 3, 4, 5, "...", total]
-  }
-
-  // Gần trang cuối: 1 ... total-4 total-3 total-2 total-1 total
-  if (current >= total - 3) {
-    return [1, "...", total - 4, total - 3, total - 2, total - 1, total]
-  }
-
-  // Ở giữa: 1 ... current-1 current current+1 ... total
-  return [1, "...", current - 1, current, current + 1, "...", total]
-}
-
 export default function Explore({
   destinations,
   onOpenDetail,
@@ -59,12 +40,30 @@ export default function Explore({
   const [tagFilter, setTagFilter] = useState("Tất cả")
   const [regionFilter, setRegionFilter] = useState<Region | "all">("all")
   const [sortBy, setSortBy] = useState<"votes" | "name">("votes")
-  const [currentPage, setCurrentPage] = useState(1)
+
+  const { votesByDestination, remainingToday, totalQuota } = useVotes()
+
+  // Bảng xếp hạng toàn cục cho tất cả 68 điểm đến (tính theo số phiếu mới nhất)
+  const globalRankMap = useMemo(() => {
+    const sortedAll = [...destinations].sort((a, b) => {
+      const vA = votesByDestination[a.id] ?? a.rawVotes
+      const vB = votesByDestination[b.id] ?? b.rawVotes
+      return vB - vA
+    })
+    const map: Record<string, number> = {}
+    sortedAll.forEach((d, idx) => {
+      map[d.id] = idx + 1
+    })
+    return map
+  }, [destinations, votesByDestination])
 
   // Điểm có số phiếu cao nhất để tính thanh tiến trình
   const maxVotes = useMemo(() => {
-    return Math.max(...destinations.map((d) => d.rawVotes || 0), 1)
-  }, [destinations])
+    return Math.max(
+      ...destinations.map((d) => (votesByDestination[d.id] ?? d.rawVotes) || 0),
+      1,
+    )
+  }, [destinations, votesByDestination])
 
   const filtered = useMemo(() => {
     return destinations
@@ -96,23 +95,13 @@ export default function Explore({
       })
       .sort((a, b) => {
         if (sortBy === "votes") {
-          return b.rawVotes - a.rawVotes
+          const vA = votesByDestination[a.id] ?? a.rawVotes
+          const vB = votesByDestination[b.id] ?? b.rawVotes
+          return vB - vA
         }
         return a.name.localeCompare(b.name, "vi")
       })
-  }, [destinations, tagFilter, regionFilter, query, sortBy, favorites])
-
-  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE))
-  const safeCurrentPage = Math.min(currentPage, totalPages)
-  const paginated = filtered.slice(
-    (safeCurrentPage - 1) * ITEMS_PER_PAGE,
-    safeCurrentPage * ITEMS_PER_PAGE,
-  )
-
-  const paginationItems = useMemo(
-    () => getPaginationItems(safeCurrentPage, totalPages),
-    [safeCurrentPage, totalPages],
-  )
+  }, [destinations, tagFilter, regionFilter, query, sortBy, favorites, votesByDestination])
 
   return (
     <main className="subpage explore-page">
@@ -146,8 +135,8 @@ export default function Explore({
           </div>
           <span className="stat-pill-sep">•</span>
           <div className="stat-pill-item">
-            <span className="stat-pill-num">17</span>
-            <span className="stat-pill-text">Trang bình chọn</span>
+            <span className="stat-pill-num">∞</span>
+            <span className="stat-pill-text">Cuộn vô hạn</span>
           </div>
           <span className="stat-pill-sep">•</span>
           <div className="stat-pill-item">
@@ -157,7 +146,7 @@ export default function Explore({
         </div>
       </section>
 
-      {/* 2. Không gian nội dung tự do trên nền - BỎ KHUNG BAO LỚN */}
+      {/* 2. Không gian nội dung tự do trên nền - Thanh công cụ & Bộ lọc */}
       <section className="container explore-main-wrapper">
         {/* Thanh công cụ kính mờ độc lập (Search + Dropdowns) */}
         <div className="explore-glass-toolbar">
@@ -168,7 +157,6 @@ export default function Explore({
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value)
-                setCurrentPage(1)
               }}
               placeholder="Tìm theo tên điểm đến, tỉnh thành, di sản..."
             />
@@ -178,7 +166,6 @@ export default function Explore({
                 className="clear-search-button"
                 onClick={() => {
                   setQuery("")
-                  setCurrentPage(1)
                 }}
                 aria-label="Xóa tìm kiếm"
               >
@@ -193,7 +180,6 @@ export default function Explore({
                 value={regionFilter}
                 onChange={(e) => {
                   setRegionFilter(e.target.value as Region | "all")
-                  setCurrentPage(1)
                 }}
                 className="explore-select-input"
               >
@@ -211,7 +197,6 @@ export default function Explore({
                 value={sortBy}
                 onChange={(e) => {
                   setSortBy(e.target.value as "votes" | "name")
-                  setCurrentPage(1)
                 }}
                 className="explore-select-input"
               >
@@ -232,7 +217,6 @@ export default function Explore({
                 type="button"
                 onClick={() => {
                   setTagFilter(tag)
-                  setCurrentPage(1)
                 }}
                 className={`explore-chip-btn ${tagFilter === tag ? "is-active" : ""}`}
               >
@@ -247,111 +231,76 @@ export default function Explore({
             ))}
           </div>
 
-          <div className="explore-status-pill">
-            <span className="status-live-dot" />
-            <span>
-              {filtered.length} điểm đến • Trang {safeCurrentPage}/{totalPages}
-            </span>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+            <div className="explore-quota-pill" title="Làm mới lúc 00:00 (giờ Việt Nam)">
+              <span>🌿 Còn <strong>{remainingToday}/{totalQuota}</strong> lượt hôm nay</span>
+              {remainingToday === 0 && (
+                <Link href="/ban-do-binh-chon" className="quota-bonus-link">
+                  + Nhận vote
+                </Link>
+              )}
+            </div>
+
+            <div className="explore-status-pill">
+              <span className="status-live-dot" />
+              <span>
+                {filtered.length} điểm đến
+              </span>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Lưới 4 Card độc lập với hiệu ứng animation xuất hiện lần lượt */}
+      {/* 3. Dải Marquee hiển thị toàn bộ card tràn viền 100% hai bên màn hình (Full-width edge-to-edge) */}
+      <section className="explore-marquee-fullwidth-section">
         {filtered.length > 0 ? (
-          <>
-            <div className="card-grid explore-card-grid">
-              {paginated.map((item, index) => (
-                <div
-                  key={item.id}
-                  className="explore-card-anim-item"
-                  style={{ animationDelay: `${index * 0.08}s` }}
-                >
-                  <DestinationCard
-                    item={item}
-                    rank={(safeCurrentPage - 1) * ITEMS_PER_PAGE + index + 1}
-                    isFavorite={favorites.includes(item.id)}
-                    onToggleFavorite={onToggleFavorite}
-                    onOpen={() => onOpenDetail(item)}
-                    maxVotes={maxVotes}
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Phân trang kính mờ dạng rút gọn: Trước 1 ... 7 8 9 ... 17 Sau */}
-            <nav className="explore-pagination-container" aria-label="Phân trang danh sách điểm đến">
-              <div className="pagination-compact-bar">
-                <button
-                  type="button"
-                  className="page-nav-arrow-btn"
-                  onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
-                  disabled={safeCurrentPage === 1}
-                  aria-label="Trang trước"
-                >
-                  ← Trước
-                </button>
-
-                <div className="pagination-numbers-track">
-                  {paginationItems.map((item, idx) => {
-                    if (item === "...") {
-                      return (
-                        <span key={`ellipsis-${idx}`} className="pagination-ellipsis-dot">
-                          …
-                        </span>
-                      )
-                    }
-
-                    const pageNumber = item as number
-                    const isActive = pageNumber === safeCurrentPage
-
-                    return (
-                      <button
-                        key={`page-${pageNumber}`}
-                        type="button"
-                        className={`page-num-btn ${isActive ? "is-current" : ""}`}
-                        onClick={() => setCurrentPage(pageNumber)}
-                        aria-label={`Chuyển đến trang ${pageNumber}`}
-                        aria-current={isActive ? "page" : undefined}
-                      >
-                        {pageNumber}
-                      </button>
-                    )
-                  })}
-                </div>
-
-                <button
-                  type="button"
-                  className="page-nav-arrow-btn"
-                  onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
-                  disabled={safeCurrentPage === totalPages}
-                  aria-label="Trang sau"
-                >
-                  Sau →
-                </button>
+          <MarqueeCards
+            items={filtered}
+            keyExtractor={(item) => item.id}
+            speed={1.2}
+            direction="left"
+            interactive={true}
+            pauseOnHover={true}
+            gap={24}
+            fadeEdges={true}
+            fadeWidth={56}
+            className="explore-destinations-marquee"
+            renderItem={(item) => (
+              <div className="explore-marquee-card-item">
+                <DestinationCard
+                  item={item}
+                  rank={globalRankMap[item.id]}
+                  isFavorite={favorites.includes(item.id)}
+                  onToggleFavorite={onToggleFavorite}
+                  onOpen={() => onOpenDetail(item)}
+                  maxVotes={maxVotes}
+                />
               </div>
-            </nav>
-          </>
+            )}
+          />
         ) : (
-          <div className="explore-empty-glass-card">
-            <div className="empty-icon-wrap">
-              <Icon name="search" size={42} />
+          <div className="container">
+            <div className="explore-empty-glass-card">
+              <div className="empty-icon-wrap">
+                <Icon name="search" size={42} />
+              </div>
+              <h3>Không tìm thấy điểm đến phù hợp</h3>
+              <p>
+                Vui lòng thử điều chỉnh từ khóa tìm kiếm hoặc chọn bộ lọc phân
+                loại vùng miền khác.
+              </p>
+              <button
+                type="button"
+                className="btn-reset-filters"
+                onClick={() => {
+                  setQuery("")
+                  setTagFilter("Tất cả")
+                  setRegionFilter("all")
+                }}
+              >
+                Đặt lại tất cả bộ lọc
+              </button>
             </div>
-            <h3>Không tìm thấy điểm đến phù hợp</h3>
-            <p>
-              Vui lòng thử điều chỉnh từ khóa tìm kiếm hoặc chọn bộ lọc phân
-              loại vùng miền khác.
-            </p>
-            <button
-              type="button"
-              className="btn-reset-filters"
-              onClick={() => {
-                setQuery("")
-                setTagFilter("Tất cả")
-                setRegionFilter("all")
-                setCurrentPage(1)
-              }}
-            >
-              Đặt lại tất cả bộ lọc
-            </button>
           </div>
         )}
       </section>

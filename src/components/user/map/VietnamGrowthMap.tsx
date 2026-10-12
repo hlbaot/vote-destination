@@ -336,32 +336,32 @@ export default function VietnamGrowthMap({
   const gTransform = `translate(${transform.x},${transform.y}) scale(${transform.k})`
 
   return (
-    <div ref={containerRef} className="relative w-full h-full bg-gradient-to-br from-[#F4FBF0] to-[#E3F4FB] rounded-2xl overflow-hidden select-none">
+    <div ref={containerRef} className="relative w-full h-full bg-linear-to-br from-[#F4FBF0] to-[#E3F4FB] rounded-2xl overflow-hidden select-none">
       {/* Map controls */}
       <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5">
         {/* Level toggle */}
-        <div className="flex rounded-xl overflow-hidden shadow-md border border-[var(--color-border)]">
+        <div className="flex rounded-xl overflow-hidden shadow-md border border-(--color-border)">
           <button onClick={handleForceLevel1}
-            className={`px-3 py-1.5 text-xs font-semibold transition-colors duration-200 ${!isLevel2 ? "bg-[var(--color-primary)] text-white" : "bg-white/80 text-[var(--color-primary-dark)] hover:bg-[var(--color-surface-tint)]"}`}
+            className={`px-3 py-1.5 text-xs font-semibold transition-colors duration-200 ${!isLevel2 ? "bg-(--color-primary) text-white" : "bg-white/80 text-(--color-primary-dark) hover:bg-(--color-surface-tint)"}`}
             title="Xem theo tỉnh/thành">Tỉnh</button>
           <button onClick={handleForceLevel2}
-            className={`px-3 py-1.5 text-xs font-semibold transition-colors duration-200 ${isLevel2 ? "bg-[var(--color-primary)] text-white" : "bg-white/80 text-[var(--color-primary-dark)] hover:bg-[var(--color-surface-tint)]"}`}
+            className={`px-3 py-1.5 text-xs font-semibold transition-colors duration-200 ${isLevel2 ? "bg-(--color-primary) text-white" : "bg-white/80 text-(--color-primary-dark) hover:bg-(--color-surface-tint)"}`}
             title="Xem theo cây điểm đến">Cây</button>
         </div>
         {/* Zoom buttons */}
-        <div className="flex flex-col rounded-xl overflow-hidden shadow-md border border-[var(--color-border)]">
-          <button onClick={handleZoomIn} className="bg-white/90 hover:bg-[var(--color-surface-tint)] text-[var(--color-primary-dark)] p-2 text-sm font-bold leading-none transition-colors" title="Phóng to">+</button>
-          <div className="h-px bg-[var(--color-border)]" />
-          <button onClick={handleZoomOut} className="bg-white/90 hover:bg-[var(--color-surface-tint)] text-[var(--color-primary-dark)] p-2 text-sm font-bold leading-none transition-colors" title="Thu nhỏ">−</button>
+        <div className="flex flex-col rounded-xl overflow-hidden shadow-md border border-(--color-border)">
+          <button onClick={handleZoomIn} className="bg-white/90 hover:bg-(--color-surface-tint) text-(--color-primary-dark) p-2 text-sm font-bold leading-none transition-colors" title="Phóng to">+</button>
+          <div className="h-px bg-(--color-border)" />
+          <button onClick={handleZoomOut} className="bg-white/90 hover:bg-(--color-surface-tint) text-(--color-primary-dark) p-2 text-sm font-bold leading-none transition-colors" title="Thu nhỏ">−</button>
         </div>
-        <button onClick={handleReset} className="bg-white/90 hover:bg-[var(--color-surface-tint)] text-[var(--color-primary-dark)] rounded-xl shadow-md border border-[var(--color-border)] p-2 text-xs font-medium transition-colors" title="Đặt lại">↺</button>
-        <button onClick={handleFullscreen} className="bg-white/90 hover:bg-[var(--color-surface-tint)] text-[var(--color-primary-dark)] rounded-xl shadow-md border border-[var(--color-border)] p-2 text-xs transition-colors" title="Toàn màn hình">
+        <button onClick={handleReset} className="bg-white/90 hover:bg-(--color-surface-tint) text-(--color-primary-dark) rounded-xl shadow-md border border-(--color-border) p-2 text-xs font-medium transition-colors" title="Đặt lại">↺</button>
+        <button onClick={handleFullscreen} className="bg-white/90 hover:bg-(--color-surface-tint) text-(--color-primary-dark) rounded-xl shadow-md border border-(--color-border) p-2 text-xs transition-colors" title="Toàn màn hình">
           {isFullscreen ? "⊡" : "⊞"}
         </button>
       </div>
 
       {/* Legend */}
-      <div className="absolute bottom-3 left-3 z-20 bg-white/85 backdrop-blur-sm rounded-xl px-3 py-2 shadow-md border border-[var(--color-border)] text-xs text-[var(--color-primary-dark)]">
+      <div className="absolute bottom-3 left-3 z-20 bg-white/85 backdrop-blur-sm rounded-xl px-3 py-2 shadow-md border border-(--color-border) text-xs text-(--color-primary-dark)">
         <div className="font-semibold mb-1.5 text-[11px] uppercase tracking-wide">Chú giải</div>
         <div className="flex items-center gap-1.5 mb-1">
           <div className="flex gap-0.5">
@@ -374,7 +374,7 @@ export default function VietnamGrowthMap({
               <div key={i} style={{background:c}} className="w-4 h-3 rounded-sm" />
             ))}
           </div>
-          <span className="text-[10px] text-[var(--color-text-muted)]">Hạng thấp → Top 1-5</span>
+          <span className="text-[10px] text-(--color-text-muted)">Hạng thấp → Top 1-5</span>
         </div>
         {isLevel2 && (
           <div className="flex items-center gap-2 flex-wrap mt-1">
@@ -530,7 +530,7 @@ export default function VietnamGrowthMap({
       {/* Tooltip */}
       {tooltip && !isLevel2 && (
         <div
-          className="absolute z-30 bg-[var(--color-primary)] text-white text-xs rounded-lg px-3 py-2 pointer-events-none shadow-xl whitespace-pre"
+          className="absolute z-30 bg-(--color-primary) text-white text-xs rounded-lg px-3 py-2 pointer-events-none shadow-xl whitespace-pre"
           style={{ left: tooltip.x + 12, top: tooltip.y - 10, maxWidth: 180 }}>
           {tooltip.content}
         </div>
@@ -539,7 +539,7 @@ export default function VietnamGrowthMap({
       {/* Destination hover preview */}
       {hoverDestination && isLevel2 && (
         <div
-          className="absolute z-40 w-[248px] overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/95 text-[var(--color-text)] shadow-2xl backdrop-blur-md pointer-events-none"
+          className="absolute z-40 w-62 overflow-hidden rounded-2xl border border-(--color-border) bg-(--color-surface)/95 text-(--color-text) shadow-2xl backdrop-blur-md pointer-events-none"
           style={{
             left: hoverDestination.x,
             top: hoverDestination.y,
@@ -549,7 +549,7 @@ export default function VietnamGrowthMap({
           aria-live="polite"
         >
           <div className="flex gap-3 p-2.5">
-            <div className="relative h-[88px] w-[92px] flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-[var(--color-surface-tint)] to-[var(--color-primary)]">
+            <div className="relative h-22 w-23 shrink-0 overflow-hidden rounded-xl bg-linear-to-br from-(--color-surface-tint) to-(--color-primary)">
               {hoverDestination.node.thumbnail ? (
                 <img
                   src={hoverDestination.node.thumbnail}
@@ -568,24 +568,24 @@ export default function VietnamGrowthMap({
             </div>
             <div className="min-w-0 flex-1 py-0.5">
               <div className="mb-1 flex items-center gap-1.5">
-                <span className="rounded-full bg-[var(--color-accent)]/15 px-2 py-0.5 text-[10px] font-bold text-[var(--color-primary-dark)]">
+                <span className="rounded-full bg-(--color-accent)/15 px-2 py-0.5 text-[10px] font-bold text-(--color-primary-dark)">
                   {hoverDestination.node.tag}
                 </span>
-                <span className="text-[10px] font-semibold text-[var(--color-primary)]">
+                <span className="text-[10px] font-semibold text-(--color-primary)">
                   {stageName(hoverDestination.stage)}
                 </span>
               </div>
-              <div className="truncate font-serif text-base font-bold leading-tight text-[var(--color-primary-dark)]">
+              <div className="truncate font-serif text-base font-bold leading-tight text-(--color-primary-dark)">
                 {hoverDestination.node.name}
               </div>
-              <div className="mt-0.5 truncate text-xs text-[var(--color-text-muted)]">
+              <div className="mt-0.5 truncate text-xs text-(--color-text-muted)">
                 {hoverDestination.node.province} · {hoverDestination.node.category}
               </div>
               <div className="mt-2 flex items-baseline gap-1">
-                <span className="text-lg font-black text-[var(--color-primary-dark)]">
+                <span className="text-lg font-black text-(--color-primary-dark)">
                   {hoverDestination.votes.toLocaleString("vi-VN")}
                 </span>
-                <span className="text-[11px] text-[var(--color-text-muted)]">phiếu</span>
+                <span className="text-[11px] text-(--color-text-muted)">phiếu</span>
               </div>
             </div>
           </div>
@@ -593,10 +593,10 @@ export default function VietnamGrowthMap({
       )}
 
       {/* Zoom level badge */}
-      <div className="absolute top-3 right-3 z-10 bg-white/70 backdrop-blur-sm rounded-lg px-2 py-1 text-[10px] text-[var(--color-text-muted)] font-mono border border-[var(--color-border)]">
+      <div className="absolute top-3 right-3 z-10 bg-white/70 backdrop-blur-sm rounded-lg px-2 py-1 text-[10px] text-(--color-text-muted) font-mono border border-(--color-border)">
         {transform.k.toFixed(1)}×
       </div>
-      <div className="absolute bottom-3 right-3 z-10 max-w-[210px] rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)]/90 px-3 py-2 text-[10px] leading-snug text-[var(--color-text-muted)] shadow-sm">
+      <div className="absolute bottom-3 right-3 z-10 max-w-52.5 rounded-xl border border-(--color-border) bg-(--color-bg)/90 px-3 py-2 text-[10px] leading-snug text-(--color-text-muted) shadow-sm">
         Vị trí cây/đảo đang dùng dữ liệu mock tối ưu giao diện; cần duyệt GIS trước khi nối backend chính thức.
       </div>
       <style>{`

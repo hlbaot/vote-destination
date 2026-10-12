@@ -133,6 +133,7 @@ export default function VietnamGrowthMap({
   const [hoveredProvinceId, setHoveredProvinceId] = useState<string | null>(null)
   const [hoverDestination, setHoverDestination] = useState<HoverDestinationPreview | null>(null)
   const [isDebugMode, setIsDebugMode] = useState(false)
+  const [provinceLabelPositions, setProvinceLabelPositions] = useState<Record<string, { x: number; y: number }>>({})
 
   const isLevel2 = transform.k >= MAP_CONFIG.semanticZoomThreshold
 
@@ -164,6 +165,41 @@ export default function VietnamGrowthMap({
   }, [destinations, filterRegion, searchQuery])
 
   const filteredIds = useMemo(() => new Set(filteredDests.map(d => d.id)), [filteredDests])
+
+  useLayoutEffect(() => {
+    if (!gRef.current) return
+
+    const groupedBounds = new Map<string, { x1: number; y1: number; x2: number; y2: number }>()
+    gRef.current.querySelectorAll<SVGPathElement>("[data-province-label-key]").forEach((path) => {
+      const key = path.dataset.provinceLabelKey
+      if (!key) return
+
+      const box = path.getBBox()
+      const current = groupedBounds.get(key)
+      if (current) {
+        current.x1 = Math.min(current.x1, box.x)
+        current.y1 = Math.min(current.y1, box.y)
+        current.x2 = Math.max(current.x2, box.x + box.width)
+        current.y2 = Math.max(current.y2, box.y + box.height)
+      } else {
+        groupedBounds.set(key, {
+          x1: box.x,
+          y1: box.y,
+          x2: box.x + box.width,
+          y2: box.y + box.height,
+        })
+      }
+    })
+
+    const nextPositions: Record<string, { x: number; y: number }> = {}
+    groupedBounds.forEach((box, key) => {
+      nextPositions[key] = {
+        x: (box.x1 + box.x2) / 2,
+        y: (box.y1 + box.y2) / 2,
+      }
+    })
+    setProvinceLabelPositions(nextPositions)
+  }, [])
 
   // Init d3-zoom
   useLayoutEffect(() => {
@@ -373,6 +409,7 @@ export default function VietnamGrowthMap({
                 <path
                   key={path.id}
                   d={path.d}
+                  data-province-label-key={normName(displayName)}
                   fill={fillColor}
                   stroke="#FFFFFF"
                   strokeWidth={0.6 / transform.k}
@@ -388,21 +425,23 @@ export default function VietnamGrowthMap({
               )
             })}
             {!isLevel2 && transform.k <= 1.45 && provinces.map((p) => (
-              <text
-                key={`label-${p.name}`}
-                x={p.labelX}
-                y={p.labelY}
-                textAnchor="middle"
-                fontSize={p.rank <= 10 ? 9 : 7}
-                fontWeight={p.rank <= 10 ? 700 : 600}
-                fill="var(--color-primary-dark)"
-                paintOrder="stroke"
-                stroke="var(--color-bg)"
-                strokeWidth={3 / transform.k}
-                style={{ pointerEvents: "none" }}
-              >
-                {p.rank <= 18 ? p.name : ""}
-              </text>
+              p.rank <= 18 ? (
+                <text
+                  key={`label-${p.name}`}
+                  x={provinceLabelPositions[normName(p.name)]?.x ?? p.labelX}
+                  y={provinceLabelPositions[normName(p.name)]?.y ?? p.labelY}
+                  textAnchor="middle"
+                  fontSize={p.rank <= 10 ? 9 : 7}
+                  fontWeight={p.rank <= 10 ? 700 : 600}
+                  fill="var(--color-primary-dark)"
+                  paintOrder="stroke"
+                  stroke="var(--color-bg)"
+                  strokeWidth={3 / transform.k}
+                  style={{ pointerEvents: "none" }}
+                >
+                  {p.name}
+                </text>
+              ) : null
             ))}
 
             <g aria-label="Quần đảo Hoàng Sa và Trường Sa thuộc Việt Nam" style={{ pointerEvents: "none" }}>

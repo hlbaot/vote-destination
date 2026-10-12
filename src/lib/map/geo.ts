@@ -9,8 +9,7 @@ const fitPoints: [number, number][] = [
   [109.46, 12.65],
   [104.84, 8.57],
   [112, 16.5],
-  [114.5, 9.5],
-  [117, 6.5],
+  [110.5, 9.0],
 ]
 
 const fitCollection: FeatureCollection<MultiPoint> = {

@@ -6,7 +6,7 @@
   position: relative;
   width: 100%;
   overflow-x: hidden;
-  background: #072013;
+  background: #E2F3DC;
 
   /* Continuous multilayer canvas background across all sections */
   &::before {
@@ -17,10 +17,10 @@
     left: 0;
     right: 0;
     background:
-      radial-gradient(ellipse 65% 50% at 85% 25%, rgba(122, 201, 67, 0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 45% at 15% 55%, rgba(249, 166, 34, 0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(46, 158, 63, 0.08) 0%, transparent 70%),
-      linear-gradient(180deg, #072013 0%, #0A2B1A 18%, #0E3822 45%, #0B2C1C 78%, #0D331F 100%);
+      radial-gradient(circle at 12% 18%, rgba(46, 158, 63, 0.15) 0%, transparent 45%),
+      radial-gradient(circle at 88% 28%, rgba(200, 132, 20, 0.12) 0%, transparent 42%),
+      radial-gradient(circle at 50% 85%, rgba(46, 158, 63, 0.12) 0%, transparent 55%),
+      linear-gradient(180deg, #E8F5E5 0%, #DCF0D8 35%, #D0EAC6 70%, #C4E4B8 100%);
     pointer-events: none;
     z-index: 1;
   }
@@ -118,10 +118,10 @@
     font-size: clamp(30px, 3.8vw, 44px);
     font-weight: 600;
     line-height: 1.2;
-    color: #FFFFFF;
+    color: #0F3D34;
     margin: 0;
     letter-spacing: -0.015em;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    text-shadow: none;
   }
 }
 
@@ -144,12 +144,12 @@
 
   /* Specific enhancements for Home Destination Cards */
   .destination-card {
-    background: rgba(10, 38, 22, 0.82) !important;
-    border: 1px solid rgba(122, 201, 67, 0.25) !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+    border: 1px solid rgba(15, 61, 52, 0.14) !important;
     border-radius: 22px !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
-    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35) !important;
+    box-shadow: 0 18px 42px rgba(47, 107, 60, 0.14) !important;
     min-height: 470px;
     display: flex;
     flex-direction: column;
@@ -157,8 +157,8 @@
 
     &:hover {
       transform: translateY(-8px);
-      border-color: rgba(249, 166, 34, 0.6) !important;
-      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5), 0 0 28px rgba(122, 201, 67, 0.22) !important;
+      border-color: rgba(200, 132, 20, 0.5) !important;
+      box-shadow: 0 26px 60px rgba(47, 107, 60, 0.2), 0 0 28px rgba(200, 132, 20, 0.14) !important;
     }
   }
 
@@ -179,29 +179,33 @@
 
   .intro-snippet-text {
     font-size: 13px !important;
-    color: rgba(240, 250, 243, 0.88) !important;
+    color: #1F4532 !important;
   }
 
   .metric-box-val {
     font-size: 12.5px !important;
-    color: #FFFFFF !important;
+    color: #1F3A2B !important;
   }
 
   .intro-badge-title,
   .card-rank-label,
   .vote-stat-label,
   .metric-box-label {
-    color: rgba(200, 230, 210, 0.72) !important;
+    color: rgba(31, 69, 50, 0.68) !important;
   }
 
   .card-rank-row,
   .card-metrics-row {
-    background: rgba(6, 26, 15, 0.65) !important;
-    border-color: rgba(122, 201, 67, 0.22) !important;
+    background: rgba(232, 245, 229, 0.76) !important;
+    border-color: rgba(15, 61, 52, 0.12) !important;
   }
 
   .card-vote-footer {
-    border-top-color: rgba(122, 201, 67, 0.2) !important;
+    border-top-color: rgba(15, 61, 52, 0.12) !important;
+  }
+
+  .vote-progress-track {
+    background: rgba(15, 61, 52, 0.12) !important;
   }
 }
 
@@ -410,9 +414,9 @@
     position: relative;
     border-radius: 28px;
     overflow: hidden;
-    background: linear-gradient(135deg, #0A331E 0%, #135430 45%, #1B6E3C 100%);
-    border: 1px solid rgba(122, 201, 67, 0.35);
-    box-shadow: 0 24px 64px rgba(7, 32, 19, 0.5);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(232, 245, 229, 0.9) 46%, rgba(196, 228, 184, 0.92) 100%);
+    border: 1px solid rgba(15, 61, 52, 0.16);
+    box-shadow: 0 24px 64px rgba(47, 107, 60, 0.16);
   }
 
   .story-banner-deco {
@@ -422,7 +426,7 @@
     width: 380px;
     height: 380px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(249, 166, 34, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(200, 132, 20, 0.16) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -445,7 +449,7 @@
       font-size: 11.5px;
       font-weight: 800;
       letter-spacing: 0.2em;
-      color: var(--color-secondary);
+      color: #C88414;
       text-transform: uppercase;
     }
   }
@@ -456,12 +460,12 @@
     font-size: clamp(28px, 3.4vw, 40px);
     font-weight: 600;
     line-height: 1.25;
-    color: #FFFFFF;
+    color: #0F3D34;
     margin: 0;
     max-width: 530px;
     text-wrap: balance;
     letter-spacing: -0.015em;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    text-shadow: none;
   }
 
   .story-grid-right {
@@ -474,7 +478,7 @@
   .story-banner-desc {
     font-size: 15px;
     line-height: 1.75;
-    color: rgba(251, 247, 240, 0.9);
+    color: #1F4532;
     margin: 0;
     max-width: 480px;
   }

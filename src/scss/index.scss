@@ -2,19 +2,19 @@
 // VOTE DESTINATION - MAIN SCSS ENTRY
 // ============================================================
 
-@use "variables";
-@use "header";
-@use "hero";
-@use "home-hero";
-@use "destination-card";
-@use "explore";
-@use "detail";
-@use "vote";
-@use "vote-3d";
-@use "vote-flow";
-@use "cms";
-@use "admin-login";
-@use "home";
-@use "footer";
-@use "responsive";
+@use "base/variables";
+@use "shared/header";
+@use "user/hero";
+@use "user/home-hero";
+@use "user/destination-card";
+@use "user/explore";
+@use "user/detail";
+@use "user/vote";
+@use "user/vote-3d";
+@use "user/vote-flow";
+@use "admin/cms";
+@use "admin/admin-login";
+@use "user/home";
+@use "shared/footer";
+@use "base/responsive";
 

@@ -2,7 +2,7 @@
 
 import { Suspense } from "react"
 import { useParams } from "next/navigation"
-import Detail from "@/views/Detail"
+import Detail from "@/features/user/destination-detail"
 import { useAppContext } from "@/context/AppContext"
 
 function DestinationDetailContent() {

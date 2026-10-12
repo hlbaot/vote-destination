@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react"
 import * as THREE from "three"
-import { ProvinceData, vietnamProvinces } from "../data/provinces"
-import Icon from "./Icon"
+import { ProvinceData, vietnamProvinces } from "@/data/provinces"
+import Icon from "@/components/shared/Icon"
 
 // Tọa độ chuẩn hóa từ lat/lng sang tọa độ 3D
 function coordsToVector3(

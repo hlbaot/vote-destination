@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useMemo, useState } from "react"
-import { Destination } from "../types"
-import Icon from "./Icon"
+import { Destination } from "@/types"
+import Icon from "@/components/shared/Icon"
 
 export default function DestinationCard({
   item,
@@ -95,9 +95,8 @@ export default function DestinationCard({
         {/* Nút tim yêu thích nổi ở góc trên bên phải ảnh */}
         <button
           type="button"
-          className={`card-heart-pill ${isHeartActive ? "is-favorited" : ""} ${
-            isClosed ? "is-disabled" : ""
-          }`}
+          className={`card-heart-pill ${isHeartActive ? "is-favorited" : ""} ${isClosed ? "is-disabled" : ""
+            }`}
           onClick={handleVote}
           aria-label={voteLabel}
           title={voteLabel}
@@ -116,22 +115,10 @@ export default function DestinationCard({
           </p>
         </div>
 
-        {/* 3 chỉ số hiển thị dạng Chip / Hộp đầy đủ chữ, không bị cắt text */}
-        <div className="card-metrics-row" aria-label={`Thông số ${item.name}`}>
-          <div className="metric-box">
-            <span className="metric-box-label">Loại hình</span>
-            <strong className="metric-box-val">{item.category || item.tag}</strong>
-          </div>
-
-          <div className="metric-box">
-            <span className="metric-box-label">Mùa đẹp nhất</span>
-            <strong className="metric-box-val">{item.bestTime || "Quanh năm"}</strong>
-          </div>
-
-          <div className="metric-box rank-box">
-            <span className="metric-box-label">Xếp hạng</span>
-            <strong className="metric-box-val rank-val">{displayRank}</strong>
-          </div>
+        {/* Xếp hạng đề cử */}
+        <div className="card-rank-row" aria-label={`Xếp hạng: ${displayRank}`}>
+          <span className="card-rank-label">Xếp hạng</span>
+          <strong className="card-rank-val">{displayRank}</strong>
         </div>
 
         {/* Lượt bình chọn to lớn + Thanh tiến trình nhỏ so với điểm đứng đầu */}

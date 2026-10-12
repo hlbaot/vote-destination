@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
-import { Page } from "../types"
-import Icon from "./Icon"
+import { Page } from "@/types"
+import Icon from "@/components/shared/Icon"
 import { useAppContext } from "@/context/AppContext"
 
 export const pageLabels: Record<Page, string> = {
@@ -34,9 +34,11 @@ export function Logo({ compact = false }: { compact?: boolean }) {
       </div>
       {!compact && (
         <div className="wander-brand-text">
-          <strong className="wander-brand-name">HỘI THI ĐIỂM ĐẾN</strong>
+          <strong className="wander-brand-name">
+            ĐIỂM ĐẾN DU LỊCH NÔNG THÔN
+          </strong>
           <small className="wander-brand-sub">
-            HỘI THI ĐIỂM ĐẾN • BÌNH CHỌN • TÔN VINH
+            VIỆT NAM TỐT NHẤT 2026
           </small>
         </div>
       )}
@@ -71,7 +73,7 @@ export default function Header({
   }
 
   const page = propPage || detectedPage
-  const setPage = propSetPage || context?.navigate || (() => {})
+  const setPage = propSetPage || context?.navigate || (() => { })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,11 +91,10 @@ export default function Header({
 
   return (
     <header
-      className={`site-header ${page === "home" ? "is-home-header" : ""} ${
-        scrolled ? "is-scrolled" : "is-at-top"
-      }`}
+      className={`site-header ${page === "home" ? "is-home-header" : ""} ${scrolled ? "is-scrolled" : "is-at-top"
+        }`}
     >
-      {/* Dual Portal Switcher Topbar */}
+      {/* Dual Portal Switcher Topbar
       <div className="portal-switcher-strip">
         <div className="container portal-switcher-inner">
           <div className="portal-left-hint">
@@ -126,7 +127,7 @@ export default function Header({
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="container header-inner">
         <button className="logo-button" onClick={() => go("home")}>
@@ -149,23 +150,7 @@ export default function Header({
         </nav>
 
         <div className="header-actions">
-          {/* Quick search icon */}
-          <button
-            onClick={() => go("explore")}
-            className="wander-header-icon-btn desktop-only"
-            title="Tìm kiếm điểm đến"
-          >
-            <Icon name="search" size={18} />
-          </button>
 
-          {/* Language selector */}
-          <div
-            className="wander-lang-badge desktop-only"
-            title="Ngôn ngữ hiển thị"
-          >
-            <Icon name="globe" size={15} />
-            <span>VN ⌵</span>
-          </div>
 
           <button
             onClick={() => go("cms")}

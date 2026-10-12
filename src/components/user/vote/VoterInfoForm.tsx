@@ -1,0 +1,192 @@
+"use client"
+
+import React, { useState } from "react"
+import Icon from "@/components/shared/Icon"
+import { voteConfig } from "@/data/destinations"
+
+interface VoterInfoFormProps {
+  phone: string
+  voterName: string
+  remainingVotesToday: number
+  onPhoneChange: (val: string) => void
+  onVoterNameChange: (val: string) => void
+  onSubmit: () => void
+  onOpenGuide: () => void
+}
+
+export default function VoterInfoForm({
+  phone,
+  voterName,
+  remainingVotesToday,
+  onPhoneChange,
+  onVoterNameChange,
+  onSubmit,
+  onOpenGuide,
+}: VoterInfoFormProps) {
+  const [error, setError] = useState<string>("")
+  const [touched, setTouched] = useState(false)
+
+  const validatePhone = (val: string) => {
+    const cleaned = val.replace(/\D/g, "")
+    if (!cleaned) {
+      return "Vui lòng nhập số điện thoại để tiếp tục"
+    }
+    // Vietnam phone numbers: 9 to 10 digits
+    if (cleaned.length < 9 || cleaned.length > 10) {
+      return "Số điện thoại chưa hợp lệ (cần từ 9 đến 10 chữ số)"
+    }
+    return ""
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setTouched(true)
+    const err = validatePhone(phone)
+    if (err) {
+      setError(err)
+      return
+    }
+    setError("")
+    onSubmit()
+  }
+
+  const handlePhoneInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value.replace(/\D/g, "").slice(0, 10)
+    onPhoneChange(raw)
+    if (touched) {
+      setError(validatePhone(raw))
+    }
+  }
+
+  return (
+    <div className="bg-[#F4EFE6] border border-[#E5DDD0] rounded-3xl p-6 sm:p-8 shadow-sm">
+      {/* Title & Quota Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E0D7C7]">
+        <div>
+          <span className="text-xs font-bold uppercase tracking-wider text-[#E05A36] block mb-1">
+            BƯỚC 01 / 03
+          </span>
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F3D34] tracking-tight">
+            Thông tin người bình chọn
+          </h3>
+          <p className="text-sm text-[#52645E] mt-1">
+            Xác thực danh tính để đảm bảo tính công bằng và minh bạch của hội thi.
+          </p>
+        </div>
+
+        {/* Daily Quota Counter with 3 Dots */}
+        <div className="flex-shrink-0 bg-[#EAE2D3] border border-[#DDD3C0] rounded-2xl p-3 sm:p-3.5 flex flex-col items-start sm:items-end gap-1.5">
+          <div className="text-xs text-[#52645E]">
+            Hạn mức hôm nay:{" "}
+            <strong className="text-[#0F3D34] font-bold text-sm">
+              {remainingVotesToday} / {voteConfig.limitPerDay} lượt
+            </strong>
+          </div>
+          <div className="flex items-center gap-1.5">
+            {Array.from({ length: voteConfig.limitPerDay }).map((_, i) => {
+              const isAvailable = i < remainingVotesToday
+              return (
+                <span
+                  key={i}
+                  title={isAvailable ? "Lượt bình chọn khả dụng" : "Đã sử dụng"}
+                  className={`w-3.5 h-3.5 rounded-full transition-all ${
+                    isAvailable
+                      ? "bg-[#0F3D34] ring-2 ring-[#0F3D34]/20"
+                      : "bg-[#C4B7A0] opacity-50"
+                  }`}
+                />
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+        {/* Phone field */}
+        <div>
+          <label className="block text-sm font-semibold text-[#1E2927] mb-1.5">
+            Số điện thoại di động <span className="text-[#E05A36]">*</span>
+          </label>
+          <div className="relative flex rounded-2xl border bg-[#FBF9F4] shadow-sm transition-all focus-within:ring-2 focus-within:ring-[#0F3D34] focus-within:border-[#0F3D34] border-[#D8CEBC]">
+            <span className="inline-flex items-center gap-1.5 px-4 rounded-l-2xl border-r border-[#E2D8C8] bg-[#EFE9DD] text-[#0F3D34] font-semibold text-sm">
+              <span>🇻🇳</span>
+              <span>+84</span>
+            </span>
+            <input
+              type="tel"
+              inputMode="numeric"
+              value={phone}
+              onChange={handlePhoneInputChange}
+              onBlur={() => {
+                setTouched(true)
+                setError(validatePhone(phone))
+              }}
+              placeholder="Nhập số điện thoại (ví dụ: 0912345678)"
+              className="w-full px-4 py-3.5 bg-transparent rounded-r-2xl text-base text-[#1E2927] placeholder:text-[#9BAAA4] focus:outline-none"
+            />
+          </div>
+          {error ? (
+            <p className="text-xs text-[#DC2626] font-medium mt-1.5 flex items-center gap-1">
+              <span>⚠</span> {error}
+            </p>
+          ) : (
+            <p className="text-xs text-[#63756F] mt-1.5">
+              Hệ thống dùng số điện thoại để ghi nhận tối đa 3 lượt bình chọn mỗi ngày.
+            </p>
+          )}
+        </div>
+
+        {/* Name / message field (optional) */}
+        <div>
+          <label className="block text-sm font-semibold text-[#1E2927] mb-1.5">
+            Họ và tên hoặc Lời chúc gửi gắm <span className="text-xs font-normal text-[#758882]">(Tùy chọn)</span>
+          </label>
+          <div className="relative rounded-2xl border border-[#D8CEBC] bg-[#FBF9F4] shadow-sm focus-within:ring-2 focus-within:ring-[#0F3D34] focus-within:border-[#0F3D34]">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#71847E]">
+              <Icon name="user" size={18} />
+            </div>
+            <input
+              type="text"
+              value={voterName}
+              onChange={(e) => onVoterNameChange(e.target.value)}
+              placeholder="Ví dụ: Nguyễn Văn A • Chúc du lịch quê hương phát triển"
+              className="w-full pl-11 pr-4 py-3.5 bg-transparent rounded-2xl text-base text-[#1E2927] placeholder:text-[#9BAAA4] focus:outline-none"
+            />
+          </div>
+        </div>
+
+        {/* Privacy commitment chip */}
+        <div className="p-3.5 rounded-2xl bg-[#EBE4D6] border border-[#DDD3C0] flex items-center gap-3 text-xs text-[#40524C]">
+          <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#0F3D34]/10 text-[#0F3D34] flex items-center justify-center">
+            <Icon name="lock" size={14} />
+          </span>
+          <span>
+            Thông tin được mã hóa bảo mật danh tính, cam kết không dùng cho mục đích thương mại và không gửi OTP phức tạp.
+          </span>
+        </div>
+
+        {/* Link hint to rules */}
+        <div className="text-xs text-[#52645E] text-center pt-1">
+          Chưa rõ quy định hội thi?{" "}
+          <button
+            type="button"
+            onClick={onOpenGuide}
+            className="text-[#E05A36] font-semibold hover:underline cursor-pointer inline-flex items-center gap-1"
+          >
+            Xem thể lệ & hướng dẫn đầy đủ ↗
+          </button>
+        </div>
+
+        {/* Submit button */}
+        <button
+          type="submit"
+          className="w-full py-4 bg-[#E05A36] hover:bg-[#CC4E2C] text-white font-bold rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 text-base cursor-pointer"
+        >
+          <span>Tiếp tục chọn điểm đến</span>
+          <Icon name="arrow" size={18} />
+        </button>
+      </form>
+    </div>
+  )
+}

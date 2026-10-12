@@ -1,48 +1,12 @@
-"use client"
+import type { Metadata } from "next"
+import MapPageClient from "@/features/user/map"
 
-import { Suspense, useEffect } from "react"
-import { useSearchParams } from "next/navigation"
-import Vote from "@/views/Vote"
-import { useAppContext } from "@/context/AppContext"
-
-function VoteContent() {
-  const searchParams = useSearchParams()
-  const preselectedId = searchParams.get("id")
-
-  const {
-    destinations,
-    selectedDestination,
-    setSelectedDestination,
-    handleRecordVote,
-    handleCopyReceipt,
-    navigate,
-  } = useAppContext()
-
-  useEffect(() => {
-    if (preselectedId) {
-      const found = destinations.find((d) => d.id === preselectedId)
-      if (found && found.id !== selectedDestination?.id) {
-        setSelectedDestination(found)
-      }
-    }
-  }, [preselectedId, destinations, selectedDestination?.id, setSelectedDestination])
-
-  return (
-    <Vote
-      go={navigate}
-      destinations={destinations}
-      selectedDestination={selectedDestination || destinations[0]}
-      onSelectDestination={setSelectedDestination}
-      onRecordVote={handleRecordVote}
-      onCopyReceipt={handleCopyReceipt}
-    />
-  )
+export const metadata: Metadata = {
+  title: "Bản đồ bình chọn – 68 Điểm đến yêu thích Việt Nam",
+  description:
+    "Bình chọn điểm đến Việt Nam trên bản đồ cây tăng trưởng với 34 tỉnh/thành và 68 điểm đến.",
 }
 
 export default function VotePage() {
-  return (
-    <Suspense fallback={<div className="container" style={{ padding: "80px 20px", textAlign: "center" }}>Đang tải cổng bình chọn...</div>}>
-      <VoteContent />
-    </Suspense>
-  )
+  return <MapPageClient />
 }

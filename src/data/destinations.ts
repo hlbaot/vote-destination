@@ -1,4 +1,4 @@
-import { Destination, Region } from "../types"
+import { Destination, Region } from "@/types"
 
 type DestinationCategory =
   | "Văn hóa – Đô thị"
@@ -43,6 +43,7 @@ type DestinationCategory =
   | "Tâm linh"
   | "Cảnh quan – Văn hóa dân tộc"
   | "Thiên nhiên – Săn mây"
+  | "Cảnh quan"
 
 interface DestinationSeed {
   id: number
@@ -53,80 +54,86 @@ interface DestinationSeed {
   angle: string
   bestTime: string
   votes: number
+  hasImage?: boolean
 }
 
 const seeds: DestinationSeed[] = [
-  { id: 1, name: "Hồ Hoàn Kiếm và Phố cổ", province: "Hà Nội", region: "Bắc", category: "Văn hóa – Đô thị", angle: "mặt hồ xanh, phố nghề lâu đời, nhịp sống đô thị giàu ký ức", bestTime: "Tháng 10 – tháng 4", votes: 11870 },
-  { id: 2, name: "Hoàng thành Thăng Long", province: "Hà Nội", region: "Bắc", category: "Di sản", angle: "lớp trầm tích kinh đô, không gian khảo cổ và kiến trúc cung đình", bestTime: "Tháng 9 – tháng 4", votes: 9340 },
-  { id: 3, name: "Quần thể Di tích Cố đô Huế (Đại Nội)", province: "Huế", region: "Trung", category: "Di sản", angle: "thành quách, điện miếu, sắc màu cung đình và nhịp sông Hương", bestTime: "Tháng 1 – tháng 4", votes: 10620 },
-  { id: 4, name: "Chùa Thiên Mụ – Sông Hương", province: "Huế", region: "Trung", category: "Tâm linh – Cảnh quan", angle: "ngôi chùa cổ bên dòng sông thơ mộng và khung cảnh yên tĩnh", bestTime: "Tháng 2 – tháng 5", votes: 7820 },
-  { id: 5, name: "Phố cổ Hội An", province: "Đà Nẵng", region: "Trung", category: "Di sản", angle: "mái ngói rêu phong, đèn lồng, bến sông và nếp sống thương cảng", bestTime: "Tháng 2 – tháng 8", votes: 11940 },
-  { id: 6, name: "Bà Nà Hills", province: "Đà Nẵng", region: "Trung", category: "Nghỉ dưỡng", angle: "khí hậu mát, cảnh quan núi cao và các công trình tham quan nổi bật", bestTime: "Tháng 3 – tháng 9", votes: 9850 },
-  { id: 7, name: "Nhà thờ Đức Bà – Bưu điện Trung tâm", province: "TP. Hồ Chí Minh", region: "Nam", category: "Văn hóa – Đô thị", angle: "dấu ấn kiến trúc đô thị, quảng trường trung tâm và nhịp sống hiện đại", bestTime: "Tháng 12 – tháng 4", votes: 8760 },
+  // Miền Bắc
+  { id: 69, name: "Hà Giang", province: "Tuyên Quang", region: "Bắc", category: "Thiên nhiên – Cảnh quan", angle: "cột cờ Lũng Cú, dốc Mã Pí Lèng và sắc hoa tam giác mạch", bestTime: "Tháng 10 – tháng 12", votes: 0 },
+  { id: 13, name: "Đồng Văn", province: "Tuyên Quang", region: "Bắc", category: "Thiên nhiên – Địa chất", angle: "núi đá tai mèo, cung đường đèo và văn hóa vùng cao", bestTime: "Tháng 9 – tháng 11", votes: 11320 },
+  { id: 14, name: "Tuyên Quang", province: "Tuyên Quang", region: "Bắc", category: "Lịch sử", angle: "không gian căn cứ cách mạng, rừng núi và những địa chỉ tri ân", bestTime: "Tháng 9 – tháng 4", votes: 4380 },
+  { id: 61, name: "Cao Bằng", province: "Cao Bằng", region: "Bắc", category: "Thiên nhiên", angle: "dòng thác nhiều tầng, sông xanh và cảnh quan biên giới", bestTime: "Tháng 9 – tháng 11", votes: 10370 },
+  { id: 17, name: "Ba Bể", province: "Thái Nguyên", region: "Bắc", category: "Thiên nhiên", angle: "mặt hồ xanh, núi đá, hang động và nếp sống ven hồ", bestTime: "Tháng 3 – tháng 6", votes: 7320 },
+  { id: 18, name: "Thái Nguyên", province: "Thái Nguyên", region: "Bắc", category: "Sinh thái – Ẩm thực", angle: "đồi chè xanh, văn hóa thưởng trà và khung cảnh trung du dịu mắt", bestTime: "Tháng 9 – tháng 12", votes: 5290 },
+  { id: 59, name: "Lạng Sơn", province: "Lạng Sơn", region: "Bắc", category: "Văn hóa – Tâm linh", angle: "hang đá, chùa trong động, thơ khắc và không gian phố núi", bestTime: "Tháng 9 – tháng 4", votes: 3920 },
+  { id: 15, name: "Sa Pa", province: "Lào Cai", region: "Bắc", category: "Thiên nhiên – Văn hóa dân tộc", angle: "biển mây, bản làng, ruộng bậc thang và đỉnh núi hùng vĩ", bestTime: "Tháng 9 – tháng 11", votes: 12000 },
+  { id: 16, name: "Mù Cang Chải", province: "Lào Cai", region: "Bắc", category: "Cảnh quan nông nghiệp", angle: "mùa vàng, triền núi uốn lượn và kỹ thuật canh tác bản địa", bestTime: "Tháng 9 – tháng 10", votes: 11560 },
+  { id: 67, name: "Mộc Châu", province: "Sơn La", region: "Bắc", category: "Nghỉ dưỡng – Nông nghiệp", angle: "đồi chè, hoa theo mùa, thung lũng và sản vật cao nguyên", bestTime: "Tháng 10 – tháng 4", votes: 9560 },
+  { id: 65, name: "Điện Biên Phủ", province: "Điện Biên", region: "Bắc", category: "Lịch sử", angle: "đồi di tích, bảo tàng, hầm chỉ huy và ký ức chiến thắng", bestTime: "Tháng 3 – tháng 5", votes: 8320 },
+  { id: 63, name: "Lai Châu", province: "Lai Châu", region: "Bắc", category: "Thiên nhiên – Cảnh quan", angle: "cung đèo mây phủ, núi cao và tầm nhìn Tây Bắc hùng vĩ", bestTime: "Tháng 9 – tháng 4", votes: 7770 },
+  { id: 1, name: "Hà Nội", province: "Hà Nội", region: "Bắc", category: "Văn hóa – Đô thị", angle: "mặt hồ xanh, phố nghề lâu đời, nhịp sống đô thị giàu ký ức", bestTime: "Tháng 10 – tháng 4", votes: 11870 },
+  { id: 70, name: "Ba Vì", province: "Hà Nội", region: "Bắc", category: "Thiên nhiên – Nghỉ dưỡng", angle: "rừng thông bạt ngàn, đồi hoa dã quỳ và bầu không khí mát mẻ", bestTime: "Tháng 4 – tháng 11", votes: 0 },
+  { id: 20, name: "Tam Đảo", province: "Phú Thọ", region: "Bắc", category: "Thiên nhiên – Nghỉ dưỡng", angle: "rừng núi mát lành, mây phủ và những tuyến đi bộ sinh thái", bestTime: "Tháng 4 – tháng 10", votes: 6480 },
+  { id: 71, name: "Mai Châu", province: "Phú Thọ", region: "Bắc", category: "Cảnh quan – Văn hóa dân tộc", angle: "thung lũng lúa xanh, nếp nhà sàn người Thái và không gian thanh bình", bestTime: "Tháng 10 – tháng 4", votes: 0 },
+  { id: 19, name: "Phú Thọ", province: "Phú Thọ", region: "Bắc", category: "Tâm linh – Lịch sử", angle: "không gian nguồn cội, rừng núi Nghĩa Lĩnh và nghi lễ cộng đồng", bestTime: "Tháng 2 – tháng 4", votes: 9630 },
+  { id: 25, name: "Ninh Bình", province: "Ninh Bình", region: "Bắc", category: "Di sản thiên nhiên", angle: "sông nước, hang xuyên thủy, núi đá vôi và di tích cố đô", bestTime: "Tháng 1 – tháng 4", votes: 11730 },
+  { id: 57, name: "Hạ Long", province: "Quảng Ninh", region: "Bắc", category: "Di sản thiên nhiên", angle: "núi đá vôi, mặt vịnh xanh và những hành trình du thuyền", bestTime: "Tháng 10 – tháng 4", votes: 11980 },
+  { id: 72, name: "Cô Tô", province: "Quảng Ninh", region: "Bắc", category: "Biển đảo", angle: "bãi đá Cầu Mỵ, biển xanh trong và bờ cát trắng hoang sơ", bestTime: "Tháng 4 – tháng 9", votes: 0 },
+  { id: 73, name: "Móng Cái", province: "Quảng Ninh", region: "Bắc", category: "Biển – Cảnh quan", angle: "mũi Sa Vĩ địa đầu Tổ quốc, bãi biển Trà Cổ và nhịp sống biên mậu", bestTime: "Tháng 4 – tháng 8", votes: 0 },
+  { id: 74, name: "Hải Phòng", province: "Hải Phòng", region: "Bắc", category: "Đô thị – Cảnh quan", angle: "thành phố hoa phượng đỏ, kiến trúc phố cổ và ẩm thực đất cảng", bestTime: "Tháng 4 – tháng 10", votes: 0 },
+  { id: 9, name: "Cát Bà", province: "Hải Phòng", region: "Bắc", category: "Biển đảo", angle: "vịnh xanh, đảo đá, làng chài và hệ sinh thái ven biển", bestTime: "Tháng 4 – tháng 10", votes: 8430 },
+  { id: 21, name: "Bắc Ninh", province: "Bắc Ninh", region: "Bắc", category: "Văn hóa phi vật thể", angle: "làng cổ, mái chùa, làn điệu quan họ và sinh hoạt cộng đồng", bestTime: "Tháng 1 – tháng 3", votes: 4710 },
+  { id: 23, name: "Hưng Yên", province: "Hưng Yên", region: "Bắc", category: "Lịch sử – Văn hóa", angle: "dấu xưa thương cảng, đình chùa cổ và nhịp sống ven sông", bestTime: "Tháng 10 – tháng 4", votes: 3420 },
+
+  // Miền Trung & Tây Nguyên
+  { id: 27, name: "Thanh Hóa", province: "Thanh Hóa", region: "Bắc", category: "Di sản", angle: "tường thành đá, cảnh quan làng quê và dấu ấn kiến trúc độc đáo", bestTime: "Tháng 10 – tháng 4", votes: 4970 },
+  { id: 28, name: "Sầm Sơn", province: "Thanh Hóa", region: "Bắc", category: "Biển", angle: "bãi cát dài, nhịp nghỉ dưỡng sôi động và hải sản ven biển", bestTime: "Tháng 4 – tháng 8", votes: 7440 },
+  { id: 75, name: "Pù Luông", province: "Thanh Hóa", region: "Bắc", category: "Thiên nhiên – Nghỉ dưỡng", angle: "ruộng bậc thang xanh ngát, guồng nước và bản làng yên bình", bestTime: "Tháng 5 – tháng 10", votes: 0 },
+  { id: 29, name: "Vinh", province: "Nghệ An", region: "Trung", category: "Lịch sử", angle: "làng quê xứ Nghệ, nếp nhà truyền thống và câu chuyện lịch sử gần gũi", bestTime: "Tháng 3 – tháng 8", votes: 6720 },
+  { id: 30, name: "Cửa Lò", province: "Nghệ An", region: "Trung", category: "Biển", angle: "bờ cát rộng, làng biển và nhịp nghỉ dưỡng thân thiện", bestTime: "Tháng 4 – tháng 8", votes: 7130 },
+  { id: 31, name: "Hà Tĩnh", province: "Hà Tĩnh", region: "Trung", category: "Lịch sử – Tri ân", angle: "không gian tưởng niệm, câu chuyện thanh niên xung phong và vùng đồi yên tĩnh", bestTime: "Tháng 3 – tháng 7", votes: 4510 },
+  { id: 76, name: "Đồng Hới", province: "Quảng Trị", region: "Trung", category: "Biển – Cảnh quan", angle: "bãi biển Nhật Lệ, tượng đài Mẹ Suốt và dấu ấn thành cổ", bestTime: "Tháng 4 – tháng 8", votes: 0 },
+  { id: 33, name: "Phong Nha", province: "Quảng Trị", region: "Trung", category: "Di sản thiên nhiên", angle: "hang động, sông ngầm, rừng xanh và địa hình đá vôi kỳ vĩ", bestTime: "Tháng 3 – tháng 8", votes: 11210 },
+  { id: 34, name: "Quảng Trị", province: "Quảng Trị", region: "Trung", category: "Lịch sử", angle: "không gian tưởng niệm, tường thành và những ký ức chiến tranh", bestTime: "Tháng 4 – tháng 7", votes: 5360 },
+  { id: 3, name: "Huế", province: "Huế", region: "Trung", category: "Di sản", angle: "thành quách, điện miếu, sắc màu cung đình và nhịp sông Hương", bestTime: "Tháng 1 – tháng 4", votes: 10620 },
+  { id: 6, name: "Đà Nẵng", province: "Đà Nẵng", region: "Trung", category: "Nghỉ dưỡng", angle: "khí hậu mát, cảnh quan núi cao và các công trình tham quan nổi bật", bestTime: "Tháng 3 – tháng 9", votes: 9850 },
+  { id: 5, name: "Hội An", province: "Đà Nẵng", region: "Trung", category: "Di sản", angle: "mái ngói rêu phong, đèn lồng, bến sông và nếp sống thương cảng", bestTime: "Tháng 2 – tháng 8", votes: 11940 },
+  { id: 77, name: "Cù Lao Chàm", province: "Đà Nẵng", region: "Trung", category: "Biển đảo", angle: "khu dự trữ sinh quyển thế giới, lặn ngắm san hô và bãi biển xanh", bestTime: "Tháng 3 – tháng 8", votes: 0 },
+  { id: 78, name: "Quảng Ngãi", province: "Quảng Ngãi", region: "Trung", category: "Cảnh quan", angle: "núi Thiên Ấn, sông Trà Khúc và cảnh sắc duyên hải miền Trung", bestTime: "Tháng 3 – tháng 9", votes: 0 },
+  { id: 35, name: "Lý Sơn", province: "Quảng Ngãi", region: "Trung", category: "Biển đảo", angle: "đảo núi lửa, ruộng tỏi, biển xanh và đời sống làng chài", bestTime: "Tháng 4 – tháng 8", votes: 8610 },
+  { id: 36, name: "Kon Tum", province: "Quảng Ngãi", region: "Tây Nguyên", category: "Thiên nhiên – Nghỉ dưỡng", angle: "rừng thông, hồ thác, khí hậu mát và nhịp nghỉ dưỡng chậm", bestTime: "Tháng 11 – tháng 4", votes: 6290 },
+  { id: 37, name: "Quy Nhơn", province: "Gia Lai", region: "Trung", category: "Biển", angle: "vách đá ven biển, nước xanh và cung đường ngắm gió", bestTime: "Tháng 3 – tháng 8", votes: 9780 },
+  { id: 38, name: "Pleiku", province: "Gia Lai", region: "Tây Nguyên", category: "Thiên nhiên – Văn hóa Tây Nguyên", angle: "mặt hồ núi lửa, rừng thông và sắc thái cao nguyên yên bình", bestTime: "Tháng 11 – tháng 3", votes: 5940 },
+  { id: 44, name: "Tuy Hòa", province: "Đắk Lắk", region: "Trung", category: "Thiên nhiên – Địa chất", angle: "những khối đá xếp lớp, sóng biển và cảnh quan địa chất lạ mắt", bestTime: "Tháng 2 – tháng 8", votes: 7090 },
+  { id: 43, name: "Buôn Ma Thuột", province: "Đắk Lắk", region: "Tây Nguyên", category: "Văn hóa Tây Nguyên", angle: "nhà dài, bến nước, rừng khộp và câu chuyện đại ngàn", bestTime: "Tháng 11 – tháng 3", votes: 5720 },
+  { id: 39, name: "Nha Trang", province: "Khánh Hòa", region: "Trung", category: "Biển đảo", angle: "vịnh biển xanh, đảo gần bờ, san hô và nhịp du lịch biển", bestTime: "Tháng 2 – tháng 8", votes: 10880 },
+  { id: 40, name: "Phan Rang", province: "Khánh Hòa", region: "Trung", category: "Biển – Thiên nhiên", angle: "vịnh kín gió, núi đá, nước trong và trải nghiệm biển sinh thái", bestTime: "Tháng 3 – tháng 8", votes: 7990 },
+  { id: 41, name: "Đà Lạt", province: "Lâm Đồng", region: "Tây Nguyên", category: "Nghỉ dưỡng – Đô thị", angle: "rừng thông, hồ nước, phố núi và khí hậu se lạnh", bestTime: "Tháng 11 – tháng 4", votes: 11040 },
+  { id: 79, name: "Bảo Lộc", province: "Lâm Đồng", region: "Tây Nguyên", category: "Nghỉ dưỡng – Nông nghiệp", angle: "đồi chè Tâm Châu, thác Dambri hùng vĩ và sương mù lãng đãng", bestTime: "Tháng 12 – tháng 4", votes: 0 },
+  { id: 80, name: "Phan Thiết", province: "Lâm Đồng", region: "Trung", category: "Biển", angle: "bãi cát trải dài, ngọn hải đăng Kê Gà và làng chài nhộn nhịp", bestTime: "Tháng 11 – tháng 4", votes: 0 },
+  { id: 42, name: "Mũi Né", province: "Lâm Đồng", region: "Trung", category: "Biển – Cảnh quan", angle: "đồi cát, biển nắng, làng chài và sắc màu duyên hải", bestTime: "Tháng 11 – tháng 4", votes: 8240 },
+
+  // Miền Nam
+  { id: 7, name: "TP. Hồ Chí Minh", province: "TP. Hồ Chí Minh", region: "Nam", category: "Văn hóa – Đô thị", angle: "dấu ấn kiến trúc đô thị, quảng trường trung tâm và nhịp sống hiện đại", bestTime: "Tháng 12 – tháng 4", votes: 8760 },
+  { id: 81, name: "Vũng Tàu", province: "TP. Hồ Chí Minh", region: "Nam", category: "Biển", angle: "bờ biển Thùy Vân, ngọn hải đăng trên núi Nhỏ và tượng Chúa Kito", bestTime: "Tháng 11 – tháng 4", votes: 0 },
   { id: 8, name: "Côn Đảo", province: "TP. Hồ Chí Minh", region: "Nam", category: "Biển đảo – Lịch sử", angle: "biển xanh, rừng nguyên sinh, ký ức lịch sử và không gian lắng đọng", bestTime: "Tháng 3 – tháng 9", votes: 10110 },
-  { id: 9, name: "Đảo Cát Bà", province: "Hải Phòng", region: "Bắc", category: "Biển đảo", angle: "vịnh xanh, đảo đá, làng chài và hệ sinh thái ven biển", bestTime: "Tháng 4 – tháng 10", votes: 8430 },
-  { id: 10, name: "Khu di tích Côn Sơn – Kiếp Bạc", province: "Hải Phòng", region: "Bắc", category: "Văn hóa – Tâm linh", angle: "núi rừng thanh tĩnh, đền chùa cổ và câu chuyện lịch sử dân tộc", bestTime: "Tháng 1 – tháng 4", votes: 5120 },
-  { id: 11, name: "Chợ nổi Cái Răng", province: "Cần Thơ", region: "Nam", category: "Văn hóa sông nước", angle: "ghe thuyền buôn bán, bữa sáng trên sông và sinh hoạt miền Tây", bestTime: "Tháng 11 – tháng 4", votes: 10480 },
-  { id: 12, name: "Bến Ninh Kiều", province: "Cần Thơ", region: "Nam", category: "Đô thị – Cảnh quan", angle: "bến sông, phố đi bộ, cầu ánh sáng và nhịp đêm đô thị", bestTime: "Tháng 12 – tháng 5", votes: 6910 },
-  { id: 13, name: "Cao nguyên đá Đồng Văn", province: "Tuyên Quang", region: "Bắc", category: "Thiên nhiên – Địa chất", angle: "núi đá tai mèo, cung đường đèo và văn hóa vùng cao", bestTime: "Tháng 9 – tháng 11", votes: 11320 },
-  { id: 14, name: "Khu di tích quốc gia đặc biệt Tân Trào", province: "Tuyên Quang", region: "Bắc", category: "Lịch sử", angle: "không gian căn cứ cách mạng, rừng núi và những địa chỉ tri ân", bestTime: "Tháng 9 – tháng 4", votes: 4380 },
-  { id: 15, name: "Sa Pa và Fansipan", province: "Lào Cai", region: "Bắc", category: "Thiên nhiên – Văn hóa dân tộc", angle: "biển mây, bản làng, ruộng bậc thang và đỉnh núi hùng vĩ", bestTime: "Tháng 9 – tháng 11", votes: 12000 },
-  { id: 16, name: "Ruộng bậc thang Mù Cang Chải", province: "Lào Cai", region: "Bắc", category: "Cảnh quan nông nghiệp", angle: "mùa vàng, triền núi uốn lượn và kỹ thuật canh tác bản địa", bestTime: "Tháng 9 – tháng 10", votes: 11560 },
-  { id: 17, name: "Hồ Ba Bể", province: "Thái Nguyên", region: "Bắc", category: "Thiên nhiên", angle: "mặt hồ xanh, núi đá, hang động và nếp sống ven hồ", bestTime: "Tháng 3 – tháng 6", votes: 7320 },
-  { id: 18, name: "Vùng chè Tân Cương", province: "Thái Nguyên", region: "Bắc", category: "Sinh thái – Ẩm thực", angle: "đồi chè xanh, văn hóa thưởng trà và khung cảnh trung du dịu mắt", bestTime: "Tháng 9 – tháng 12", votes: 5290 },
-  { id: 19, name: "Khu di tích Đền Hùng", province: "Phú Thọ", region: "Bắc", category: "Tâm linh – Lịch sử", angle: "không gian nguồn cội, rừng núi Nghĩa Lĩnh và nghi lễ cộng đồng", bestTime: "Tháng 2 – tháng 4", votes: 9630 },
-  { id: 20, name: "Vườn quốc gia Tam Đảo", province: "Phú Thọ", region: "Bắc", category: "Thiên nhiên – Nghỉ dưỡng", angle: "rừng núi mát lành, mây phủ và những tuyến đi bộ sinh thái", bestTime: "Tháng 4 – tháng 10", votes: 6480 },
-  { id: 21, name: "Chùa Bút Tháp – Không gian Quan họ", province: "Bắc Ninh", region: "Bắc", category: "Văn hóa phi vật thể", angle: "làng cổ, mái chùa, làn điệu quan họ và sinh hoạt cộng đồng", bestTime: "Tháng 1 – tháng 3", votes: 4710 },
-  { id: 22, name: "Khu du lịch Tây Yên Tử", province: "Bắc Ninh", region: "Bắc", category: "Thiên nhiên – Tâm linh", angle: "rừng núi, đường hành hương và không khí tĩnh tại của miền Phật tích", bestTime: "Tháng 1 – tháng 4", votes: 5890 },
-  { id: 23, name: "Phố Hiến", province: "Hưng Yên", region: "Bắc", category: "Lịch sử – Văn hóa", angle: "dấu xưa thương cảng, đình chùa cổ và nhịp sống ven sông", bestTime: "Tháng 10 – tháng 4", votes: 3420 },
-  { id: 24, name: "Chùa Keo", province: "Hưng Yên", region: "Bắc", category: "Kiến trúc – Tâm linh", angle: "kiến trúc gỗ truyền thống, sân chùa rộng và không gian lễ hội", bestTime: "Tháng 9 – tháng 11", votes: 3860 },
-  { id: 25, name: "Quần thể danh thắng Tràng An", province: "Ninh Bình", region: "Bắc", category: "Di sản thiên nhiên", angle: "sông nước, hang xuyên thủy, núi đá vôi và di tích cố đô", bestTime: "Tháng 1 – tháng 4", votes: 11730 },
-  { id: 26, name: "Cố đô Hoa Lư", province: "Ninh Bình", region: "Bắc", category: "Lịch sử", angle: "đền cổ, thung lũng đá vôi và không gian tưởng nhớ kinh đô xưa", bestTime: "Tháng 2 – tháng 5", votes: 6840 },
-  { id: 27, name: "Thành nhà Hồ", province: "Thanh Hóa", region: "Bắc", category: "Di sản", angle: "tường thành đá, cảnh quan làng quê và dấu ấn kiến trúc độc đáo", bestTime: "Tháng 10 – tháng 4", votes: 4970 },
-  { id: 28, name: "Biển Sầm Sơn", province: "Thanh Hóa", region: "Bắc", category: "Biển", angle: "bãi cát dài, nhịp nghỉ dưỡng sôi động và hải sản ven biển", bestTime: "Tháng 4 – tháng 8", votes: 7440 },
-  { id: 29, name: "Khu di tích Kim Liên (Quê Bác)", province: "Nghệ An", region: "Trung", category: "Lịch sử", angle: "làng quê xứ Nghệ, nếp nhà truyền thống và câu chuyện lịch sử gần gũi", bestTime: "Tháng 3 – tháng 8", votes: 6720 },
-  { id: 30, name: "Biển Cửa Lò", province: "Nghệ An", region: "Trung", category: "Biển", angle: "bờ cát rộng, làng biển và nhịp nghỉ dưỡng thân thiện", bestTime: "Tháng 4 – tháng 8", votes: 7130 },
-  { id: 31, name: "Ngã ba Đồng Lộc", province: "Hà Tĩnh", region: "Trung", category: "Lịch sử – Tri ân", angle: "không gian tưởng niệm, câu chuyện thanh niên xung phong và vùng đồi yên tĩnh", bestTime: "Tháng 3 – tháng 7", votes: 4510 },
-  { id: 32, name: "Chùa Hương Tích (Hương Sơn)", province: "Hà Tĩnh", region: "Trung", category: "Tâm linh – Cảnh quan", angle: "núi non, đường lên chùa và cảnh quan thanh tịnh miền Trung", bestTime: "Tháng 1 – tháng 4", votes: 4020 },
-  { id: 33, name: "Vườn quốc gia Phong Nha – Kẻ Bàng", province: "Quảng Trị", region: "Trung", category: "Di sản thiên nhiên", angle: "hang động, sông ngầm, rừng xanh và địa hình đá vôi kỳ vĩ", bestTime: "Tháng 3 – tháng 8", votes: 11210 },
-  { id: 34, name: "Di tích Thành cổ Quảng Trị", province: "Quảng Trị", region: "Trung", category: "Lịch sử", angle: "không gian tưởng niệm, tường thành và những ký ức chiến tranh", bestTime: "Tháng 4 – tháng 7", votes: 5360 },
-  { id: 35, name: "Đảo Lý Sơn", province: "Quảng Ngãi", region: "Trung", category: "Biển đảo", angle: "đảo núi lửa, ruộng tỏi, biển xanh và đời sống làng chài", bestTime: "Tháng 4 – tháng 8", votes: 8610 },
-  { id: 36, name: "Khu du lịch sinh thái Măng Đen", province: "Quảng Ngãi", region: "Tây Nguyên", category: "Thiên nhiên – Nghỉ dưỡng", angle: "rừng thông, hồ thác, khí hậu mát và nhịp nghỉ dưỡng chậm", bestTime: "Tháng 11 – tháng 4", votes: 6290 },
-  { id: 37, name: "Kỳ Co – Eo Gió (Quy Nhơn)", province: "Gia Lai", region: "Trung", category: "Biển", angle: "vách đá ven biển, nước xanh và cung đường ngắm gió", bestTime: "Tháng 3 – tháng 8", votes: 9780 },
-  { id: 38, name: "Biển Hồ T'Nưng", province: "Gia Lai", region: "Tây Nguyên", category: "Thiên nhiên – Văn hóa Tây Nguyên", angle: "mặt hồ núi lửa, rừng thông và sắc thái cao nguyên yên bình", bestTime: "Tháng 11 – tháng 3", votes: 5940 },
-  { id: 39, name: "Vịnh Nha Trang", province: "Khánh Hòa", region: "Trung", category: "Biển đảo", angle: "vịnh biển xanh, đảo gần bờ, san hô và nhịp du lịch biển", bestTime: "Tháng 2 – tháng 8", votes: 10880 },
-  { id: 40, name: "Vịnh Vĩnh Hy", province: "Khánh Hòa", region: "Trung", category: "Biển – Thiên nhiên", angle: "vịnh kín gió, núi đá, nước trong và trải nghiệm biển sinh thái", bestTime: "Tháng 3 – tháng 8", votes: 7990 },
-  { id: 41, name: "Thành phố Đà Lạt", province: "Lâm Đồng", region: "Tây Nguyên", category: "Nghỉ dưỡng – Đô thị", angle: "rừng thông, hồ nước, phố núi và khí hậu se lạnh", bestTime: "Tháng 11 – tháng 4", votes: 11040 },
-  { id: 42, name: "Mũi Né – Đồi cát bay", province: "Lâm Đồng", region: "Trung", category: "Biển – Cảnh quan", angle: "đồi cát, biển nắng, làng chài và sắc màu duyên hải", bestTime: "Tháng 11 – tháng 4", votes: 8240 },
-  { id: 43, name: "Buôn Đôn", province: "Đắk Lắk", region: "Tây Nguyên", category: "Văn hóa Tây Nguyên", angle: "nhà dài, bến nước, rừng khộp và câu chuyện đại ngàn", bestTime: "Tháng 11 – tháng 3", votes: 5720 },
-  { id: 44, name: "Gành Đá Đĩa", province: "Đắk Lắk", region: "Trung", category: "Thiên nhiên – Địa chất", angle: "những khối đá xếp lớp, sóng biển và cảnh quan địa chất lạ mắt", bestTime: "Tháng 2 – tháng 8", votes: 7090 },
-  { id: 45, name: "Vườn quốc gia Cát Tiên", province: "Đồng Nai", region: "Nam", category: "Sinh thái", angle: "rừng nhiệt đới, tuyến trekking, cây cổ thụ và sinh cảnh hoang dã", bestTime: "Tháng 12 – tháng 5", votes: 6420 },
-  { id: 46, name: "Vườn quốc gia Bù Gia Mập", province: "Đồng Nai", region: "Nam", category: "Sinh thái", angle: "rừng nguyên sinh, suối thác và hệ sinh thái chuyển tiếp", bestTime: "Tháng 11 – tháng 4", votes: 3580 },
-  { id: 47, name: "Núi Bà Đen", province: "Tây Ninh", region: "Nam", category: "Tâm linh – Thiên nhiên", angle: "núi cao, mây phủ, không gian hành hương và tầm nhìn rộng", bestTime: "Tháng 12 – tháng 4", votes: 10030 },
-  { id: 48, name: "Tòa Thánh Tây Ninh", province: "Tây Ninh", region: "Nam", category: "Tâm linh – Kiến trúc", angle: "màu sắc kiến trúc, nghi lễ tôn giáo và không gian văn hóa đặc trưng", bestTime: "Tháng 11 – tháng 4", votes: 5480 },
-  { id: 49, name: "Cù lao An Bình", province: "Vĩnh Long", region: "Nam", category: "Sinh thái miệt vườn", angle: "vườn cây, kênh rạch, nhà vườn và nhịp sống sông nước", bestTime: "Tháng 5 – tháng 9", votes: 4170 },
-  { id: 50, name: "Cồn Phụng – Vùng sông nước Bến Tre", province: "Vĩnh Long", region: "Nam", category: "Sinh thái sông nước", angle: "cù lao xanh, xuồng chèo, vườn dừa và trải nghiệm miệt vườn", bestTime: "Tháng 11 – tháng 5", votes: 4630 },
-  { id: 51, name: "Vườn quốc gia Tràm Chim", province: "Đồng Tháp", region: "Nam", category: "Sinh thái", angle: "đồng cỏ ngập nước, chim trời và sắc màu mùa nước nổi", bestTime: "Tháng 12 – tháng 5", votes: 6170 },
-  { id: 52, name: "Làng hoa Sa Đéc", province: "Đồng Tháp", region: "Nam", category: "Văn hóa – Nông nghiệp", angle: "vườn hoa rực rỡ, nhà vườn và nghề trồng hoa lâu đời", bestTime: "Tháng 12 – tháng 2", votes: 7540 },
-  { id: 53, name: "Mũi Cà Mau", province: "Cà Mau", region: "Nam", category: "Thiên nhiên – Địa đầu", angle: "rừng ngập mặn, cột mốc cuối đất và đường chân trời biển", bestTime: "Tháng 12 – tháng 4", votes: 8890 },
-  { id: 54, name: "Nhà Công tử Bạc Liêu", province: "Cà Mau", region: "Nam", category: "Văn hóa – Lịch sử", angle: "không gian nhà cổ, câu chuyện Nam Bộ và dấu ấn kiến trúc xưa", bestTime: "Tháng 11 – tháng 4", votes: 3310 },
-  { id: 55, name: "Núi Sam – Miếu Bà Chúa Xứ", province: "An Giang", region: "Nam", category: "Tâm linh", angle: "không gian hành hương, núi thấp, đồng bằng và văn hóa biên giới", bestTime: "Tháng 1 – tháng 5", votes: 8120 },
-  { id: 56, name: "Đảo Phú Quốc", province: "An Giang", region: "Nam", category: "Biển đảo", angle: "biển xanh, rừng nguyên sinh, làng chài và trải nghiệm nghỉ dưỡng", bestTime: "Tháng 11 – tháng 4", votes: 10990 },
-  { id: 57, name: "Vịnh Hạ Long", province: "Quảng Ninh", region: "Bắc", category: "Di sản thiên nhiên", angle: "núi đá vôi, mặt vịnh xanh và những hành trình du thuyền", bestTime: "Tháng 10 – tháng 4", votes: 11980 },
-  { id: 58, name: "Khu di tích Yên Tử", province: "Quảng Ninh", region: "Bắc", category: "Tâm linh – Lịch sử", angle: "đường hành hương, rừng trúc, mây núi và dấu ấn Phật giáo", bestTime: "Tháng 1 – tháng 4", votes: 7010 },
-  { id: 59, name: "Động Tam Thanh – Nhị Thanh", province: "Lạng Sơn", region: "Bắc", category: "Văn hóa – Tâm linh", angle: "hang đá, chùa trong động, thơ khắc và không gian phố núi", bestTime: "Tháng 9 – tháng 4", votes: 3920 },
-  { id: 60, name: "Thung lũng Bắc Sơn", province: "Lạng Sơn", region: "Bắc", category: "Cảnh quan – Văn hóa dân tộc", angle: "cánh đồng thung lũng, núi đá, bản làng và mùa vàng", bestTime: "Tháng 7 – tháng 11", votes: 6250 },
-  { id: 61, name: "Thác Bản Giốc", province: "Cao Bằng", region: "Bắc", category: "Thiên nhiên", angle: "dòng thác nhiều tầng, sông xanh và cảnh quan biên giới", bestTime: "Tháng 9 – tháng 11", votes: 10370 },
-  { id: 62, name: "Khu di tích Pác Bó", province: "Cao Bằng", region: "Bắc", category: "Lịch sử", angle: "suối trong, hang núi và câu chuyện cách mạng giữa rừng", bestTime: "Tháng 10 – tháng 4", votes: 5230 },
-  { id: 63, name: "Đèo Ô Quy Hồ", province: "Lai Châu", region: "Bắc", category: "Thiên nhiên – Cảnh quan", angle: "cung đèo mây phủ, núi cao và tầm nhìn Tây Bắc hùng vĩ", bestTime: "Tháng 9 – tháng 4", votes: 7770 },
-  { id: 64, name: "Cao nguyên Sìn Hồ", province: "Lai Châu", region: "Bắc", category: "Thiên nhiên – Văn hóa dân tộc", angle: "khí hậu mát, chợ vùng cao, núi non và bản làng yên bình", bestTime: "Tháng 9 – tháng 12", votes: 4480 },
-  { id: 65, name: "Di tích Chiến trường Điện Biên Phủ", province: "Điện Biên", region: "Bắc", category: "Lịch sử", angle: "đồi di tích, bảo tàng, hầm chỉ huy và ký ức chiến thắng", bestTime: "Tháng 3 – tháng 5", votes: 8320 },
-  { id: 66, name: "Hồ Pá Khoang", province: "Điện Biên", region: "Bắc", category: "Thiên nhiên", angle: "mặt hồ tĩnh, rừng xanh, bản làng và không khí núi cao", bestTime: "Tháng 9 – tháng 4", votes: 3890 },
-  { id: 67, name: "Cao nguyên Mộc Châu", province: "Sơn La", region: "Bắc", category: "Nghỉ dưỡng – Nông nghiệp", angle: "đồi chè, hoa theo mùa, thung lũng và sản vật cao nguyên", bestTime: "Tháng 10 – tháng 4", votes: 9560 },
-  { id: 68, name: "Đỉnh Tà Xùa", province: "Sơn La", region: "Bắc", category: "Thiên nhiên – Săn mây", angle: "sống núi, biển mây, bình minh và nhịp trekking vùng cao", bestTime: "Tháng 11 – tháng 3", votes: 9070 },
+  { id: 45, name: "Đồng Nai", province: "Đồng Nai", region: "Nam", category: "Sinh thái", angle: "rừng nhiệt đới, tuyến trekking, cây cổ thụ và sinh cảnh hoang dã", bestTime: "Tháng 12 – tháng 5", votes: 6420 },
+  { id: 47, name: "Tây Ninh", province: "Tây Ninh", region: "Nam", category: "Tâm linh – Thiên nhiên", angle: "núi cao, mây phủ, không gian hành hương và tầm nhìn rộng", bestTime: "Tháng 12 – tháng 4", votes: 10030 },
+  { id: 82, name: "Mỹ Tho", province: "Đồng Tháp", region: "Nam", category: "Sinh thái miệt vườn", angle: "cù lao Thới Sơn, vườn cây trĩu quả và đờn ca tài tử Nam Bộ", bestTime: "Tháng 5 – tháng 9", votes: 0 },
+  { id: 52, name: "Sa Đéc", province: "Đồng Tháp", region: "Nam", category: "Văn hóa – Nông nghiệp", angle: "vườn hoa rực rỡ, nhà vườn và nghề trồng hoa lâu đời", bestTime: "Tháng 12 – tháng 2", votes: 7540 },
+  { id: 50, name: "Bến Tre", province: "Vĩnh Long", region: "Nam", category: "Sinh thái sông nước", angle: "cù lao xanh, xuồng chèo, vườn dừa và trải nghiệm miệt vườn", bestTime: "Tháng 11 – tháng 5", votes: 4630 },
+  { id: 49, name: "Vĩnh Long", province: "Vĩnh Long", region: "Nam", category: "Sinh thái miệt vườn", angle: "vườn cây, kênh rạch, nhà vườn và nhịp sống sông nước", bestTime: "Tháng 5 – tháng 9", votes: 4170 },
+  { id: 11, name: "Cần Thơ", province: "Cần Thơ", region: "Nam", category: "Văn hóa sông nước", angle: "ghe thuyền buôn bán, bữa sáng trên sông và sinh hoạt miền Tây", bestTime: "Tháng 11 – tháng 4", votes: 10480 },
+  { id: 83, name: "Sóc Trăng", province: "Cần Thơ", region: "Nam", category: "Văn hóa – Tâm linh", angle: "chùa Dơi, chùa Chén Kiểu và lễ hội Oóc Om Bóc rộn ràng", bestTime: "Tháng 10 – tháng 4", votes: 0 },
+  { id: 55, name: "Châu Đốc", province: "An Giang", region: "Nam", category: "Tâm linh", angle: "không gian hành hương, núi thấp, đồng bằng và văn hóa biên giới", bestTime: "Tháng 1 – tháng 5", votes: 8120 },
+  { id: 84, name: "Hà Tiên", province: "An Giang", region: "Nam", category: "Cảnh quan", angle: "Thập cảnh Hà Tiên, Thạch Động và biển Mũi Nai êm đềm", bestTime: "Tháng 11 – tháng 4", votes: 0 },
+  { id: 56, name: "Phú Quốc", province: "An Giang", region: "Nam", category: "Biển đảo", angle: "biển xanh, rừng nguyên sinh, làng chài và trải nghiệm nghỉ dưỡng", bestTime: "Tháng 11 – tháng 4", votes: 10990 },
+  { id: 85, name: "Rạch Giá", province: "An Giang", region: "Nam", category: "Đô thị – Cảnh quan", angle: "khu đô thị lấn biển, bến tàu Rạch Giá và cổng Tam Quan", bestTime: "Tháng 12 – tháng 4", votes: 0 },
+  { id: 54, name: "Bạc Liêu", province: "Cà Mau", region: "Nam", category: "Văn hóa – Lịch sử", angle: "không gian nhà cổ, câu chuyện Nam Bộ và dấu ấn kiến trúc xưa", bestTime: "Tháng 11 – tháng 4", votes: 3310 },
+  { id: 53, name: "Cà Mau", province: "Cà Mau", region: "Nam", category: "Thiên nhiên – Địa đầu", angle: "rừng ngập mặn, cột mốc cuối đất và đường chân trời biển", bestTime: "Tháng 12 – tháng 4", votes: 8890 },
 ]
 
-const videoIds = new Set([1, 3, 5, 8, 11, 15, 16, 25, 33, 35, 37, 39, 41, 47, 52, 53, 56, 57, 61, 65, 67, 68, 9, 29, 43, 51, 55])
+const videoIds = new Set([1, 3, 5, 8, 9, 11, 15, 16, 25, 29, 33, 35, 37, 39, 41, 43, 47, 52, 53, 55, 56, 57, 61, 65, 67])
 
 function slugify(text: string) {
   return text
@@ -152,14 +159,16 @@ function buildShortDescription(item: DestinationSeed) {
 }
 
 function buildIntroduction(item: DestinationSeed) {
-  return `${item.name} là một trong hai hồ sơ đại diện của ${item.province} trong danh sách 68 điểm đến của hội thi. Điểm đến được giới thiệu theo hướng tra cứu thuận tiện, nhấn mạnh trải nghiệm cảnh quan, văn hóa địa phương và cảm xúc khi ghé thăm. Không gian nổi bật bởi ${item.angle}, phù hợp cho du khách muốn tìm hiểu bản sắc vùng miền trước khi lên kế hoạch tham quan. Nội dung hồ sơ tập trung vào thông tin chắc chắn, tránh các số liệu khó kiểm chứng và ưu tiên mô tả dễ hiểu cho công chúng. Trên website, người dùng có thể xem ảnh đại diện, bộ sưu tập hình ảnh, thời điểm nên đi, địa chỉ khu vực, các điểm nhấn đặc trưng và nút bình chọn. Hồ sơ này cũng được thiết kế để quản trị viên cập nhật thêm video, thông báo hoặc trạng thái hiển thị khi cần.`
+  return `${item.name} là một điểm đến thuộc ${item.province} trong danh sách 68 điểm đến của hội thi. Điểm đến được giới thiệu theo hướng tra cứu thuận tiện, nhấn mạnh trải nghiệm cảnh quan, văn hóa địa phương và cảm xúc khi ghé thăm. Không gian nổi bật bởi ${item.angle}, phù hợp cho du khách muốn tìm hiểu bản sắc vùng miền trước khi lên kế hoạch tham quan. Nội dung hồ sơ tập trung vào thông tin chắc chắn, tránh các số liệu khó kiểm chứng và ưu tiên mô tả dễ hiểu cho công chúng. Trên website, người dùng có thể xem ảnh đại diện, bộ sưu tập hình ảnh, thời điểm nên đi, địa chỉ khu vực, các điểm nhấn đặc trưng và nút bình chọn. Hồ sơ này cũng được thiết kế để quản trị viên cập nhật thêm video, thông báo hoặc trạng thái hiển thị khi cần.`
 }
 
 function toDestination(item: DestinationSeed): Destination {
   const slug = slugify(item.name)
   const tag = toTag(item.category)
-  const thumbnail = `/images/destinations/${item.id}.webp`
-  const gallery = [thumbnail]
+  const hasImg = item.hasImage !== false
+  const thumbnail = hasImg ? `/images/destinations/${item.id}.webp` : ""
+  const gallery = hasImg ? [thumbnail] : []
+  const secondaryImage = hasImg ? thumbnail : ""
   const shortDescription = buildShortDescription(item)
   const introduction = buildIntroduction(item)
 
@@ -173,8 +182,8 @@ function toDestination(item: DestinationSeed): Destination {
     category: item.category,
     thumbnail,
     image: thumbnail,
-    imageCredit: "Ảnh minh họa tạo bằng AI",
-    secondaryImage: gallery[0],
+    imageCredit: hasImg ? "Ảnh minh họa tạo bằng AI" : "",
+    secondaryImage,
     gallery,
     videoUrl: videoIds.has(item.id) ? "https://www.youtube.com/watch?v=dQw4w9WgXcQ" : null,
     votes: item.votes.toLocaleString("vi-VN"),
@@ -209,9 +218,7 @@ export const initialDestinations: Destination[] = seeds.map(toDestination)
 /** Refresh bundled artwork without resetting locally stored votes or visibility. */
 export function refreshDestinationImages(saved: Destination[]): Destination[] {
   return saved.map((item) => {
-    const current = initialDestinations.find(
-      (seed) => seed.id === item.id && seed.name === item.name,
-    )
+    const current = initialDestinations.find((seed) => seed.id === item.id)
     if (!current) return item
     return {
       ...item,
@@ -242,7 +249,7 @@ export const news = [
   {
     title: "Công bố bộ hồ sơ 34 tỉnh thành tham gia",
     date: "2026-10-21",
-    summary: "Danh sách mock data gồm đúng 34 tỉnh thành, mỗi địa phương có hai điểm đến đại diện để phục vụ thiết kế giao diện.",
+    summary: "Danh sách mock data gồm các điểm đến đại diện trên toàn quốc để phục vụ thiết kế giao diện.",
     thumbnail: "https://picsum.photos/seed/news-ho-so-34-tinh/600/400",
     tag: "Thông báo",
   },

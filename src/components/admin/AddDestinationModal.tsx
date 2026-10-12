@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState, useRef } from "react"
-import { Destination, Region } from "../types"
-import Icon from "./Icon"
+import { Destination, Region } from "@/types"
+import Icon from "@/components/shared/Icon"
 
 interface UploadedImageItem {
   id: string
@@ -236,18 +236,16 @@ export default function AddDestinationModal({
               <div className="upload-tabs">
                 <button
                   type="button"
-                  className={`upload-tab-btn ${
-                    uploadMode === "file" ? "active" : ""
-                  }`}
+                  className={`upload-tab-btn ${uploadMode === "file" ? "active" : ""
+                    }`}
                   onClick={() => setUploadMode("file")}
                 >
                   <Icon name="upload" size={13} /> Tải từ máy tính
                 </button>
                 <button
                   type="button"
-                  className={`upload-tab-btn ${
-                    uploadMode === "url" ? "active" : ""
-                  }`}
+                  className={`upload-tab-btn ${uploadMode === "url" ? "active" : ""
+                    }`}
                   onClick={() => setUploadMode("url")}
                 >
                   <Icon name="share" size={13} /> Nhập link URL
@@ -258,9 +256,8 @@ export default function AddDestinationModal({
             {/* Chế độ 1: Tải file từ máy tính */}
             {uploadMode === "file" && (
               <div
-                className={`file-dropzone ${
-                  isDragging ? "dropzone-dragging" : ""
-                }`}
+                className={`file-dropzone ${isDragging ? "dropzone-dragging" : ""
+                  }`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
@@ -341,9 +338,8 @@ export default function AddDestinationModal({
                   {images.map((img, index) => (
                     <div
                       key={img.id}
-                      className={`thumbnail-card ${
-                        index === 0 ? "is-cover" : ""
-                      }`}
+                      className={`thumbnail-card ${index === 0 ? "is-cover" : ""
+                        }`}
                     >
                       <div className="thumb-img-wrapper">
                         <img src={img.url} alt={img.name} />

@@ -1,0 +1,41 @@
+export type Page = "home" | "explore" | "detail" | "vote" | "cms" | "guide"
+
+export interface ToastMessage {
+  id: string
+  type: "success" | "info" | "warning"
+  text: string
+}
+
+export type IconName =
+  | "arrow"
+  | "check"
+  | "chevron"
+  | "clock"
+  | "eye"
+  | "filter"
+  | "heart"
+  | "lock"
+  | "map"
+  | "menu"
+  | "search"
+  | "shield"
+  | "spark"
+  | "user"
+  | "x"
+  | "share"
+  | "copy"
+  | "trash"
+  | "edit"
+  | "plus"
+  | "refresh"
+  | "upload"
+  | "image"
+  | "logout"
+  | "key"
+  | "plane"
+  | "building"
+  | "star"
+  | "calendar"
+  | "headset"
+  | "globe"
+  | "play"

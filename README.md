@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vote Destination
 
-## Getting Started
+Next.js App Router project for the public voting website and CMS admin area.
 
-First, run the development server:
+## Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build:css
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `src/app`: route files, layouts, metadata, and global CSS only.
+- `src/app/(user)`: public routes `/`, `/explore`, `/destination/[id]`, `/vote`, and `/guide`.
+- `src/app/(admin)`: CMS route `/cms`.
+- `src/features/user`: page-level public website features.
+- `src/features/admin`: page-level CMS features.
+- `src/components/shared`: cross-role UI such as `Icon`, `Toast`, and `AppShell`.
+- `src/components/user`: public website layout, destination, map, and vote components.
+- `src/components/admin`: CMS-only components.
+- `src/context`: shared app context provider.
+- `src/data`: destination data, map data, mock data, and legacy-compatible province image data.
+- `src/types`: single source for TypeScript domain types, re-exported from `src/types/index.ts`.
+- `src/scss`: SCSS partials grouped by `base`, `shared`, `user`, and `admin`.
+- `assets-src/destinations`: source destination images that should not be served directly.
+- `public/images/destinations`: web-ready `{id}.webp` destination images.
+- `public/maps`: public map assets.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Naming
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Component files use PascalCase.
+- Feature and grouping folders use kebab-case.
+- Hooks use camelCase and start with `use`.
+- Data and utility files use camelCase.
+- App code should import project files with the `@/` alias.

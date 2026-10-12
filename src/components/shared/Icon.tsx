@@ -1,5 +1,5 @@
 import React from "react"
-import { IconName } from "../types"
+import { IconName } from "@/types"
 
 export default function Icon({
   name,

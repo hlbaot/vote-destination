@@ -17,8 +17,8 @@ import {
   AdminAccount,
 } from "@/types"
 import { initialDestinations, refreshDestinationImages } from "@/data/destinations"
-import { initialVoteRecords } from "@/data/mockVotes"
-import { initialAdminAccounts } from "@/data/mockAdminAccounts"
+import { initialVoteRecords } from "@/data/mock/mockVotes"
+import { initialAdminAccounts } from "@/data/mock/mockAdminAccounts"
 
 interface AppContextType {
   destinations: Destination[]
@@ -54,7 +54,7 @@ interface AppContextType {
 }
 
 const AppContext = createContext<AppContextType | null>(null)
-const DESTINATION_STORAGE_KEY = "dest_vote_items_v1"
+const DESTINATION_STORAGE_KEY = "dest_vote_items_68_v4"
 const EXPECTED_DESTINATION_COUNT = initialDestinations.length
 
 export function AppProvider({ children }: { children: ReactNode }) {
@@ -64,6 +64,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [destinations, setDestinations] = useState<Destination[]>(() => {
     if (typeof window !== "undefined") {
       try {
+        // Clear legacy caches that may contain obsolete seeds
+        localStorage.removeItem("dest_vote_items_v1")
+        localStorage.removeItem("dest_vote_items_68_v2")
+        localStorage.removeItem("dest_vote_items_68_v3")
         const saved = localStorage.getItem(DESTINATION_STORAGE_KEY)
         if (saved) {
           const parsed = JSON.parse(saved)
@@ -71,7 +75,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
             Array.isArray(parsed) &&
             parsed.length === EXPECTED_DESTINATION_COUNT
           ) {
-            return refreshDestinationImages(parsed)
+            const isValid = parsed.every((item) =>
+              initialDestinations.some(
+                (seed) => seed.id === item.id && seed.name === item.name,
+              ),
+            )
+            if (isValid) {
+              return refreshDestinationImages(parsed)
+            } else {
+              localStorage.removeItem(DESTINATION_STORAGE_KEY)
+            }
           }
         }
       } catch (e) {
@@ -249,8 +262,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           const nextStatus = acc.status === "active" ? "locked" : "active"
           addToast(
             nextStatus === "locked" ? "warning" : "success",
-            `${
-              nextStatus === "locked" ? "Đã khóa" : "Đã kích hoạt lại"
+            `${nextStatus === "locked" ? "Đã khóa" : "Đã kích hoạt lại"
             } tài khoản ${acc.fullName}.`,
           )
           return { ...acc, status: nextStatus }

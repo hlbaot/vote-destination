@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Icon from "../components/Icon"
+import Icon from "@/components/shared/Icon"
 
 export default function Guide() {
   const [activeWireframe, setActiveWireframe] = useState<number>(0)

@@ -1,9 +1,9 @@
 "use client"
 
 import React, { useState } from "react"
-import { AdminAccount, Page } from "../types"
-import { Logo } from "./Header"
-import Icon from "./Icon"
+import { AdminAccount, Page } from "@/types"
+import { Logo } from "@/components/user/layout/Header"
+import Icon from "@/components/shared/Icon"
 
 export default function AdminLogin({
   adminAccounts,

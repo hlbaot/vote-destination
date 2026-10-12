@@ -1,11 +1,11 @@
-import { VoteRecord } from "../types"
+import { VoteRecord } from "@/types"
 
 export const initialVoteRecords: VoteRecord[] = [
   {
     id: "v-1",
     receiptCode: "VNHL-250618-8X4P",
-    destinationId: "01",
-    destinationName: "Vịnh Hạ Long",
+    destinationId: "57",
+    destinationName: "Hạ Long",
     maskedPhone: "098***4821",
     timestamp: "10:24:12 18/06/2025",
     timeAgo: "1 phút trước",
@@ -16,8 +16,8 @@ export const initialVoteRecords: VoteRecord[] = [
   {
     id: "v-2",
     receiptCode: "MCCH-250618-9Y2K",
-    destinationId: "02",
-    destinationName: "Ruộng bậc thang Mù Cang Chải",
+    destinationId: "16",
+    destinationName: "Mù Cang Chải",
     maskedPhone: "091***9032",
     timestamp: "10:23:45 18/06/2025",
     timeAgo: "2 phút trước",
@@ -28,8 +28,8 @@ export const initialVoteRecords: VoteRecord[] = [
   {
     id: "v-3",
     receiptCode: "HOAN-250618-3M7Q",
-    destinationId: "03",
-    destinationName: "Phố cổ Hội An",
+    destinationId: "5",
+    destinationName: "Hội An",
     maskedPhone: "090***6711",
     timestamp: "10:22:10 18/06/2025",
     timeAgo: "3 phút trước",
@@ -40,8 +40,8 @@ export const initialVoteRecords: VoteRecord[] = [
   {
     id: "v-4",
     receiptCode: "TRAN-250618-5T1W",
-    destinationId: "04",
-    destinationName: "Quần thể danh thắng Tràng An",
+    destinationId: "25",
+    destinationName: "Ninh Bình",
     maskedPhone: "097***1254",
     timestamp: "10:21:02 18/06/2025",
     timeAgo: "5 phút trước",
@@ -52,8 +52,8 @@ export const initialVoteRecords: VoteRecord[] = [
   {
     id: "v-5",
     receiptCode: "PNKB-250618-2L8A",
-    destinationId: "05",
-    destinationName: "Vườn quốc gia Phong Nha - Kẻ Bàng",
+    destinationId: "33",
+    destinationName: "Phong Nha",
     maskedPhone: "094***3399",
     timestamp: "10:19:30 18/06/2025",
     timeAgo: "7 phút trước",
@@ -64,8 +64,8 @@ export const initialVoteRecords: VoteRecord[] = [
   {
     id: "v-6",
     receiptCode: "PHUQ-250618-7R4Z",
-    destinationId: "07",
-    destinationName: "Đảo ngọc Phú Quốc",
+    destinationId: "56",
+    destinationName: "Phú Quốc",
     maskedPhone: "088***8812",
     timestamp: "10:15:18 18/06/2025",
     timeAgo: "11 phút trước",

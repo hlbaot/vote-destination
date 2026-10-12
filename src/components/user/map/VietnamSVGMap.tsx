@@ -1,10 +1,10 @@
 "use client"
 
 import React, { useState, useRef, useMemo } from "react"
-import { vietnamSvgPaths, SvgProvincePath } from "../data/vietnamSvgPaths"
-import { vietnamProvinces, ProvinceData } from "../data/provinces"
-import { provinceImages } from "../data/provinceImages"
-import Icon from "./Icon"
+import { vietnamSvgPaths, SvgProvincePath } from "@/data/map/vietnamSvgPaths"
+import { vietnamProvinces, ProvinceData } from "@/data/provinces"
+import { provinceImages } from "@/data/provinceImages"
+import Icon from "@/components/shared/Icon"
 
 // Helper chuẩn hóa chuỗi tiếng Việt
 function normalizeName(str: string): string {

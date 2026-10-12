@@ -1,9 +1,9 @@
 "use client"
 
 import React from "react"
-import { Destination, Page } from "../types"
-import Icon from "../components/Icon"
-import DestinationCard from "../components/DestinationCard"
+import { Destination, Page } from "@/types"
+import Icon from "@/components/shared/Icon"
+import DestinationCard from "@/components/user/destination/DestinationCard"
 
 export default function Detail({
   destination,
@@ -115,9 +115,8 @@ export default function Detail({
                   <button
                     key={idx}
                     type="button"
-                    className={`album-thumb-btn ${
-                      displayedImage === imgUrl ? "active" : ""
-                    }`}
+                    className={`album-thumb-btn ${displayedImage === imgUrl ? "active" : ""
+                      }`}
                     onClick={() =>
                       setActiveImage({ destinationId: destination.id, url: imgUrl })
                     }
@@ -198,9 +197,8 @@ export default function Detail({
 
             <div className="detail-action-buttons">
               <button
-                className={`btn btn-secondary ${
-                  isFavorite ? "active-favorite" : ""
-                }`}
+                className={`btn btn-secondary ${isFavorite ? "active-favorite" : ""
+                  }`}
                 onClick={(e) => onToggleFavorite(destination.id, e)}
               >
                 <Icon name="heart" size={16} />

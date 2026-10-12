@@ -1,6 +1,6 @@
 "use client"
 
-import Home from "@/views/Home"
+import Home from "@/features/user/home"
 import { useAppContext } from "@/context/AppContext"
 
 export default function HomePage() {

@@ -1,7 +1,7 @@
 "use client"
 
-import { ToastMessage } from "../types"
-import Icon from "./Icon"
+import { ToastMessage } from "@/types"
+import Icon from "@/components/shared/Icon"
 
 export default function Toast({
   toasts,

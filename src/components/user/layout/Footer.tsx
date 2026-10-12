@@ -1,12 +1,12 @@
 "use client"
 
-import { Page } from "../types"
-import { Logo } from "./Header"
+import { Page } from "@/types"
+import { Logo } from "@/components/user/layout/Header"
 import { useAppContext } from "@/context/AppContext"
 
 export default function Footer({ go: propGo }: { go?: (page: Page) => void } = {}) {
   const context = useAppContext()
-  const go = propGo || context?.navigate || (() => {})
+  const go = propGo || context?.navigate || (() => { })
 
   return (
     <footer className="site-footer">
@@ -17,7 +17,8 @@ export default function Footer({ go: propGo }: { go?: (page: Page) => void } = {
             <Logo />
           </div>
           <p className="footer-desc">
-            Chương trình bình chọn tôn vinh vẻ đẹp thiên nhiên, văn hóa và con
+            Chương trình bình chọn Điểm đến du lịch nông thôn Việt Nam tốt nhất 2026
+            tôn vinh vẻ đẹp thiên nhiên, bản sắc văn hóa làng quê và con
             người Việt Nam thông qua 68 hồ sơ điểm đến. Người dùng có thể tra cứu
             thông tin, xem hồ sơ chi tiết và tham gia bình chọn minh bạch.
           </p>
@@ -42,28 +43,27 @@ export default function Footer({ go: propGo }: { go?: (page: Page) => void } = {
           </div>
         </div>
 
-        {/* CỘT 3: Thông tin hội thi */}
+        {/* CỘT 3: Thông tin chương trình bình chọn */}
         <div className="footer-col-info">
-          <h4 className="footer-heading">Thông tin hội thi</h4>
+          <h4 className="footer-heading">Thông tin chương trình</h4>
           <ul className="footer-info-list">
             <li>
-              <strong>Quy mô đề cử:</strong> 68 hồ sơ điểm đến trên khắp 63 tỉnh thành
+              <strong>Chương trình:</strong> Điểm đến du lịch nông thôn Việt Nam tốt nhất 2026
+            </li>
+            <li>
+              <strong>Quy mô đề cử:</strong> 68 hồ sơ điểm đến thuộc 34 tỉnh/thành
             </li>
             <li>
               <strong>Cổng bình chọn:</strong> Mở trực tuyến 24/7, xác thực minh bạch
             </li>
             <li>
-              <strong>Sứ mệnh:</strong> Tôn vinh danh thắng, lan tỏa giá trị di sản Việt
+              <strong>Sứ mệnh:</strong> Tôn vinh danh thắng nông thôn, lan tỏa giá trị di sản Việt
             </li>
           </ul>
         </div>
       </div>
 
-      {/* DÒNG BẢN QUYỀN TÁCH RIÊNG PHÍA DƯỚI VỚI ĐƯỜNG KẺ MẢNH */}
-      <div className="container footer-bottom">
-        <span>© 2025 Hội thi bình chọn điểm đến Việt Nam</span>
-        <span>Giao diện tương thích máy tính, máy tính bảng và điện thoại</span>
-      </div>
+
     </footer>
   )
 }

@@ -1,4 +1,4 @@
-import { Region } from "../types"
+import { Region } from "@/types"
 
 export interface ProvinceData {
   id: string
@@ -20,8 +20,8 @@ export const vietnamProvinces: ProvinceData[] = [
     region: "Bắc",
     lat: 21.0285,
     lng: 105.8542,
-    featuredDestination: "Hoàng thành Thăng Long",
-    destinationId: "08",
+    featuredDestination: "Hà Nội",
+    destinationId: "1",
     votes: 145200,
     tag: "Di sản văn hóa",
   },

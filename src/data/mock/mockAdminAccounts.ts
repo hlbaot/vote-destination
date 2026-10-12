@@ -1,4 +1,4 @@
-import { AdminAccount } from "../types"
+import { AdminAccount } from "@/types"
 
 export const initialAdminAccounts: AdminAccount[] = [
   {

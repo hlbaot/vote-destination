@@ -8,14 +8,6 @@
     "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-c329adb6-d33e-49bb-adca-5440e9af5877.png"
   },
   {
-    "id": 2,
-    "name": "Hoàng thành Thăng Long",
-    "province": "Hà Nội",
-    "angle": "lớp trầm tích kinh đô, không gian khảo cổ và kiến trúc cung đình",
-    "prompt": "Use case: photorealistic-natural. Generate one landscape travel illustration of the real Vietnamese destination \"Hoàng thành Thăng Long\". Description: lớp trầm tích kinh đô, không gian khảo cổ và kiến trúc cung đình. Geographic context in dataset: Hà Nội. Depict the actual recognizable destination, authentic architecture and terrain, not a generic scene. Select one accurate signature view; do not combine geographically separate landmarks into a fictitious scene. Natural light, realistic texture, beautiful editorial travel photograph style, wide 3:2 framing. No text, labels, watermark, collage or invented structures.",
-    "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-6b50b12e-4de3-4ffc-928b-39babba6df9a.png"
-  },
-  {
     "id": 3,
     "name": "Quần thể Di tích Cố đô Huế (Đại Nội)",
     "province": "Huế",
@@ -542,5 +534,90 @@
     "angle": "sống núi, biển mây, bình minh và nhịp trekking vùng cao",
     "prompt": "Use case: photorealistic-natural. One wide 3:2 travel editorial image depicting the actual Vietnamese destination \"Đỉnh Tà Xùa\", matching description \"sống núi, biển mây, bình minh và nhịp trekking vùng cao\". Dataset province: Sơn La (administrative boundaries may be newly merged; identify the landmark by its exact name). Show its recognizable real-world architecture, terrain and natural vegetation in a geographically plausible single view, with natural light and realistic proportions. Do not substitute another destination. Do not invent monuments or combine distant places in one view. No text, watermark, labels or collage.",
     "source": "C:\\Users\\ADMIN\\.codex\\generated_images\\01a12b1e-cfba-79a2-bd0c-1751a3036aaa\\exec-0d22b10f-0e7b-487d-976b-00d4337e236d.png"
+  },
+  {
+    "id": 69,
+    "name": "Hà Giang",
+    "source": "assets-src/destinations/haGiang.jpg"
+  },
+  {
+    "id": 70,
+    "name": "Ba Vì",
+    "source": "assets-src/destinations/baVi.jpg"
+  },
+  {
+    "id": 71,
+    "name": "Mai Châu",
+    "source": "assets-src/destinations/maiChau.jpg"
+  },
+  {
+    "id": 72,
+    "name": "Cô Tô",
+    "source": "assets-src/destinations/coTo.jpeg"
+  },
+  {
+    "id": 73,
+    "name": "Móng Cái",
+    "source": "assets-src/destinations/mongCai.jpeg"
+  },
+  {
+    "id": 74,
+    "name": "Hải Phòng",
+    "source": "assets-src/destinations/haiPhong.jpg"
+  },
+  {
+    "id": 75,
+    "name": "Pù Luông",
+    "source": "assets-src/destinations/puLuong.jpg"
+  },
+  {
+    "id": 76,
+    "name": "Đồng Hới",
+    "source": "assets-src/destinations/dongHoi.jpg"
+  },
+  {
+    "id": 77,
+    "name": "Cù Lao Chàm",
+    "source": "assets-src/destinations/cuLaoCham.webp"
+  },
+  {
+    "id": 78,
+    "name": "Quảng Ngãi",
+    "source": "assets-src/destinations/quangNgai.jpeg"
+  },
+  {
+    "id": 79,
+    "name": "Bảo Lộc",
+    "source": "assets-src/destinations/baoLoc.jpg"
+  },
+  {
+    "id": 80,
+    "name": "Phan Thiết",
+    "source": "assets-src/destinations/phanThiet.webp"
+  },
+  {
+    "id": 81,
+    "name": "Vũng Tàu",
+    "source": "assets-src/destinations/vungTau.jpg"
+  },
+  {
+    "id": 82,
+    "name": "Mỹ Tho",
+    "source": "assets-src/destinations/myTho.jpg"
+  },
+  {
+    "id": 83,
+    "name": "Sóc Trăng",
+    "source": "assets-src/destinations/socTrang.jpeg"
+  },
+  {
+    "id": 84,
+    "name": "Hà Tiên",
+    "source": "assets-src/destinations/haTien.jpeg"
+  },
+  {
+    "id": 85,
+    "name": "Rạch Giá",
+    "source": "assets-src/destinations/rachGia.jpeg"
   }
 ]

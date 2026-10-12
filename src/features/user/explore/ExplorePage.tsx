@@ -1,10 +1,9 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { Destination, Region } from "../types"
-import DestinationCard from "../components/DestinationCard"
-import Icon from "../components/Icon"
-import "@/scss/_explore.scss"
+import { Destination, Region } from "@/types"
+import DestinationCard from "@/components/user/destination/DestinationCard"
+import Icon from "@/components/shared/Icon"
 
 const tagOptions = [
   "Tất cả",

@@ -7,7 +7,7 @@ async function main() {
   const root = path.resolve(__dirname, '..');
   const directory = path.join(root, 'public/images/destinations');
   const available = records.filter(record => fs.existsSync(path.join(directory, `${record.id}.webp`)));
-  const review = path.join(root, 'tmp/image-review');
+  const review = path.join(root, 'scripts/output');
   fs.mkdirSync(review, { recursive: true });
   for (let offset = 0; offset < available.length; offset += 12) {
     const group = available.slice(offset, offset + 12);
@@ -21,6 +21,6 @@ async function main() {
     tiles.push({ input: Buffer.from(`<svg width="960" height="${height}">${labels}</svg>`), left: 0, top: 0 });
     await sharp({ create: { width: 960, height, channels: 3, background: '#ffffff' } }).composite(tiles).png().toFile(path.join(review, `${offset + 1}-${offset + group.length}.png`));
   }
-  console.log(`${available.length}/${records.length} images available; review sheets in tmp/image-review`);
+  console.log(`${available.length}/${records.length} images available; review sheets in scripts/output`);
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });

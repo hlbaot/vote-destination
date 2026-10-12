@@ -2,9 +2,8 @@
 
 import { useState } from "react"
 import { Destination, Page } from "@/types"
-import DestinationCard from "../components/DestinationCard"
-import Icon from "../components/Icon"
-import "@/scss/_home-hero.scss"
+import DestinationCard from "@/components/user/destination/DestinationCard"
+import Icon from "@/components/shared/Icon"
 
 export default function Home({
   go,
@@ -106,21 +105,21 @@ export default function Home({
             <div className="wander-hero-left">
               <div className="wander-hero-kicker">
                 <span className="wander-kicker-line" />
-                <span>BANNER HỘI THI BÌNH CHỌN ĐIỂM ĐẾN 2025</span>
+                <span>BÌNH CHỌN ĐIỂM ĐẾN DU LỊCH NÔNG THÔN VIỆT NAM TỐT NHẤT 2026</span>
               </div>
 
               <h1 className="wander-hero-title">
-                Bình chọn
+                Điểm đến
                 <br />
-                điểm đến
+                du lịch nông thôn
                 <br />
-                <em>Việt Nam</em>
+                <em>Việt Nam tốt nhất 2026</em>
               </h1>
 
               <p className="wander-hero-desc">
-                Cổng thông tin chính thức giới thiệu tổng quan hội thi, điểm đến
+                Cổng thông tin chính thức giới thiệu tổng quan, điểm đến
                 nổi bật, tin tức/thông báo và lối truy cập nhanh vào hệ thống
-                bình chọn cho 68 hồ sơ điểm đến trên toàn quốc.
+                bình chọn Điểm đến du lịch nông thôn Việt Nam tốt nhất 2026 cho 68 hồ sơ trên toàn quốc.
               </p>
 
               <div className="wander-hero-actions">

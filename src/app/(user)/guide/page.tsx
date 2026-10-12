@@ -1,6 +1,6 @@
 "use client"
 
-import Guide from "@/views/Guide"
+import Guide from "@/features/user/guide"
 
 export default function GuidePage() {
   return <Guide />

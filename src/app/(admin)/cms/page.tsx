@@ -1,7 +1,7 @@
 "use client"
 
-import CMS from "@/views/CMS"
-import AdminLogin from "@/components/AdminLogin"
+import CMS from "@/features/admin/cms"
+import AdminLogin from "@/components/admin/AdminLogin"
 import { useAppContext } from "@/context/AppContext"
 
 export default function CMSPage() {

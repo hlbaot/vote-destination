@@ -8,12 +8,11 @@ import {
   AdminAccount,
   AdminRole,
   IconName,
-} from "../types"
+} from "@/types"
 
-import { Logo } from "../components/Header"
-import Icon from "../components/Icon"
-import "../scss/_cms.scss"
-import AddDestinationModal from "../components/AddDestinationModal"
+import { Logo } from "@/components/user/layout/Header"
+import Icon from "@/components/shared/Icon"
+import AddDestinationModal from "@/components/admin/AddDestinationModal"
 
 export type CMSTab = "Tổng quan" | "Điểm đến" | "Bình chọn" | "Tài khoản" | "Cử tri" | "Cài đặt"
 
@@ -411,9 +410,8 @@ export default function CMS({
                   </div>
                   <div>
                     <button
-                      className={`status-btn ${
-                        d.isVisible ? "visible" : "hidden"
-                      }`}
+                      className={`status-btn ${d.isVisible ? "visible" : "hidden"
+                        }`}
                       onClick={() => onToggleVisibility(d.id)}
                       title="Nhấn để bật/tắt hiển thị"
                     >
@@ -551,9 +549,8 @@ export default function CMS({
                 return (
                   <div
                     key={acc.id}
-                    className={`table-row table-row-admins ${
-                      isCurrent ? "current-session-row" : ""
-                    }`}
+                    className={`table-row table-row-admins ${isCurrent ? "current-session-row" : ""
+                      }`}
                   >
                     {/* User info */}
                     <div className="admin-profile-cell">
@@ -601,13 +598,12 @@ export default function CMS({
                     {/* Status */}
                     <div>
                       <span
-                        className={`status-pill ${
-                          isLocked
+                        className={`status-pill ${isLocked
                             ? "status-locked"
                             : acc.status === "active"
                               ? "status-active"
                               : "status-inactive"
-                        }`}
+                          }`}
                       >
                         {isLocked
                           ? "Tạm khóa"
@@ -631,9 +627,8 @@ export default function CMS({
                       )}
                       <button
                         type="button"
-                        className={`btn-toggle-lock ${
-                          isLocked ? "unlock" : "lock"
-                        }`}
+                        className={`btn-toggle-lock ${isLocked ? "unlock" : "lock"
+                          }`}
                         onClick={() => onToggleAdminStatus(acc.id)}
                         disabled={acc.role === "superadmin"}
                         title={

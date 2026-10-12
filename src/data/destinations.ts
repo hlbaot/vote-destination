@@ -278,8 +278,8 @@ export const news = [
 
 export const voteConfig = {
   title: "Bình chọn 68 điểm đến yêu thích",
-  startDate: "2026-10-15",
-  endDate: "2026-12-15",
+  startDate: "2026-11-01",
+  endDate: "2026-12-01",
   status: "open",
   rules: [
     "Mỗi người dùng được bình chọn tối đa 3 lượt mỗi ngày.",

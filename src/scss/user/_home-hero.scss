@@ -99,26 +99,27 @@
 }
 
 .wander-logo-mark {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: rgba(16, 217, 162, 0.15);
-  border: 1px solid rgba(16, 217, 162, 0.4);
-  color: var(--color-secondary);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent !important;
+  border: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 16px rgba(16, 217, 162, 0.25);
-  transition: transform 0.2s;
+  box-shadow: none !important;
+  transition: transform 0.2s ease;
 }
 
 .wander-logo-wrap:hover .wander-logo-mark {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
-.wander-logo-svg {
-  width: 24px;
-  height: 18px;
+.wander-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
 }
 
 .wander-brand-text {
@@ -213,7 +214,7 @@
   padding-bottom: 45px;
   color: #ffffff;
   overflow: hidden;
-  background: var(--color-text);
+  background: #072013;
 }
 
 .wander-hero-bg-wrap {
@@ -229,15 +230,15 @@
   object-fit: cover;
   object-position: center 32%;
   transform: scale(1.02);
-  filter: brightness(0.9) contrast(1.05);
+  filter: brightness(0.92) contrast(1.05);
 }
 
 .wander-hero-vignette {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 65% 30%, rgba(0, 0, 0, 0.02) 0%, rgba(46, 158, 63, 0.08) 55%, rgba(77, 182, 232, 0.16) 100%),
-    linear-gradient(180deg, rgba(247, 252, 244, 0.72) 0%, transparent 22%, rgba(77, 182, 232, 0.12) 75%, var(--color-bg) 100%);
+    radial-gradient(circle at 65% 30%, rgba(0, 0, 0, 0.02) 0%, rgba(4, 22, 13, 0.35) 55%, rgba(4, 22, 13, 0.85) 100%),
+    linear-gradient(180deg, rgba(4, 22, 13, 0.45) 0%, transparent 22%, rgba(4, 22, 13, 0.72) 75%, #072013 100%);
 }
 
 /* Dynamic Route Trail & Geo Pin */
@@ -398,22 +399,23 @@
   color: #ffffff;
   letter-spacing: -0.025em;
   margin: 0 0 24px 0;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 3px 16px rgba(0, 56, 42, 0.36);
 }
 
 .wander-hero-title em {
   font-style: italic;
   font-weight: 400;
-  color: #c4f3e6;
+  color: #fff2a8;
+  text-shadow: 0 3px 14px rgba(54, 80, 20, 0.28);
 }
 
 .wander-hero-desc {
   font-size: 15.5px;
   line-height: 1.75;
-  color: rgba(230, 243, 240, 0.88);
+  color: rgba(255, 255, 255, 0.94);
   max-width: 530px;
   margin: 0 0 36px 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 2px 8px rgba(0, 67, 51, 0.34);
 }
 
 .wander-hero-actions {
@@ -766,25 +768,25 @@
 
 .wander-popular-cards-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .wander-popular-card {
   position: relative;
-  height: 120px;
+  height: 124px;
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  box-shadow: 0 12px 28px rgba(23, 99, 76, 0.24);
   transition: all 0.25s ease;
 }
 
 .wander-popular-card:hover {
   transform: translateY(-3px);
   border-color: var(--color-secondary);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(16, 217, 162, 0.25);
+  box-shadow: 0 16px 34px rgba(23, 99, 76, 0.32), 0 0 18px rgba(122, 201, 67, 0.38);
 }
 
 .wander-pop-card-img {
@@ -801,13 +803,31 @@
 .wander-pop-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(3, 16, 15, 0.82) 0%, transparent 55%);
+  background: linear-gradient(0deg, rgba(17, 66, 49, 0.74) 0%, rgba(17, 66, 49, 0.18) 58%, transparent 100%);
   padding: 10px 12px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
+.wander-pop-rank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  min-width: 34px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(122, 201, 67, 0.92);
+  color: #09231a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
+
+.wander-pop-card-title,
 .wander-pop-card-name {
   font-size: 13px;
   font-weight: 700;
@@ -815,50 +835,110 @@
   line-height: 1.25;
 }
 
+.wander-pop-card-meta,
 .wander-pop-card-sub {
   font-size: 9.5px;
-  color: var(--color-secondary);
+  color: rgba(244, 255, 240, 0.88);
   margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
-/* Trust Badges Strip */
-.wander-trust-strip {
-  background: rgba(8, 25, 24, 0.68);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.wander-pop-rating {
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
+/* Event Countdown */
+.wander-event-countdown {
+  background: rgba(245, 255, 240, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.58);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-radius: 18px;
-  padding: 16px 20px;
+  padding: 18px 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  min-height: 124px;
+  box-shadow: 0 18px 36px rgba(31, 119, 86, 0.22);
+}
+
+.wander-countdown-heading {
+  display: flex;
+  align-items: center;
   gap: 12px;
 }
 
-.wander-trust-card {
+.wander-countdown-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(122, 201, 67, 0.14);
+  color: var(--color-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wander-countdown-heading span {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(31, 86, 61, 0.72);
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.wander-countdown-heading strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 18px;
+  color: var(--color-primary-dark);
+  line-height: 1;
+}
+
+.wander-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.wander-countdown-unit {
+  min-height: 62px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(122, 201, 67, 0.3);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
   text-align: center;
-  gap: 6px;
 }
 
-.wander-trust-icon-box {
-  color: var(--color-secondary);
+.wander-countdown-unit strong {
+  font-size: 24px;
+  color: var(--color-primary-dark);
+  line-height: 1;
+  font-weight: 800;
 }
 
-.wander-trust-text strong {
-  display: block;
-  font-size: 10.5px;
+.wander-countdown-unit span {
+  margin-top: 5px;
+  font-size: 9px;
   font-weight: 600;
-  color: #ffffff;
-  line-height: 1.2;
+  color: var(--color-secondary);
+  text-transform: uppercase;
 }
 
-.wander-trust-text small {
-  display: block;
-  font-size: 8.5px;
-  color: rgba(220, 240, 235, 0.65);
-  margin-top: 1px;
+.wander-countdown-started {
+  border-radius: 14px;
+  background: rgba(122, 201, 67, 0.16);
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 18px;
+  text-align: center;
 }
 
 /* Bottom Metrics Counter Bar */
@@ -1030,12 +1110,11 @@
 
 @media (max-width: 768px) {
   .wander-popular-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
-  .wander-trust-strip {
+  .wander-countdown-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
   }
 
   .wander-metrics-bar {

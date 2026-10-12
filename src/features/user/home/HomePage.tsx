@@ -1,9 +1,40 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Destination, Page } from "@/types"
 import DestinationCard from "@/components/user/destination/DestinationCard"
 import Icon from "@/components/shared/Icon"
+import { voteConfig } from "@/data/destinations"
+
+const EVENT_START_DATE = `${voteConfig.startDate}T00:00:00+07:00`
+const EVENT_END_DATE = `${voteConfig.endDate}T23:59:59+07:00`
+const INITIAL_EVENT_COUNTDOWN = {
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+  ended: false,
+}
+
+function getEventCountdown() {
+  const diff = new Date(EVENT_END_DATE).getTime() - Date.now()
+
+  if (diff <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0, ended: true }
+  }
+
+  return {
+    days: Math.floor(diff / 86_400_000),
+    hours: Math.floor((diff % 86_400_000) / 3_600_000),
+    minutes: Math.floor((diff % 3_600_000) / 60_000),
+    seconds: Math.floor((diff % 60_000) / 1_000),
+    ended: false,
+  }
+}
+
+function padTime(value: number) {
+  return String(value).padStart(2, "0")
+}
 
 export default function Home({
   go,
@@ -19,28 +50,29 @@ export default function Home({
   onToggleFavorite: (id: string, e: React.MouseEvent) => void
 }) {
   const [selectedDestId] = useState<string>(destinations[0]?.id || "01")
-  const [carouselIndex, setCarouselIndex] = useState<number>(0)
   const [videoModalOpen, setVideoModalOpen] = useState<boolean>(false)
+  const [eventCountdown, setEventCountdown] = useState(INITIAL_EVENT_COUNTDOWN)
 
-  // Filtered popular destinations for hero mini carousel
-  const popularDestinations = destinations.slice(0, 8)
-  const visibleCardsCount = 4
-  const maxCarouselIndex = Math.max(
-    0,
-    popularDestinations.length - visibleCardsCount,
+  const topVotedDestinations = useMemo(
+    () =>
+      [...destinations]
+        .sort((a, b) => b.rawVotes - a.rawVotes)
+        .slice(0, 3),
+    [destinations],
   )
 
-  const handlePrevSlide = () => {
-    setCarouselIndex((prev) => Math.max(0, prev - 1))
-  }
+  useEffect(() => {
+    const updateCountdown = () => setEventCountdown(getEventCountdown())
 
-  const handleNextSlide = () => {
-    setCarouselIndex((prev) => Math.min(maxCarouselIndex, prev + 1))
-  }
+    updateCountdown()
+    const intervalId = window.setInterval(updateCountdown, 1000)
+
+    return () => window.clearInterval(intervalId)
+  }, [])
 
   const activeDest =
     destinations.find((d) => d.id === selectedDestId) || destinations[0]
-  const topDestinations = destinations.slice(0, 3)
+  const topDestinations = topVotedDestinations
 
   return (
     <div className="home-page">
@@ -52,8 +84,8 @@ export default function Home({
         <div className="wander-hero-bg-wrap">
           <img
             className="wander-hero-bg"
-            src="https://images.unsplash.com/photo-1528127269322-539801943592?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=2560"
-            alt="Việt Nam kỳ quan bất tận"
+            src="/images/hero-rural-bg.webp"
+            alt="Điểm đến du lịch nông thôn Việt Nam - Ruộng bậc thang Mù Cang Chải"
           />
           <div className="wander-hero-vignette" />
         </div>
@@ -155,7 +187,7 @@ export default function Home({
             <div className="wander-popular-block">
               <div className="wander-popular-header">
                 <div className="wander-popular-title-wrap">
-                  <h4>Điểm đến nổi bật</h4>
+                  <h4>Top 3 điểm đến được bình chọn nhiều nhất</h4>
                   <button
                     type="button"
                     className="wander-view-all-link"
@@ -164,33 +196,11 @@ export default function Home({
                     Xem tất cả
                   </button>
                 </div>
-                <div className="wander-carousel-controls">
-                  <button
-                    type="button"
-                    className="wander-arrow-btn"
-                    onClick={handlePrevSlide}
-                    disabled={carouselIndex === 0}
-                    aria-label="Điểm đến trước"
-                  >
-                    ‹
-                  </button>
-                  <button
-                    type="button"
-                    className="wander-arrow-btn"
-                    onClick={handleNextSlide}
-                    disabled={carouselIndex >= maxCarouselIndex}
-                    aria-label="Điểm đến tiếp theo"
-                  >
-                    ›
-                  </button>
-                </div>
               </div>
 
-              {/* 4 Cards Grid */}
               <div className="wander-popular-cards-grid">
-                {popularDestinations
-                  .slice(carouselIndex, carouselIndex + visibleCardsCount)
-                  .map((item) => (
+                {topVotedDestinations
+                  .map((item, index) => (
                     <div
                       key={item.id}
                       className="wander-popular-card"
@@ -204,13 +214,16 @@ export default function Home({
                         loading="lazy"
                       />
                       <div className="wander-pop-card-overlay">
+                        <span className="wander-pop-rank">#{index + 1}</span>
                         <div className="wander-pop-card-content">
                           <strong className="wander-pop-card-title">
                             {item.name}
                           </strong>
                           <div className="wander-pop-card-meta">
                             <span>{item.place}</span>
-                            <span className="wander-pop-rating">★ 4.9</span>
+                            <span className="wander-pop-rating">
+                              {item.votes} phiếu
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -219,47 +232,45 @@ export default function Home({
               </div>
             </div>
 
-            {/* Right: Trust & Guarantee Badges Strip matching reference */}
-            <div className="wander-trust-strip">
-              <div className="wander-trust-card">
-                <div className="wander-trust-icon-box">
-                  <Icon name="shield" size={20} />
-                </div>
-                <div className="wander-trust-text">
-                  <strong>Thể lệ rõ ràng</strong>
-                  <small>Công khai tiêu chí</small>
-                </div>
-              </div>
-
-              <div className="wander-trust-card">
-                <div className="wander-trust-icon-box">
-                  <Icon name="headset" size={20} />
-                </div>
-                <div className="wander-trust-text">
-                  <strong>Tra cứu thuận tiện</strong>
-                  <small>Tìm kiếm và lọc nhanh</small>
+            <div className="wander-event-countdown" aria-live="polite">
+              <div className="wander-countdown-heading">
+                <span className="wander-countdown-icon">
+                  <Icon name="calendar" size={22} />
+                </span>
+                <div>
+                  <span>Thời gian bình chọn còn lại</span>
+                  <strong>
+                    Hạn chót: {new Intl.DateTimeFormat("vi-VN", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    }).format(new Date(EVENT_END_DATE))}
+                  </strong>
                 </div>
               </div>
 
-              <div className="wander-trust-card">
-                <div className="wander-trust-icon-box">
-                  <Icon name="calendar" size={20} />
+              {eventCountdown.ended ? (
+                <div className="wander-countdown-started">Bình chọn đã kết thúc</div>
+              ) : (
+                <div className="wander-countdown-grid">
+                  <div className="wander-countdown-unit">
+                    <strong>{eventCountdown.days}</strong>
+                    <span>Ngày</span>
+                  </div>
+                  <div className="wander-countdown-unit">
+                    <strong>{padTime(eventCountdown.hours)}</strong>
+                    <span>Giờ</span>
+                  </div>
+                  <div className="wander-countdown-unit">
+                    <strong>{padTime(eventCountdown.minutes)}</strong>
+                    <span>Phút</span>
+                  </div>
+                  <div className="wander-countdown-unit">
+                    <strong>{padTime(eventCountdown.seconds)}</strong>
+                    <span>Giây</span>
+                  </div>
                 </div>
-                <div className="wander-trust-text">
-                  <strong>Dữ liệu CMS</strong>
-                  <small>Cập nhật qua quản trị</small>
-                </div>
-              </div>
-
-              <div className="wander-trust-card">
-                <div className="wander-trust-icon-box">
-                  <Icon name="lock" size={20} />
-                </div>
-                <div className="wander-trust-text">
-                  <strong>Bình chọn bảo mật</strong>
-                  <small>Ghi nhận trạng thái</small>
-                </div>
-              </div>
+              )}
             </div>
           </div>
 

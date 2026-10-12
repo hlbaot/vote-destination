@@ -19,18 +19,11 @@ export function Logo({ compact = false }: { compact?: boolean }) {
   return (
     <div className="logo-wrap wander-logo-wrap">
       <div className="logo-mark wander-logo-mark">
-        <svg
-          viewBox="0 0 32 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="wander-logo-svg"
-        >
-          <path d="M2 20L10 5L17 17L22 9L30 20" />
-          <path d="M8 20L13 13L18 20" opacity="0.65" />
-        </svg>
+        <img
+          src="/logo.png"
+          alt="Logo Điểm Đến Du Lịch Nông Thôn Việt Nam Tốt Nhất 2026"
+          className="wander-logo-img"
+        />
       </div>
       {!compact && (
         <div className="wander-brand-text">

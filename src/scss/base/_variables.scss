@@ -18,29 +18,37 @@
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   /* ============================================================
-     COLOR PALETTE
+     COLOR PALETTE (ĐỒNG BỘ CHUẨN THEO LOGO DU LỊCH NÔNG THÔN)
+     - Xanh đồng quê / Ruộng bậc thang: #2E9E3F
+     - Vàng bông lúa chín / Mặt trời: #F9A622
+     - Xanh lá mầm / Điểm nhấn tươi: #7AC943
+     - Xanh rừng già viền logo / Dark Canvas: #072013 / #145229
+     - Xanh sông quê: #48BEF6
      ============================================================ */
   --color-primary: #2E9E3F;
-  --color-primary-hover: #24822F;
-  --color-primary-dark: #1B6B3A;
+  --color-primary-hover: #238533;
+  --color-primary-dark: #145229;
   --color-secondary: #7AC943;
-  --color-accent: #F5A623;
-  --color-sky: #4DB6E8;
+  --color-accent: #F9A622;
+  --color-accent-hover: #E08C12;
+  --color-sky: #48BEF6;
   --color-bg: #F7FCF4;
   --color-surface: #FFFFFF;
   --color-surface-tint: #EAF7E4;
   --color-border: #D5EBCB;
-  --color-text: #1F3A2B;
-  --color-text-muted: #5E7A68;
+  --color-text: #0E2919;
+  --color-text-muted: #537560;
+  --color-dark-canvas: #072013;
+  --color-dark-card: #0C331E;
   --color-map-rank-rest: #EAF5E3;
   --color-map-rank-top25: #BFE3A8;
   --color-map-rank-top15: #7AC943;
   --color-map-rank-top5: #2E9E3F;
   --color-map-empty: #E6ECE6;
   --color-tree-trunk: #8B5E3C;
-  --color-tree-glow: #FFE08A;
+  --color-tree-glow: #F9A622;
   --color-flower-peach: #FF8A65;
-  --shadow-brand: 0 8px 24px rgba(46, 158, 63, 0.12);
+  --shadow-brand: 0 8px 24px rgba(46, 158, 63, 0.16);
   --ink: var(--color-text);
   --deep: var(--color-primary-dark);
   --deep-2: var(--color-primary);

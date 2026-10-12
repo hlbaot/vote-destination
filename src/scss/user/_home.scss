@@ -6,7 +6,7 @@
   position: relative;
   width: 100%;
   overflow-x: hidden;
-  background: var(--color-text);
+  background: #072013;
 
   /* Continuous multilayer canvas background across all sections */
   &::before {
@@ -17,10 +17,10 @@
     left: 0;
     right: 0;
     background:
-      radial-gradient(ellipse 65% 50% at 85% 25%, rgba(94, 211, 168, 0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 45% at 15% 55%, rgba(232, 115, 90, 0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(94, 211, 168, 0.09) 0%, transparent 70%),
-      linear-gradient(180deg, var(--color-text) 0%, var(--color-surface-tint) 18%, var(--color-primary) 45%, var(--color-surface-tint) 78%, var(--color-primary-dark) 100%);
+      radial-gradient(ellipse 65% 50% at 85% 25%, rgba(122, 201, 67, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 45% at 15% 55%, rgba(249, 166, 34, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 70% 60% at 75% 85%, rgba(46, 158, 63, 0.08) 0%, transparent 70%),
+      linear-gradient(180deg, #072013 0%, #0A2B1A 18%, #0E3822 45%, #0B2C1C 78%, #0D331F 100%);
     pointer-events: none;
     z-index: 1;
   }
@@ -62,32 +62,32 @@
 }
 
 .btn-secondary {
-  background: rgba(94, 211, 168, 0.12);
-  border: 1px solid rgba(94, 211, 168, 0.35);
+  background: rgba(46, 158, 63, 0.14);
+  border: 1px solid rgba(122, 201, 67, 0.35);
   color: var(--color-secondary);
   font-size: 13.5px;
   backdrop-filter: blur(10px);
 
   &:hover {
-    background: rgba(94, 211, 168, 0.22);
+    background: rgba(46, 158, 63, 0.24);
     border-color: var(--color-secondary);
     color: #FFFFFF;
-    box-shadow: 0 0 20px rgba(94, 211, 168, 0.3);
+    box-shadow: 0 0 20px rgba(122, 201, 67, 0.3);
   }
 }
 
 .btn-cta-vote {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary-hover) 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #FFFFFF !important;
   font-size: 15px;
   font-weight: 700;
   padding: 14px 32px;
-  box-shadow: 0 8px 24px rgba(232, 115, 90, 0.45);
+  box-shadow: 0 8px 24px rgba(249, 166, 34, 0.45);
 
   &:hover {
-    background: linear-gradient(135deg, #f28068 0%, var(--color-accent) 100%);
-    box-shadow: 0 12px 30px rgba(232, 115, 90, 0.65);
+    background: linear-gradient(135deg, #FBBF24 0%, var(--color-accent) 100%);
+    box-shadow: 0 12px 30px rgba(249, 166, 34, 0.65);
     transform: translateY(-2px) scale(1.02);
   }
 }
@@ -144,8 +144,8 @@
 
   /* Specific enhancements for Home Destination Cards */
   .destination-card {
-    background: rgba(10, 38, 35, 0.82) !important;
-    border: 1px solid rgba(94, 211, 168, 0.22) !important;
+    background: rgba(10, 38, 22, 0.82) !important;
+    border: 1px solid rgba(122, 201, 67, 0.25) !important;
     border-radius: 22px !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
@@ -157,8 +157,8 @@
 
     &:hover {
       transform: translateY(-8px);
-      border-color: rgba(94, 211, 168, 0.5) !important;
-      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5), 0 0 28px rgba(94, 211, 168, 0.2) !important;
+      border-color: rgba(249, 166, 34, 0.6) !important;
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5), 0 0 28px rgba(122, 201, 67, 0.22) !important;
     }
   }
 
@@ -169,6 +169,7 @@
   .card-overlay-name {
     font-size: 20px !important;
     font-weight: 700;
+    color: #FFFFFF !important;
   }
 
   .card-overlay-place {
@@ -178,11 +179,29 @@
 
   .intro-snippet-text {
     font-size: 13px !important;
-    color: rgba(251, 247, 240, 0.9) !important;
+    color: rgba(240, 250, 243, 0.88) !important;
   }
 
   .metric-box-val {
     font-size: 12.5px !important;
+    color: #FFFFFF !important;
+  }
+
+  .intro-badge-title,
+  .card-rank-label,
+  .vote-stat-label,
+  .metric-box-label {
+    color: rgba(200, 230, 210, 0.72) !important;
+  }
+
+  .card-rank-row,
+  .card-metrics-row {
+    background: rgba(6, 26, 15, 0.65) !important;
+    border-color: rgba(122, 201, 67, 0.22) !important;
+  }
+
+  .card-vote-footer {
+    border-top-color: rgba(122, 201, 67, 0.2) !important;
   }
 }
 
@@ -237,15 +256,15 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    border: 1px solid rgba(94, 211, 168, 0.22);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    box-shadow: 0 18px 42px rgba(64, 141, 78, 0.2);
     cursor: pointer;
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
       transform: translateY(-8px);
       border-color: rgba(94, 211, 168, 0.55);
-      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), 0 0 24px rgba(94, 211, 168, 0.2);
+      box-shadow: 0 24px 56px rgba(64, 141, 78, 0.28), 0 0 24px rgba(122, 201, 67, 0.26);
 
       .region-card-backdrop {
         transform: scale(1.08);
@@ -276,10 +295,10 @@
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(5, 22, 20, 0.3) 0%,
-        rgba(6, 26, 24, 0.72) 42%,
-        rgba(6, 24, 22, 0.95) 80%,
-        rgba(4, 18, 17, 0.98) 100%
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(20, 94, 70, 0.34) 42%,
+        rgba(13, 73, 56, 0.78) 80%,
+        rgba(12, 67, 52, 0.88) 100%
       );
     }
   }
@@ -391,9 +410,9 @@
     position: relative;
     border-radius: 28px;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 52%, var(--color-secondary) 100%);
-    border: 1px solid rgba(94, 211, 168, 0.32);
-    box-shadow: 0 24px 64px rgba(7, 35, 32, 0.45);
+    background: linear-gradient(135deg, #0A331E 0%, #135430 45%, #1B6E3C 100%);
+    border: 1px solid rgba(122, 201, 67, 0.35);
+    box-shadow: 0 24px 64px rgba(7, 32, 19, 0.5);
   }
 
   .story-banner-deco {
@@ -403,7 +422,7 @@
     width: 380px;
     height: 380px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(94, 211, 168, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(249, 166, 34, 0.2) 0%, transparent 70%);
     pointer-events: none;
   }
 

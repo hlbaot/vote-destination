@@ -32,9 +32,9 @@ import {
 const VietnamGrowthMap = dynamic(() => import("@/components/user/map/VietnamGrowthMap"), {
   ssr: false,
   loading: () => (
-    <div className="flex-1 rounded-2xl bg-gradient-to-b from-[#E8F5E4] to-[#D4EBC8] flex flex-col items-center justify-center gap-4" style={{ minHeight: 480 }}>
-      <div className="w-12 h-12 rounded-full border-[3px] border-[#0F3D34] border-t-transparent animate-spin" />
-      <p className="text-sm text-[#2E7D32] font-medium">Đang tải bản đồ…</p>
+    <div className="flex-1 rounded-2xl bg-gradient-to-b from-[#F4FBF0] to-[#E3F4FB] flex flex-col items-center justify-center gap-4" style={{ minHeight: 480 }}>
+      <div className="w-12 h-12 rounded-full border-[3px] border-[var(--color-primary)] border-t-transparent animate-spin" />
+      <p className="text-sm text-[var(--color-primary)] font-medium">Đang tải bản đồ…</p>
     </div>
   ),
 })
@@ -141,24 +141,24 @@ export default function MapPage() {
   const totalVotes = useMemo(() => destinations.reduce((s, d) => s + d.rawVotes, 0), [destinations])
 
   return (
-    <div className="min-h-screen bg-[#FBF9F4] flex flex-col">
+    <div className="min-h-screen bg-[var(--color-bg)] flex flex-col">
       {/* ─── Page Header ──────────────────────────────────────────── */}
-      <div className="bg-[#0F3D34] text-white px-4 sm:px-6 py-3 flex items-center justify-between gap-3 flex-wrap">
+      <div className="bg-gradient-to-r from-[var(--color-surface)] to-[#F1FAEC] text-[var(--color-text)] px-4 sm:px-6 py-3 flex items-center justify-between gap-3 flex-wrap border-b border-[var(--color-border)] shadow-[var(--shadow-brand)]">
         <div className="flex items-center gap-3 min-w-0">
-          <Link href="/" className="text-[#A8D8A8] hover:text-white transition-colors text-sm font-medium flex-shrink-0">
+          <Link href="/" className="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition-colors text-sm font-medium flex-shrink-0">
             ← Trang chủ
           </Link>
-          <span className="text-[#4A8A3F] flex-shrink-0">/</span>
-          <h1 className="font-serif text-white font-bold text-sm sm:text-base truncate">🗺️ Bản đồ bình chọn</h1>
+          <span className="text-[var(--color-primary)] flex-shrink-0">/</span>
+          <h1 className="font-serif text-[var(--color-primary-dark)] font-bold text-sm sm:text-base truncate">🗺️ Bản đồ bình chọn</h1>
         </div>
         <div className="flex items-center gap-4 flex-wrap flex-shrink-0">
           <MapCountdown />
-          <div className="flex items-center gap-1.5 text-xs text-[#A8D8A8]">
-            <span className="font-bold text-white">{totalVotes.toLocaleString("vi-VN")}</span>
+          <div className="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
+            <span className="font-bold text-[var(--color-primary-dark)]">{totalVotes.toLocaleString("vi-VN")}</span>
             <span>phiếu</span>
           </div>
           <Link href="/vote"
-            className="bg-[#E05A36] hover:bg-[#C44A28] text-white text-xs font-semibold px-3 py-1.5 rounded-full transition-colors whitespace-nowrap">
+            className="bg-[var(--color-accent)] hover:bg-[var(--color-primary-hover)] text-white text-xs font-semibold px-3 py-1.5 rounded-full transition-colors whitespace-nowrap">
             Bình chọn →
           </Link>
         </div>
@@ -179,7 +179,7 @@ export default function MapPage() {
 
           {/* MAP AREA */}
           <div
-            className="flex overflow-hidden rounded-2xl border border-[#E0D5C5] shadow-sm"
+            className="flex overflow-hidden rounded-2xl border border-[var(--color-border)] shadow-[var(--shadow-brand)]"
             style={{
               height: "clamp(420px, calc(100dvh - 220px), 760px)",
               minHeight: 420,
@@ -223,7 +223,7 @@ export default function MapPage() {
               status={voteStatus}
               onDoQuiz={() => setIsQuizOpen(true)}
             />
-            <div className="flex-1 min-h-0 overflow-hidden rounded-2xl border border-[#E0D5C5] shadow-sm" style={{ minHeight: 300 }}>
+            <div className="flex-1 min-h-0 overflow-hidden rounded-2xl border border-[var(--color-border)] shadow-sm" style={{ minHeight: 300 }}>
               <LeaderboardPanel
                 entries={leaderboard}
                 provinceEntries={provinceData}
@@ -250,7 +250,7 @@ export default function MapPage() {
             className={`px-4 py-3 rounded-xl text-sm font-medium shadow-lg border pointer-events-auto max-w-xs
               ${t.type === "success" ? "bg-green-50 border-green-200 text-green-800"
                 : t.type === "error" ? "bg-red-50 border-red-200 text-red-700"
-                : "bg-[#F4EFE6] border-[#E0D5C5] text-[#1E2927]"}`}
+                : "bg-[var(--color-surface-tint)] border-[var(--color-border)] text-[var(--color-text)]"}`}
             style={{ animation: "dockSlideIn 0.3s ease-out" }}>
             {t.message}
           </div>

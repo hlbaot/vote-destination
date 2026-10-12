@@ -6,7 +6,7 @@
   position: relative;
   width: 100%;
   overflow-x: hidden;
-  background: #061817;
+  background: var(--color-text);
 
   /* Continuous multilayer canvas background across all sections */
   &::before {
@@ -20,7 +20,7 @@
       radial-gradient(ellipse 65% 50% at 85% 25%, rgba(94, 211, 168, 0.08) 0%, transparent 70%),
       radial-gradient(ellipse 60% 45% at 15% 55%, rgba(232, 115, 90, 0.06) 0%, transparent 70%),
       radial-gradient(ellipse 70% 60% at 75% 85%, rgba(94, 211, 168, 0.09) 0%, transparent 70%),
-      linear-gradient(180deg, #061817 0%, #082623 18%, #0b3430 45%, #082926 78%, #0F3D3A 100%);
+      linear-gradient(180deg, var(--color-text) 0%, var(--color-surface-tint) 18%, var(--color-primary) 45%, var(--color-surface-tint) 78%, var(--color-primary-dark) 100%);
     pointer-events: none;
     z-index: 1;
   }
@@ -64,20 +64,20 @@
 .btn-secondary {
   background: rgba(94, 211, 168, 0.12);
   border: 1px solid rgba(94, 211, 168, 0.35);
-  color: #5ED3A8;
+  color: var(--color-secondary);
   font-size: 13.5px;
   backdrop-filter: blur(10px);
 
   &:hover {
     background: rgba(94, 211, 168, 0.22);
-    border-color: #5ED3A8;
+    border-color: var(--color-secondary);
     color: #FFFFFF;
     box-shadow: 0 0 20px rgba(94, 211, 168, 0.3);
   }
 }
 
 .btn-cta-vote {
-  background: linear-gradient(135deg, #E8735A 0%, #D8593F 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary-hover) 100%);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #FFFFFF !important;
   font-size: 15px;
@@ -86,7 +86,7 @@
   box-shadow: 0 8px 24px rgba(232, 115, 90, 0.45);
 
   &:hover {
-    background: linear-gradient(135deg, #f28068 0%, #E8735A 100%);
+    background: linear-gradient(135deg, #f28068 0%, var(--color-accent) 100%);
     box-shadow: 0 12px 30px rgba(232, 115, 90, 0.65);
     transform: translateY(-2px) scale(1.02);
   }
@@ -109,7 +109,7 @@
     font-size: 11.5px;
     font-weight: 800;
     letter-spacing: 0.2em;
-    color: #E8735A;
+    color: var(--color-accent);
     text-transform: uppercase;
   }
 
@@ -173,7 +173,7 @@
 
   .card-overlay-place {
     font-size: 13px !important;
-    color: #5ED3A8 !important;
+    color: var(--color-secondary) !important;
   }
 
   .intro-snippet-text {
@@ -214,7 +214,7 @@
     border: 1px solid rgba(94, 211, 168, 0.28);
     padding: 6px 16px;
     border-radius: 9999px;
-    color: #5ED3A8;
+    color: var(--color-secondary);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -313,7 +313,7 @@
     border-radius: 9999px;
     background: rgba(94, 211, 168, 0.16);
     border: 1px solid rgba(94, 211, 168, 0.4);
-    color: #5ED3A8;
+    color: var(--color-secondary);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -367,7 +367,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #5ED3A8;
+    color: var(--color-secondary);
     font-size: 13.5px;
     font-weight: 700;
     transition: all 0.2s ease;
@@ -391,7 +391,7 @@
     position: relative;
     border-radius: 28px;
     overflow: hidden;
-    background: linear-gradient(135deg, #0F3D3A 0%, #155B53 52%, #197268 100%);
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 52%, var(--color-secondary) 100%);
     border: 1px solid rgba(94, 211, 168, 0.32);
     box-shadow: 0 24px 64px rgba(7, 35, 32, 0.45);
   }
@@ -426,7 +426,7 @@
       font-size: 11.5px;
       font-weight: 800;
       letter-spacing: 0.2em;
-      color: #5ED3A8;
+      color: var(--color-secondary);
       text-transform: uppercase;
     }
   }

@@ -21,7 +21,7 @@ export default function ConfettiEffect() {
     const width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth)
     const height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight)
 
-    const colors = ["#E05A36", "#D4AF37", "#0F3D34", "#2A9D8F", "#E9C46A", "#F4A261"]
+    const colors = ["var(--color-accent)", "var(--color-accent)", "var(--color-primary-dark)", "var(--color-sky)", "var(--color-accent)", "var(--color-accent)"]
     const particleCount = 45
 
     const particles = Array.from({ length: particleCount }).map(() => ({

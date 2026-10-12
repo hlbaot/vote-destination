@@ -394,7 +394,7 @@ export default function VietnamSVGMap({
           {/* LA BÀN HƯỚNG BẮC */}
           <g className="compass-rose" transform="translate(100, 100)">
             <circle cx="0" cy="0" r="32" className="compass-bg" />
-            <path d="M 0 -24 L 5 -5 L 0 0 L -5 -5 Z" fill="#e1644a" />
+            <path d="M 0 -24 L 5 -5 L 0 0 L -5 -5 Z" fill="var(--color-accent)" />
             <path
               d="M 0 24 L 5 5 L 0 0 L -5 5 Z"
               fill="rgba(255,255,255,0.4)"

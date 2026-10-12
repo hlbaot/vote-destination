@@ -163,7 +163,7 @@ export default function Vote({
   }
 
   return (
-    <main className="min-h-screen bg-[#FBF9F4] text-[#1E2927] selection:bg-[#E05A36] selection:text-white">
+    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] selection:bg-[var(--color-accent)] selection:text-white">
       {/* 1. HERO SECTION */}
       <VoteHero
         onScrollToVote={handleScrollToVote}
@@ -251,11 +251,11 @@ export default function Vote({
       </section>
 
       {/* 4. FOOTER REMINDER */}
-      <footer className="border-t border-[#E8DEC9] bg-[#F4EFE6] py-8 text-center text-xs sm:text-sm text-[#556963]">
+      <footer className="border-t border-[var(--color-border)] bg-[var(--color-surface-tint)] py-8 text-center text-xs sm:text-sm text-[var(--color-text-muted)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
             Mỗi người dùng được bình chọn tối đa{" "}
-            <strong className="text-[#0F3D34]">
+            <strong className="text-[var(--color-primary-dark)]">
               {voteConfig.limitPerDay} lượt mỗi ngày
             </strong>
             . Dữ liệu được mã hóa và đối soát tự động.
@@ -263,7 +263,7 @@ export default function Vote({
           <button
             type="button"
             onClick={handleOpenRules}
-            className="text-[#E05A36] font-semibold hover:underline cursor-pointer"
+            className="text-[var(--color-accent)] font-semibold hover:underline cursor-pointer"
           >
             Xem quy chế & thể lệ hội thi ↗
           </button>

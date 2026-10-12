@@ -70,9 +70,9 @@ export default function VoteStats({
     <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 sm:-mt-16">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
         {/* Card 1: Status */}
-        <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#FAF7F0]/95 backdrop-blur-md border border-[#E8DEC9] shadow-lg flex items-center gap-4 hover:shadow-xl transition-shadow">
-          <div className="w-12 h-12 rounded-2xl bg-[#0F3D34]/10 text-[#0F3D34] flex items-center justify-center flex-shrink-0">
-            <Icon name="spark" size={24} className="text-[#0F3D34]" />
+        <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[var(--color-surface)]/95 backdrop-blur-md border border-[var(--color-border)] shadow-lg flex items-center gap-4 hover:shadow-xl transition-shadow">
+          <div className="w-12 h-12 rounded-2xl bg-[var(--color-primary)]/10 text-[var(--color-primary-dark)] flex items-center justify-center flex-shrink-0">
+            <Icon name="spark" size={24} className="text-[var(--color-primary-dark)]" />
           </div>
           <div className="min-w-0">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#63756F] block mb-1">
@@ -84,26 +84,26 @@ export default function VoteStats({
                 Đang mở bình chọn
               </span>
             </div>
-            <p className="text-xs text-[#556963] mt-1 truncate">
+            <p className="text-xs text-[var(--color-text-muted)] mt-1 truncate">
               Ghi nhận phiếu hợp lệ thời gian thực
             </p>
           </div>
         </div>
 
         {/* Card 2: Duration */}
-        <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#FAF7F0]/95 backdrop-blur-md border border-[#E8DEC9] shadow-lg flex items-center gap-4 hover:shadow-xl transition-shadow">
-          <div className="w-12 h-12 rounded-2xl bg-[#DFB743]/15 text-[#B8860B] flex items-center justify-center flex-shrink-0">
+        <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[var(--color-surface)]/95 backdrop-blur-md border border-[var(--color-border)] shadow-lg flex items-center gap-4 hover:shadow-xl transition-shadow">
+          <div className="w-12 h-12 rounded-2xl bg-[var(--color-accent)]/15 text-[#B8860B] flex items-center justify-center flex-shrink-0">
             <Icon name="calendar" size={24} className="text-[#8D6B1B]" />
           </div>
           <div className="min-w-0">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#63756F] block mb-1">
               Thời gian bình chọn
             </span>
-            <div className="font-serif text-base sm:text-lg font-bold text-[#0F3D34] tracking-tight">
+            <div className="font-serif text-base sm:text-lg font-bold text-[var(--color-primary-dark)] tracking-tight">
               {formattedStart} – {formattedEnd}
             </div>
-            <p className="text-xs text-[#556963] mt-1 flex items-center gap-1">
-              <span className="inline-block px-1.5 py-0.2 bg-[#E05A36]/10 text-[#E05A36] rounded font-semibold">
+            <p className="text-xs text-[var(--color-text-muted)] mt-1 flex items-center gap-1">
+              <span className="inline-block px-1.5 py-0.2 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded font-semibold">
                 Còn {daysLeft} ngày
               </span>
               <span>đến hạn chót</span>
@@ -112,18 +112,18 @@ export default function VoteStats({
         </div>
 
         {/* Card 3: Total Votes */}
-        <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#FAF7F0]/95 backdrop-blur-md border border-[#E8DEC9] shadow-lg flex items-center gap-4 hover:shadow-xl transition-shadow">
-          <div className="w-12 h-12 rounded-2xl bg-[#E05A36]/10 text-[#E05A36] flex items-center justify-center flex-shrink-0">
-            <Icon name="heart" size={24} className="text-[#E05A36]" />
+        <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[var(--color-surface)]/95 backdrop-blur-md border border-[var(--color-border)] shadow-lg flex items-center gap-4 hover:shadow-xl transition-shadow">
+          <div className="w-12 h-12 rounded-2xl bg-[var(--color-accent)]/10 text-[var(--color-accent)] flex items-center justify-center flex-shrink-0">
+            <Icon name="heart" size={24} className="text-[var(--color-accent)]" />
           </div>
           <div className="min-w-0">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#63756F] block mb-1">
               Tổng lượt bình chọn
             </span>
-            <div className="font-serif text-xl sm:text-2xl font-bold text-[#E05A36] tracking-tight tabular-nums">
+            <div className="font-serif text-xl sm:text-2xl font-bold text-[var(--color-accent)] tracking-tight tabular-nums">
               {displayVotes.toLocaleString("vi-VN")}
             </div>
-            <p className="text-xs text-[#556963] mt-1 truncate">
+            <p className="text-xs text-[var(--color-text-muted)] mt-1 truncate">
               Toàn bộ {destinationCount} hồ sơ điểm đến
             </p>
           </div>

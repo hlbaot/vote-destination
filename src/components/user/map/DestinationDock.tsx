@@ -31,12 +31,12 @@ export default function DestinationDock({ node, votedToday, hasVotesLeft, onVote
   const remaining = Math.max(0, nextThreshold - votes)
 
   const stageName = ["Mầm", "Cây non", "Cây lớn", "Nở hoa"][node.stage]
-  const stageColor = ["#7BAD69", "#4A8A3F", "#2E8B28", "#E05A36"][node.stage]
+  const stageColor = ["var(--color-secondary)", "var(--color-primary)", "var(--color-primary-hover)", "var(--color-accent)"][node.stage]
 
   return (
-    <div className="flex flex-col h-full bg-[#F4EFE6] border-l border-[#E0D5C5] overflow-hidden">
+    <div className="flex flex-col h-full bg-[var(--color-surface-tint)] border-l border-[var(--color-border)] overflow-hidden">
       {/* Image */}
-      <div className="relative h-44 flex-shrink-0 bg-gradient-to-br from-[#2E7D32] to-[#1B5E20]">
+      <div className="relative h-44 flex-shrink-0 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-hover)]">
         {node.thumbnail ? (
           <Image src={node.thumbnail} alt={node.name} fill className="object-cover" sizes="340px" />
         ) : (
@@ -51,7 +51,7 @@ export default function DestinationDock({ node, votedToday, hasVotesLeft, onVote
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         {/* Category badge */}
         <div className="absolute top-3 left-3">
-          <span className="bg-[#E05A36]/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm">
+          <span className="bg-[var(--color-accent)]/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm">
             {node.tag}
           </span>
         </div>
@@ -74,8 +74,8 @@ export default function DestinationDock({ node, votedToday, hasVotesLeft, onVote
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Name & Province */}
         <div>
-          <h3 className="font-serif text-[#0F3D34] text-xl font-bold leading-snug">{node.name}</h3>
-          <p className="text-[#556963] text-sm mt-0.5 flex items-center gap-1.5">
+          <h3 className="font-serif text-[var(--color-primary-dark)] text-xl font-bold leading-snug">{node.name}</h3>
+          <p className="text-[var(--color-text-muted)] text-sm mt-0.5 flex items-center gap-1.5">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
             </svg>
@@ -84,18 +84,18 @@ export default function DestinationDock({ node, votedToday, hasVotesLeft, onVote
         </div>
 
         {/* Vote count */}
-        <div className="bg-white/70 rounded-xl p-3 border border-[#E0D5C5]">
+        <div className="bg-white/70 rounded-xl p-3 border border-[var(--color-border)]">
           <div className="flex items-baseline gap-1.5">
-            <span className="text-3xl font-bold text-[#0F3D34]">{votes.toLocaleString("vi-VN")}</span>
-            <span className="text-sm text-[#556963]">phiếu bình chọn</span>
+            <span className="text-3xl font-bold text-[var(--color-primary-dark)]">{votes.toLocaleString("vi-VN")}</span>
+            <span className="text-sm text-[var(--color-text-muted)]">phiếu bình chọn</span>
           </div>
           {/* Progress bar */}
           <div className="mt-2.5">
-            <div className="flex justify-between text-[11px] text-[#556963] mb-1.5">
+            <div className="flex justify-between text-[11px] text-[var(--color-text-muted)] mb-1.5">
               <span>Còn {remaining.toLocaleString("vi-VN")} phiếu để {node.stage < 3 ? "lên giai đoạn tiếp" : "duy trì nở hoa"}</span>
               <span className="font-semibold" style={{ color: stageColor }}>{progressPct.toFixed(0)}%</span>
             </div>
-            <div className="h-2 bg-[#E0D5C5] rounded-full overflow-hidden">
+            <div className="h-2 bg-[var(--color-border)] rounded-full overflow-hidden">
               <div className="h-full rounded-full transition-all duration-700"
                 style={{ width: `${progressPct}%`, background: stageColor }} />
             </div>
@@ -110,7 +110,7 @@ export default function DestinationDock({ node, votedToday, hasVotesLeft, onVote
             className={`w-full py-3 rounded-xl font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2
               ${votedToday ? "bg-green-100 text-green-700 border border-green-300 cursor-default"
                 : !hasVotesLeft ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                : "bg-[#E05A36] hover:bg-[#C44A28] text-white shadow-md hover:shadow-lg active:scale-[0.98]"}`}>
+                : "bg-[var(--color-accent)] hover:bg-[var(--color-primary-hover)] text-white shadow-md hover:shadow-lg active:scale-[0.98]"}`}>
             {votedToday ? (
               <>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -130,11 +130,11 @@ export default function DestinationDock({ node, votedToday, hasVotesLeft, onVote
 
           <div className="grid grid-cols-2 gap-2">
             <button onClick={() => onViewProfile(node.id)}
-              className="py-2.5 rounded-xl border border-[#0F3D34] text-[#0F3D34] text-sm font-medium hover:bg-[#0F3D34] hover:text-white transition-all duration-200">
+              className="py-2.5 rounded-xl border border-[var(--color-primary)] text-[var(--color-primary-dark)] text-sm font-medium hover:bg-[var(--color-primary)] hover:text-white transition-all duration-200">
               Xem hồ sơ
             </button>
             <button onClick={() => onShare(node.id)}
-              className="py-2.5 rounded-xl border border-[#E0D5C5] text-[#556963] text-sm font-medium hover:bg-[#E8F5E4] transition-all duration-200 flex items-center justify-center gap-1.5">
+              className="py-2.5 rounded-xl border border-[var(--color-border)] text-[var(--color-text-muted)] text-sm font-medium hover:bg-[var(--color-surface-tint)] transition-all duration-200 flex items-center justify-center gap-1.5">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
@@ -145,8 +145,8 @@ export default function DestinationDock({ node, votedToday, hasVotesLeft, onVote
         </div>
 
         {/* Category info */}
-        <div className="text-xs text-[#556963] bg-[#EBE6DC]/60 rounded-lg px-3 py-2 border border-[#E0D5C5]">
-          <span className="font-medium text-[#0F3D34]">Loại hình:</span> {node.category}
+        <div className="text-xs text-[var(--color-text-muted)] bg-[var(--color-surface-tint)]/60 rounded-lg px-3 py-2 border border-[var(--color-border)]">
+          <span className="font-medium text-[var(--color-primary-dark)]">Loại hình:</span> {node.category}
         </div>
       </div>
     </div>

@@ -5,7 +5,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Điểm đến du lịch nông thôn Việt Nam tốt nhất 2026",
   description: "Cổng thông tin và bình chọn Điểm đến du lịch nông thôn Việt Nam tốt nhất 2026",
-  icons: { icon: "/favicon.svg" },
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

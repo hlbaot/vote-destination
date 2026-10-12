@@ -75,7 +75,7 @@
   border-radius: 100px;
   background: rgba(6, 35, 32, 0.75);
   border: 1px solid rgba(94, 211, 168, 0.35);
-  color: #5ED3A8;
+  color: var(--color-secondary);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -104,14 +104,14 @@
 
   &:hover:not(.is-disabled) {
     transform: scale(1.12);
-    border-color: #E8735A;
-    color: #E8735A;
+    border-color: var(--color-accent);
+    color: var(--color-accent);
     background: rgba(232, 115, 90, 0.15);
   }
 
   &.is-favorited {
-    background: #E8735A;
-    border-color: #E8735A;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
     color: #FFFFFF;
     box-shadow: 0 0 16px rgba(232, 115, 90, 0.55);
   }
@@ -151,7 +151,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #5ED3A8;
+  color: var(--color-secondary);
   font-size: 12px;
   font-weight: 600;
   margin: 0;
@@ -222,7 +222,7 @@
 }
 
 .card-rank-val {
-  color: #E8735A;
+  color: var(--color-accent);
   font-family: var(--font-mono);
   font-size: 15px;
   font-weight: 800;
@@ -265,7 +265,7 @@
 }
 
 .metric-box.rank-box .metric-box-val {
-  color: #E8735A;
+  color: var(--color-accent);
   font-family: var(--font-mono);
   font-size: 13px;
 }
@@ -295,7 +295,7 @@
 .vote-stat-number {
   font-size: 22px;
   font-weight: 900;
-  color: #5ED3A8;
+  color: var(--color-secondary);
   font-family: var(--font-mono);
   letter-spacing: -0.02em;
 }
@@ -311,7 +311,7 @@
 
 .vote-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #5ED3A8 0%, #E8735A 100%);
+  background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-accent) 100%);
   border-radius: 100px;
   transition: width 0.6s ease;
   box-shadow: 0 0 10px rgba(94, 211, 168, 0.5);

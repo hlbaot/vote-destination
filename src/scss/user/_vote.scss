@@ -46,14 +46,14 @@
   grid-template-columns: repeat(4, 1fr);
   padding: 22px 28px;
   border-bottom: 1px solid var(--line);
-  background: #fafaf8;
+  background: var(--color-bg);
 }
 
 .stepper div {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #9aa7a5;
+  color: var(--color-text-muted);
   position: relative;
 }
 
@@ -264,9 +264,9 @@
 }
 
 .turnstile.verified > span {
-  background: #257049;
+  background: var(--color-primary);
   color: white;
-  border-color: #257049;
+  border-color: var(--color-primary-dark);
 }
 
 .turnstile strong {
@@ -313,7 +313,7 @@
   padding: 12px;
   margin: 24px 0 12px;
   color: var(--deep);
-  background: #fbfaf6;
+  background: var(--color-surface);
   border-radius: 4px;
 }
 
@@ -393,7 +393,7 @@
 }
 
 .picker-item.active {
-  background: #edf5ef;
+  background: var(--color-surface-tint);
 }
 
 .picker-item img {
@@ -416,7 +416,7 @@
 
 .picker-active-dot {
   margin-left: auto;
-  color: #257049;
+  color: var(--color-primary-dark);
   font-weight: 700;
 }
 
@@ -542,7 +542,7 @@
 
 .map-shadow { fill: rgba(0, 0, 0, 0.2); }
 .map-land { fill: var(--mint); stroke: rgba(255, 255, 255, 0.7); stroke-width: 1.5; }
-.map-line { fill: none; stroke: rgba(7, 63, 59, 0.28); stroke-width: 1; }
+.map-line { fill: none; stroke: rgba(46, 158, 63, 0.28); stroke-width: 1; }
 
 .pulse-circle {
   animation: pulsePin 2s infinite ease-out;

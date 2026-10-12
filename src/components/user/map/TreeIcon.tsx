@@ -19,10 +19,10 @@ interface TreeIconProps {
 }
 
 const STAGE_COLORS = {
-  trunk: ["#8B6914", "#7A5C0C", "#6B4F08", "#5C3F05"],
-  canopy: ["#5CAD50", "#3E9E36", "#2E8B28", "#27A03C"],
-  flower: "#E05A36",
-  glow:   "#FFD166",
+  trunk: ["var(--color-tree-trunk)", "var(--color-tree-trunk)", "var(--color-tree-trunk)", "var(--color-tree-trunk)"],
+  canopy: ["var(--color-secondary)", "var(--color-primary)", "var(--color-primary-hover)", "var(--color-primary)"],
+  flower: "var(--color-flower-peach)",
+  glow: "var(--color-tree-glow)",
 } as const
 
 export default function TreeIcon({
@@ -79,7 +79,7 @@ export default function TreeIcon({
         <>
           <ellipse cx="20" cy="30" rx="12" ry="8" fill={STAGE_COLORS.canopy[2]} opacity="0.8" />
           <ellipse cx="20" cy="23" rx="10" ry="9" fill={STAGE_COLORS.canopy[2]} />
-          <ellipse cx="20" cy="17" rx="7" ry="7" fill="#2A7A22" />
+          <ellipse cx="20" cy="17" rx="7" ry="7" fill="var(--color-primary-hover)" />
         </>
       )}
 
@@ -88,7 +88,7 @@ export default function TreeIcon({
         <>
           <ellipse cx="20" cy="30" rx="13" ry="8" fill={STAGE_COLORS.canopy[3]} opacity="0.8" />
           <ellipse cx="20" cy="22" rx="11" ry="10" fill={STAGE_COLORS.canopy[3]} />
-          <ellipse cx="20" cy="14" rx="8" ry="8" fill="#1E9232" />
+          <ellipse cx="20" cy="14" rx="8" ry="8" fill="var(--color-primary-hover)" />
           {/* Flowers */}
           {[[-5,-4],[5,-4],[0,-10],[-8,-1],[8,-1]].map(([dx,dy],i) => (
             <circle key={i} cx={20+dx} cy={14+dy} r="2.5" fill={STAGE_COLORS.flower} opacity="0.9" />

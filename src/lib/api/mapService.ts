@@ -4,12 +4,14 @@
  * ⚠️ MOCK: Quiz answer checking is client-side (sessionStorage). Production must use server.
  */
 import { initialDestinations, voteConfig } from "@/data/destinations"
+import { mapStaticDestinationById } from "@/data/map/destinations"
+import { project } from "@/lib/map/geo"
 import { Destination } from "@/types"
 
 export interface MapDestinationNode {
   id: string; name: string; province: string; region: string; rawVotes: number;
   thumbnail: string; tag: string; category: string;
-  mapX: number; mapY: number;
+  lat: number; lng: number; mapX: number; mapY: number;
   stage: 0 | 1 | 2 | 3;
   isNational1st: boolean; isProvince1st: boolean;
 }
@@ -33,8 +35,14 @@ export interface QuizQuestion { id: string; text: string; options: string[] }
 export interface QuizResult { correctCount: number; total: number; bonusVotes: number }
 
 export const MAP_CONFIG = {
-  treeStageThresholds: [0, 200, 2000, 8000] as const,
-  colorThresholds: [1, 4000, 8000, 11000] as const,
+  treeStageThresholds: [0, 4000, 8000, 11000] as const,
+  provinceRankColors: {
+    top5: "var(--color-map-rank-top5)",
+    top15: "var(--color-primary)",
+    top25: "var(--color-map-rank-top25)",
+    rest: "var(--color-map-rank-rest)",
+    empty: "var(--color-map-empty)",
+  },
   semanticZoomThreshold: 2.2,
   pollingIntervalMs: 8_000,
   quizQuestionsPerRound: 5,
@@ -53,25 +61,33 @@ function getStage(votes: number): 0 | 1 | 2 | 3 {
   return 0
 }
 
-// Mock coordinates (SVG viewBox space ~0-1000 x 0-900). Needs GIS review before production.
-const COORDS: Record<string, [number, number]> = {
-  "69":[295,145],"13":[300,135],"14":[315,175],"61":[360,140],
-  "17":[375,210],"18":[385,220],"59":[420,195],"15":[248,162],
-  "16":[232,185],"67":[240,208],"65":[195,180],"63":[200,150],
-  "1":[410,255],"70":[378,265],"20":[365,247],"71":[270,228],
-  "19":[348,260],"25":[432,295],"57":[473,255],"72":[498,235],
-  "73":[510,225],"74":[460,270],"9":[470,268],"21":[435,262],
-  "23":[430,272],"27":[415,325],"28":[430,340],"75":[398,318],
-  "29":[420,365],"30":[435,375],"31":[435,398],"76":[448,428],
-  "33":[448,435],"34":[462,455],"3":[476,474],"6":[505,498],
-  "5":[498,510],"77":[515,518],"78":[520,548],"35":[530,540],
-  "36":[476,548],"37":[540,572],"38":[495,572],"44":[538,598],
-  "43":[498,600],"39":[560,628],"40":[558,648],"41":[508,640],
-  "79":[518,658],"80":[575,682],"42":[570,675],"7":[558,730],
-  "81":[588,758],"8":[600,780],"45":[590,718],"47":[538,735],
-  "82":[512,775],"52":[495,798],"50":[510,790],"49":[500,785],
-  "11":[478,812],"83":[468,830],"55":[448,808],"84":[418,840],
-  "56":[385,870],"85":[438,855],"54":[470,855],"53":[468,875],
+const MOCK_VOTES: Record<string, number> = {
+  "69": 0, "13": 6200, "14": 2300, "61": 8900, "17": 4300, "18": 2100, "59": 3700,
+  "15": 12800, "16": 9400, "67": 7600, "65": 5100, "63": 2800, "1": 11300, "70": 800,
+  "20": 4600, "71": 1200, "19": 6900, "25": 11800, "57": 12100, "72": 1700, "73": 900,
+  "74": 2500, "9": 8300, "21": 3200, "23": 1500, "27": 3900, "28": 5600, "75": 1800,
+  "29": 4200, "30": 5300, "31": 2400, "76": 700, "33": 11100, "34": 3000, "3": 10100,
+  "6": 8700, "5": 11900, "77": 1400, "78": 900, "35": 7100, "36": 3600, "37": 7900,
+  "38": 4200, "44": 5100, "43": 3300, "39": 10500, "40": 4700, "41": 11600, "79": 2100,
+  "80": 1300, "42": 6500, "7": 7400, "81": 2900, "8": 8200, "45": 4900, "47": 9200,
+  "82": 600, "52": 4100, "50": 2700, "49": 2200, "11": 9800, "83": 1100, "55": 5900,
+  "84": 1200, "56": 10800, "85": 800, "54": 2500, "53": 7200,
+}
+
+let warnedMissingGeoJson = false
+
+export function getVotes(): Record<string, number> {
+  return { ...MOCK_VOTES }
+}
+
+export function validateMapDestinationsDev(destinations: Destination[]) {
+  if (process.env.NODE_ENV === "production" || warnedMissingGeoJson) return
+  const missing = destinations.filter((d) => !mapStaticDestinationById.has(d.id)).map((d) => `${d.id}:${d.name}`)
+  if (missing.length > 0) {
+    console.warn("[vote-map] Missing lat/lng map data for destinations:", missing)
+  }
+  console.warn("[vote-map] GeoJSON 34 tỉnh chưa có trong repo; provinceId đang fallback theo destinations.ts. Khi thêm GeoJSON, hãy thay bằng d3.geoContains([lng,lat]).")
+  warnedMissingGeoJson = true
 }
 
 const DAILY_KEY = "map_daily_vote_v1"
@@ -86,32 +102,44 @@ function loadStore(): Store {
 function saveStore(s: Store) { if (typeof window!=="undefined") localStorage.setItem(DAILY_KEY, JSON.stringify(s)) }
 
 export function getMapDestinations(destinations: Destination[]): MapDestinationNode[] {
-  const sorted = [...destinations].sort((a,b)=>b.rawVotes-a.rawVotes)
+  validateMapDestinationsDev(destinations)
+  const votesById = getVotes()
+  const sorted = [...destinations].sort((a,b)=>(votesById[b.id] ?? 0)-(votesById[a.id] ?? 0))
   const prov1st: Record<string,string> = {}
   for (const d of sorted) { const p=d.province||d.place; if(p&&!prov1st[p]) prov1st[p]=d.id }
   return destinations.map((d,i) => {
-    const [x,y] = COORDS[d.id] || [400+(i%20)*15, 400+Math.floor(i/20)*20]
-    return { id:d.id, name:d.name, province:d.province||d.place, region:d.region, rawVotes:d.rawVotes,
-      thumbnail:d.thumbnail||"", tag:d.tag, category:d.category||"", mapX:x, mapY:y, stage:getStage(d.rawVotes),
+    const staticDestination = mapStaticDestinationById.get(d.id)
+    const lng = staticDestination?.lng ?? 105 + (i % 8) * 0.4
+    const lat = staticDestination?.lat ?? 21 - Math.floor(i / 8) * 0.4
+    const [x,y] = project(lng, lat)
+    const rawVotes = votesById[d.id] ?? d.rawVotes
+    return { id:d.id, name:d.name, province:d.province||d.place, region:d.region, rawVotes,
+      thumbnail:staticDestination?.image || d.thumbnail || "", tag:d.tag, category:d.category||"", lat, lng, mapX:x, mapY:y, stage:getStage(rawVotes),
       isNational1st:sorted[0]?.id===d.id, isProvince1st:prov1st[d.province||d.place]===d.id }
   })
 }
 
 export function getLeaderboard(destinations: Destination[], top=15): LeaderboardEntry[] {
-  return [...destinations].sort((a,b)=>b.rawVotes-a.rawVotes).slice(0,top).map((d,i)=>({
-    rank:i+1, id:d.id, name:d.name, province:d.province||d.place, rawVotes:d.rawVotes,
-    stage:getStage(d.rawVotes), isTrending:d.rawVotes>9000&&i<8
-  }))
+  const votesById = getVotes()
+  return [...destinations].sort((a,b)=>(votesById[b.id] ?? 0)-(votesById[a.id] ?? 0)).slice(0,top).map((d,i) => {
+    const rawVotes = votesById[d.id] ?? 0
+    return {
+      rank:i+1, id:d.id, name:d.name, province:d.province||d.place, rawVotes,
+      stage:getStage(rawVotes), isTrending:rawVotes>9000&&i<8
+    }
+  })
 }
 
 export function getProvinceMapData(destinations: Destination[]): ProvinceMapData[] {
+  const votesById = getVotes()
   const map = new Map<string, { votes:number; count:number; region:string; x:number; y:number }>()
   for (const d of destinations) {
     const key = d.province || d.place
-    const [x, y] = COORDS[d.id] || [410, 450]
+    const staticDestination = mapStaticDestinationById.get(d.id)
+    const [x, y] = staticDestination ? project(staticDestination.lng, staticDestination.lat) : [410, 450]
     if (!map.has(key)) map.set(key, { votes:0, count:0, region:d.region, x:0, y:0 })
     const entry = map.get(key)!
-    entry.votes += d.rawVotes
+    entry.votes += votesById[d.id] ?? 0
     entry.count += 1
     entry.x += x
     entry.y += y

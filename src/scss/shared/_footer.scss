@@ -4,7 +4,7 @@
 
 .site-footer,
 footer {
-  background: #0F3D3A !important;
+  background: var(--color-primary-dark) !important;
   color: #FBF7F0;
   border-top: 1px solid rgba(94, 211, 168, 0.22);
   padding: 80px 0 36px;
@@ -20,12 +20,10 @@ footer {
     left: 20%;
     right: 20%;
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(94, 211, 168, 0.6),
-      transparent
-    );
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(94, 211, 168, 0.6),
+        transparent);
     pointer-events: none;
   }
 }
@@ -59,9 +57,9 @@ footer {
     width: 42px;
     height: 42px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #13524b 0%, #0a302c 100%);
-    border: 1.5px solid #5ED3A8;
-    color: #5ED3A8;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+    border: 1.5px solid var(--color-secondary);
+    color: var(--color-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,7 +87,7 @@ footer {
     display: block;
     font-size: 8.5px;
     letter-spacing: 0.14em;
-    color: #5ED3A8 !important;
+    color: var(--color-secondary) !important;
     font-weight: 700;
     margin-top: 3px;
     line-height: 1.2;
@@ -121,7 +119,7 @@ footer {
     display: inline-block;
     width: 24px;
     height: 2px;
-    background: #5ED3A8;
+    background: var(--color-secondary);
     border-radius: 2px;
   }
 }
@@ -155,14 +153,14 @@ footer {
 
     &::before {
       content: "›";
-      color: #5ED3A8;
+      color: var(--color-secondary);
       font-size: 16px;
       line-height: 1;
       transition: transform 0.2s ease;
     }
 
     &:hover {
-      color: #5ED3A8 !important;
+      color: var(--color-secondary) !important;
       transform: translateX(4px);
 
       &::before {
@@ -198,7 +196,7 @@ footer {
       position: absolute;
       left: 0;
       top: 0;
-      color: #5ED3A8;
+      color: var(--color-secondary);
       font-size: 16px;
       line-height: 1.4;
     }
@@ -243,6 +241,7 @@ footer {
 }
 
 @media (max-width: 640px) {
+
   .site-footer,
   footer {
     padding: 60px 0 30px;

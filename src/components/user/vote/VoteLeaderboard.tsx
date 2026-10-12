@@ -25,28 +25,28 @@ export default function VoteLeaderboard({
   const maxVotes = top1 ? top1.rawVotes : 1
 
   return (
-    <aside className="w-full bg-[#0F3D34] text-[#FAF7F0] rounded-3xl p-5 sm:p-6 border border-[#1E574B] shadow-xl flex flex-col gap-6">
+    <aside className="w-full bg-[var(--color-surface)] text-[var(--color-text)] rounded-3xl p-5 sm:p-6 border border-[var(--color-border)] shadow-[var(--shadow-brand)] flex flex-col gap-6">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-white/10 pb-4">
+      <div className="flex items-center justify-between border-b border-[var(--color-border)] pb-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-[#E05A36] animate-ping" />
-            <span className="text-[11px] uppercase tracking-wider font-bold text-[#DFB743]">
+            <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-ping" />
+            <span className="text-[11px] uppercase tracking-wider font-bold text-[var(--color-accent)]">
               BẢNG XẾP HẠNG TẠM THỜI
             </span>
           </div>
-          <h2 className="font-serif text-xl sm:text-2xl font-bold text-white tracking-tight">
+          <h2 className="font-serif text-xl sm:text-2xl font-bold text-[var(--color-primary-dark)] tracking-tight">
             Top 10 Dẫn Đầu
           </h2>
         </div>
-        <span className="px-2.5 py-1 rounded-full bg-white/10 text-[#D1E0DB] text-[11px] font-medium border border-white/10">
+        <span className="px-2.5 py-1 rounded-full bg-[var(--color-surface-tint)] text-[var(--color-primary-dark)] text-[11px] font-medium border border-[var(--color-border)]">
           Trực tiếp
         </span>
       </div>
 
       {/* TOP 3 PODIUM (BỤC VINH DANH) */}
       <div className="pt-4 pb-2">
-        <div className="text-center text-xs text-[#BED1CA] mb-4">
+        <div className="text-center text-xs text-[var(--color-text-muted)] mb-4">
           Bấm vào điểm đến để chọn nhanh cho lượt bình chọn
         </div>
         <div className="grid grid-cols-3 items-end gap-2 sm:gap-3">
@@ -56,12 +56,12 @@ export default function VoteLeaderboard({
               type="button"
               onClick={() => onSelectDestination(top2)}
               className={`group flex flex-col items-center text-center p-2 rounded-2xl transition-all cursor-pointer ${selectedDestinationId === top2.id
-                  ? "bg-white/15 ring-2 ring-[#E05A36]"
-                  : "hover:bg-white/10"
+                  ? "bg-[var(--color-surface-tint)] ring-2 ring-[var(--color-accent)]"
+                  : "hover:bg-[var(--color-surface-tint)]"
                 }`}
             >
               <div className="relative mb-2">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-[#CBD5E1] shadow-md group-hover:scale-105 transition-transform bg-[#0A2620]">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-[#CBD5E1] shadow-md group-hover:scale-105 transition-transform bg-[var(--color-surface-tint)]">
                   <img
                     src={top2.thumbnail || `/images/destinations/${top2.id}.webp`}
                     alt={top2.name}
@@ -71,20 +71,20 @@ export default function VoteLeaderboard({
                     }}
                   />
                 </div>
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#CBD5E1] text-[#0F3D34] text-xs font-black flex items-center justify-center shadow">
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#CBD5E1] text-[var(--color-primary-dark)] text-xs font-black flex items-center justify-center shadow">
                   2
                 </span>
               </div>
-              <strong className="text-xs sm:text-sm text-white line-clamp-1 group-hover:text-[#DFB743] transition-colors">
+              <strong className="text-xs sm:text-sm text-[var(--color-text)] line-clamp-1 group-hover:text-[var(--color-primary)] transition-colors">
                 {top2.name}
               </strong>
-              <small className="text-[11px] text-[#A6C0B7] block truncate max-w-full">
+              <small className="text-[11px] text-[var(--color-text-muted)] block truncate max-w-full">
                 {top2.province}
               </small>
-              <span className="text-xs font-bold text-[#E05A36] mt-1">
+              <span className="text-xs font-bold text-[var(--color-accent)] mt-1">
                 {top2.votes}
               </span>
-              <div className="w-full h-10 sm:h-12 bg-white/10 rounded-t-lg mt-2 flex items-center justify-center border-t border-white/20">
+              <div className="w-full h-10 sm:h-12 bg-[var(--color-surface-tint)] rounded-t-lg mt-2 flex items-center justify-center border-t border-[var(--color-border)]">
                 <span className="text-[11px] font-bold text-[#CBD5E1]">Bạc</span>
               </div>
             </button>
@@ -96,16 +96,16 @@ export default function VoteLeaderboard({
               type="button"
               onClick={() => onSelectDestination(top1)}
               className={`group flex flex-col items-center text-center p-2 rounded-2xl transition-all cursor-pointer relative -mt-4 ${selectedDestinationId === top1.id
-                  ? "bg-white/20 ring-2 ring-[#DFB743]"
-                  : "hover:bg-white/10"
+                  ? "bg-[var(--color-surface-tint)] ring-2 ring-[var(--color-accent)]"
+                  : "hover:bg-[var(--color-surface-tint)]"
                 }`}
             >
               {/* Crown Icon */}
-              <div className="text-[#DFB743] animate-bounce mb-1">
+              <div className="text-[var(--color-accent)] animate-bounce mb-1">
                 <Icon name="star" size={18} />
               </div>
               <div className="relative mb-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-3 border-[#DFB743] shadow-lg group-hover:scale-105 transition-transform ring-4 ring-[#DFB743]/20 bg-[#0A2620]">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-3 border-[var(--color-accent)] shadow-lg group-hover:scale-105 transition-transform ring-4 ring-[var(--color-accent)]/20 bg-[var(--color-surface-tint)]">
                   <img
                     src={top1.thumbnail || `/images/destinations/${top1.id}.webp`}
                     alt={top1.name}
@@ -115,21 +115,21 @@ export default function VoteLeaderboard({
                     }}
                   />
                 </div>
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#DFB743] text-[#0F3D34] text-xs font-black flex items-center justify-center shadow-lg">
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[var(--color-accent)] text-[var(--color-primary-dark)] text-xs font-black flex items-center justify-center shadow-lg">
                   1
                 </span>
               </div>
-              <strong className="text-sm sm:text-base text-white font-serif line-clamp-1 text-[#FAF7F0] group-hover:text-[#DFB743] transition-colors">
+              <strong className="text-sm sm:text-base font-serif line-clamp-1 text-[var(--color-primary-dark)] group-hover:text-[var(--color-primary)] transition-colors">
                 {top1.name}
               </strong>
-              <small className="text-[11px] text-[#DFB743] font-medium block truncate max-w-full">
+              <small className="text-[11px] text-[var(--color-accent)] font-medium block truncate max-w-full">
                 {top1.province}
               </small>
-              <span className="text-xs sm:text-sm font-black text-[#E05A36] mt-1">
+              <span className="text-xs sm:text-sm font-black text-[var(--color-accent)] mt-1">
                 {top1.votes}
               </span>
-              <div className="w-full h-16 sm:h-20 bg-gradient-to-t from-[#DFB743]/25 to-[#DFB743]/15 rounded-t-xl mt-2 flex items-center justify-center border-t-2 border-[#DFB743]">
-                <span className="text-xs font-black text-[#DFB743] uppercase tracking-wider">
+              <div className="w-full h-16 sm:h-20 bg-gradient-to-t from-[var(--color-accent)]/25 to-[var(--color-accent)]/15 rounded-t-xl mt-2 flex items-center justify-center border-t-2 border-[var(--color-accent)]">
+                <span className="text-xs font-black text-[var(--color-accent)] uppercase tracking-wider">
                   QUÁN QUÂN
                 </span>
               </div>
@@ -142,12 +142,12 @@ export default function VoteLeaderboard({
               type="button"
               onClick={() => onSelectDestination(top3)}
               className={`group flex flex-col items-center text-center p-2 rounded-2xl transition-all cursor-pointer ${selectedDestinationId === top3.id
-                  ? "bg-white/15 ring-2 ring-[#E05A36]"
-                  : "hover:bg-white/10"
+                  ? "bg-[var(--color-surface-tint)] ring-2 ring-[var(--color-accent)]"
+                  : "hover:bg-[var(--color-surface-tint)]"
                 }`}
             >
               <div className="relative mb-2">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-[#CD7F32] shadow-md group-hover:scale-105 transition-transform bg-[#0A2620]">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-[var(--color-accent)] shadow-md group-hover:scale-105 transition-transform bg-[var(--color-surface-tint)]">
                   <img
                     src={top3.thumbnail || `/images/destinations/${top3.id}.webp`}
                     alt={top3.name}
@@ -157,21 +157,21 @@ export default function VoteLeaderboard({
                     }}
                   />
                 </div>
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#CD7F32] text-white text-xs font-black flex items-center justify-center shadow">
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs font-black flex items-center justify-center shadow">
                   3
                 </span>
               </div>
-              <strong className="text-xs sm:text-sm text-white line-clamp-1 group-hover:text-[#DFB743] transition-colors">
+              <strong className="text-xs sm:text-sm text-[var(--color-text)] line-clamp-1 group-hover:text-[var(--color-primary)] transition-colors">
                 {top3.name}
               </strong>
-              <small className="text-[11px] text-[#A6C0B7] block truncate max-w-full">
+              <small className="text-[11px] text-[var(--color-text-muted)] block truncate max-w-full">
                 {top3.province}
               </small>
-              <span className="text-xs font-bold text-[#E05A36] mt-1">
+              <span className="text-xs font-bold text-[var(--color-accent)] mt-1">
                 {top3.votes}
               </span>
-              <div className="w-full h-8 sm:h-10 bg-white/10 rounded-t-lg mt-2 flex items-center justify-center border-t border-white/20">
-                <span className="text-[11px] font-bold text-[#CD7F32]">Đồng</span>
+              <div className="w-full h-8 sm:h-10 bg-[var(--color-surface-tint)] rounded-t-lg mt-2 flex items-center justify-center border-t border-[var(--color-border)]">
+                <span className="text-[11px] font-bold text-[var(--color-accent)]">Đồng</span>
               </div>
             </button>
           )}
@@ -179,8 +179,8 @@ export default function VoteLeaderboard({
       </div>
 
       {/* RANKS 4 TO 10 (COMPACT LIST WITH PROGRESS BARS) */}
-      <div className="space-y-2 border-t border-white/10 pt-4">
-        <span className="text-[11px] font-semibold text-[#A6C0B7] uppercase tracking-wider block mb-2">
+      <div className="space-y-2 border-t border-[var(--color-border)] pt-4">
+        <span className="text-[11px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider block mb-2">
           VỊ TRÍ 04 ĐẾN 10
         </span>
         {rest.map((item, idx) => {
@@ -194,12 +194,12 @@ export default function VoteLeaderboard({
               type="button"
               onClick={() => onSelectDestination(item)}
               className={`w-full text-left p-2.5 rounded-xl transition-all flex items-center gap-3 cursor-pointer group ${isSelected
-                  ? "bg-white/20 ring-1 ring-[#E05A36]"
-                  : "hover:bg-white/10"
+                  ? "bg-[var(--color-surface-tint)] ring-1 ring-[var(--color-accent)]"
+                  : "hover:bg-[var(--color-surface-tint)]"
                 }`}
             >
               {/* Rank number */}
-              <span className="w-6 text-center font-bold text-xs text-[#A6C0B7]">
+              <span className="w-6 text-center font-bold text-xs text-[var(--color-text-muted)]">
                 #{rank}
               </span>
 
@@ -218,21 +218,21 @@ export default function VoteLeaderboard({
               {/* Info + Progress Bar */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs sm:text-sm font-semibold text-white truncate group-hover:text-[#DFB743] transition-colors">
+                  <span className="text-xs sm:text-sm font-semibold text-[var(--color-text)] truncate group-hover:text-[var(--color-primary)] transition-colors">
                     {item.name}
                   </span>
-                  <span className="text-xs font-bold text-[#E05A36] tabular-nums">
+                  <span className="text-xs font-bold text-[var(--color-accent)] tabular-nums">
                     {item.votes}
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-[11px] text-[#A6C0B7] mb-1">
+                <div className="flex items-center justify-between text-[11px] text-[var(--color-text-muted)] mb-1">
                   <span className="truncate">{item.province}</span>
                   <span>{percent}%</span>
                 </div>
                 {/* Progress bar */}
-                <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                <div className="w-full h-1.5 bg-[var(--color-surface-tint)] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#DFB743] to-[#E05A36] rounded-full transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)] rounded-full transition-all duration-500"
                     style={{ width: `${percent}%` }}
                   />
                 </div>
@@ -242,7 +242,7 @@ export default function VoteLeaderboard({
         })}
       </div>
 
-      <div className="pt-2 text-center text-[11px] text-[#A6C0B7] border-t border-white/10">
+      <div className="pt-2 text-center text-[11px] text-[var(--color-text-muted)] border-t border-[var(--color-border)]">
         Cập nhật tự động sau mỗi lượt bình chọn hợp lệ
       </div>
     </aside>

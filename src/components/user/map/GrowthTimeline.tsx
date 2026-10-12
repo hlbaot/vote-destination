@@ -46,16 +46,16 @@ export default function GrowthTimeline({ snapshots, onDateChange, disabled = fal
   const currentDate = snapshots[currentIdx]?.date ?? ""
 
   return (
-    <div className={`bg-[#F4EFE6]/90 backdrop-blur-sm border-t border-[#E0D5C5] px-4 py-3 flex items-center gap-4 ${disabled ? "opacity-50" : ""}`}>
+    <div className={`bg-[var(--color-surface-tint)]/90 backdrop-blur-sm border-t border-[var(--color-border)] px-4 py-3 flex items-center gap-4 ${disabled ? "opacity-50" : ""}`}>
       {disabled && (
-        <div className="flex-shrink-0 text-xs text-[#556963] italic bg-[#EBE6DC] px-3 py-1 rounded-full border border-[#E0D5C5]">
+        <div className="flex-shrink-0 text-xs text-[var(--color-text-muted)] italic bg-[var(--color-surface-tint)] px-3 py-1 rounded-full border border-[var(--color-border)]">
           ⏸ Cần dữ liệu theo ngày (mock)
         </div>
       )}
 
       {!disabled && (
         <>
-          <button onClick={handlePlay} className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-[#0F3D34] text-white rounded-full hover:bg-[#1A5C4A] transition-colors" aria-label={isPlaying ? "Dừng" : "Phát"}>
+          <button onClick={handlePlay} className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-full hover:bg-[var(--color-primary-hover)] transition-colors duration-200" aria-label={isPlaying ? "Dừng" : "Phát"}>
             {isPlaying ? (
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
             ) : (
@@ -63,17 +63,17 @@ export default function GrowthTimeline({ snapshots, onDateChange, disabled = fal
             )}
           </button>
 
-          <button onClick={handleReset} className="flex-shrink-0 text-[#556963] hover:text-[#0F3D34] transition-colors text-xs font-medium">
+          <button onClick={handleReset} className="flex-shrink-0 text-[var(--color-text-muted)] hover:text-[var(--color-primary-dark)] transition-colors text-xs font-medium">
             Nay
           </button>
 
           <div className="flex-1 flex items-center gap-3">
             <input type="range" min={0} max={snapshots.length - 1} value={currentIdx}
               onChange={handleSlider}
-              className="flex-1 h-1.5 rounded-full accent-[#0F3D34] cursor-pointer" />
+              className="flex-1 h-1.5 rounded-full accent-[var(--color-primary-dark)] cursor-pointer" />
           </div>
 
-          <span className="flex-shrink-0 text-xs font-mono text-[#0F3D34] font-semibold min-w-[80px] text-right">
+          <span className="flex-shrink-0 text-xs font-mono text-[var(--color-primary-dark)] font-semibold min-w-[80px] text-right">
             {currentDate ? new Date(currentDate).toLocaleDateString("vi-VN", { day:"2-digit", month:"2-digit" }) : ""}
           </span>
         </>

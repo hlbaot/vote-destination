@@ -58,21 +58,21 @@ export default function VoteGuideModal({
       onClick={onClose}
     >
       <div
-        className="w-full sm:max-w-2xl max-h-[90vh] sm:max-h-[85vh] bg-[#F7F3EB] text-[#1E2927] rounded-t-3xl sm:rounded-3xl border border-[#E5DDD0] shadow-2xl flex flex-col overflow-hidden animate-slideUp"
+        className="w-full sm:max-w-2xl max-h-[90vh] sm:max-h-[85vh] bg-[var(--color-bg)] text-[var(--color-text)] rounded-t-3xl sm:rounded-3xl border border-[var(--color-border)] shadow-2xl flex flex-col overflow-hidden animate-slideUp"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="relative px-6 py-5 bg-[#0F3D34] text-[#FAF7F0] border-b border-[#1E574B]">
+        <div className="relative px-6 py-5 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white border-b border-[var(--color-border)]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-white/10 text-[#E05A36] border border-white/10">
+              <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-white/10 text-[var(--color-accent)] border border-white/10">
                 <Icon name="shield" size={18} />
               </span>
               <div>
                 <h3 id="vote-guide-title" className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-white">
                   Thể lệ & Hướng dẫn
                 </h3>
-                <p className="text-xs sm:text-sm text-[#D1E0DB] mt-0.5">
+                <p className="text-xs sm:text-sm text-white/90 mt-0.5">
                   Quy chế bình chọn 68 điểm đến du lịch nông thôn 2026
                 </p>
               </div>
@@ -93,8 +93,8 @@ export default function VoteGuideModal({
               type="button"
               className={`flex-1 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
                 activeTab === "rules"
-                  ? "bg-[#E05A36] text-white shadow-sm font-semibold"
-                  : "text-[#D1E0DB] hover:text-white"
+                  ? "bg-[var(--color-accent)] text-white shadow-sm font-semibold"
+                  : "text-white/85 hover:text-white"
               }`}
               onClick={() => setActiveTab("rules")}
             >
@@ -104,8 +104,8 @@ export default function VoteGuideModal({
               type="button"
               className={`flex-1 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
                 activeTab === "guide"
-                  ? "bg-[#E05A36] text-white shadow-sm font-semibold"
-                  : "text-[#D1E0DB] hover:text-white"
+                  ? "bg-[var(--color-accent)] text-white shadow-sm font-semibold"
+                  : "text-white/85 hover:text-white"
               }`}
               onClick={() => setActiveTab("guide")}
             >
@@ -119,11 +119,11 @@ export default function VoteGuideModal({
           {activeTab === "rules" ? (
             <div className="space-y-3">
               <div className="p-3.5 bg-[#EAE2D3] rounded-2xl border border-[#DFD6C5] flex items-center gap-3">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#0F3D34] text-white flex items-center justify-center">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center">
                   <Icon name="clock" size={16} />
                 </span>
                 <div className="text-xs sm:text-sm">
-                  <span className="font-semibold text-[#0F3D34]">Hạn mức bình chọn: </span>
+                  <span className="font-semibold text-[var(--color-primary-dark)]">Hạn mức bình chọn: </span>
                   <span className="text-[#3A4A45]">Tối đa <strong>{voteConfig.limitPerDay} lượt</strong> mỗi ngày cho mỗi số điện thoại.</span>
                 </div>
               </div>
@@ -132,12 +132,12 @@ export default function VoteGuideModal({
                 {voteConfig.rules.map((rule, idx) => (
                   <div
                     key={idx}
-                    className="p-3.5 bg-[#FBF9F4] rounded-2xl border border-[#E7DFD0] flex items-start gap-3 hover:border-[#D9CFBE] transition-colors"
+                    className="p-3.5 bg-[var(--color-bg)] rounded-2xl border border-[#E7DFD0] flex items-start gap-3 hover:border-[#D9CFBE] transition-colors"
                   >
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#0F3D34]/10 text-[#0F3D34] text-xs font-bold flex items-center justify-center mt-0.5">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary-dark)] text-xs font-bold flex items-center justify-center mt-0.5">
                       {idx + 1}
                     </span>
-                    <p className="text-xs sm:text-sm text-[#2C3E38] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[var(--color-text)] leading-relaxed">
                       {rule}
                     </p>
                   </div>
@@ -145,24 +145,24 @@ export default function VoteGuideModal({
               </div>
             </div>
           ) : (
-            <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-3 sm:before:left-4 before:top-3 before:bottom-3 before:w-0.5 before:bg-[#0F3D34]/20">
+            <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-3 sm:before:left-4 before:top-3 before:bottom-3 before:w-0.5 before:bg-[var(--color-primary)]/20">
               {voteConfig.guide.map((stepText, idx) => {
                 const stepIcons = ["search", "eye", "spark", "check"]
                 return (
                   <div key={idx} className="relative flex items-start gap-4">
-                    <span className="absolute -left-6 sm:-left-8 top-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#0F3D34] text-white text-xs font-bold flex items-center justify-center shadow-md border-2 border-[#F7F3EB]">
+                    <span className="absolute -left-6 sm:-left-8 top-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[var(--color-primary)] text-white text-xs font-bold flex items-center justify-center shadow-md border-2 border-[var(--color-bg)]">
                       {idx + 1}
                     </span>
-                    <div className="bg-[#FBF9F4] p-4 rounded-2xl border border-[#E7DFD0] flex-1">
+                    <div className="bg-[var(--color-bg)] p-4 rounded-2xl border border-[#E7DFD0] flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[#E05A36]">
+                        <span className="text-[var(--color-accent)]">
                           <Icon name={(stepIcons[idx] as any) || "spark"} size={14} />
                         </span>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-[#0F3D34]">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-[var(--color-primary-dark)]">
                           Bước 0{idx + 1}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-sm text-[#2C3E38] leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[var(--color-text)] leading-relaxed">
                         {stepText}
                       </p>
                     </div>
@@ -176,13 +176,13 @@ export default function VoteGuideModal({
         {/* Footer */}
         <div className="px-6 py-4 bg-[#EFE9DD] border-t border-[#DFD6C5] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#52645E]">
           <div className="flex items-center gap-2 text-center sm:text-left">
-            <Icon name="lock" size={14} className="text-[#0F3D34]" />
+            <Icon name="lock" size={14} className="text-[var(--color-primary-dark)]" />
             <span>Mỗi phiếu bầu hợp lệ được cấp mã biên nhận kiểm toán thời gian thực.</span>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="w-full sm:w-auto px-5 py-2 bg-[#0F3D34] hover:bg-[#154E43] text-white font-medium rounded-xl transition-colors text-xs sm:text-sm"
+            className="w-full sm:w-auto px-5 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white font-medium rounded-xl transition-colors duration-200 text-xs sm:text-sm"
           >
             Đã hiểu, quay lại bình chọn
           </button>

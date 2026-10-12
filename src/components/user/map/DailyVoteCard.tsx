@@ -16,15 +16,15 @@ interface Props {
 function LeafIcon({ used, isBonus }: { used: boolean; isBonus: boolean }) {
   if (isBonus) {
     return (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill={used ? "#E05A36" : "none"}
-        stroke={used ? "#E05A36" : "#C8B89A"} strokeWidth="1.8">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill={used ? "var(--color-accent)" : "none"}
+        stroke={used ? "var(--color-accent)" : "var(--color-border)"} strokeWidth="1.8">
         <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.167.751c.585.085.819.805.395 1.217l-3.738 3.644a2.12 2.12 0 0 0-.611 1.879l.882 5.14c.1.583-.513 1.028-1.036.753l-4.62-2.43a2.125 2.125 0 0 0-1.974 0l-4.62 2.43c-.523.275-1.136-.17-1.036-.753l.882-5.14a2.12 2.12 0 0 0-.61-1.879L1.058 10.09c-.423-.412-.19-1.132.395-1.217l5.166-.75a2.123 2.123 0 0 0 1.596-1.161l2.31-4.679Z"/>
       </svg>
     )
   }
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill={used ? "#2E7D32" : "none"}
-      stroke={used ? "#2E7D32" : "#C8B89A"} strokeWidth="1.8">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill={used ? "var(--color-primary)" : "none"}
+      stroke={used ? "var(--color-primary)" : "var(--color-border)"} strokeWidth="1.8">
       <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
       <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
     </svg>
@@ -46,10 +46,10 @@ export default function DailyVoteCard({ status, onDoQuiz, onLogin }: Props) {
 
   if (!isLoggedIn) {
     return (
-      <div className="bg-white/70 rounded-2xl border border-[#E0D5C5] p-4 text-center">
+      <div className="bg-white/70 rounded-2xl border border-[var(--color-border)] p-4 text-center">
         <div className="text-3xl mb-2">🌿</div>
-        <p className="text-sm text-[#556963] mb-3">Đăng nhập để tham gia bình chọn và theo dõi lượt của bạn</p>
-        <button onClick={onLogin} className="bg-[#0F3D34] text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-[#1A5C4A] transition-colors">
+        <p className="text-sm text-[var(--color-text-muted)] mb-3">Đăng nhập để tham gia bình chọn và theo dõi lượt của bạn</p>
+        <button onClick={onLogin} className="bg-[var(--color-primary)] text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-[var(--color-primary-hover)] transition-colors duration-200">
           Đăng nhập ngay
         </button>
       </div>
@@ -57,11 +57,11 @@ export default function DailyVoteCard({ status, onDoQuiz, onLogin }: Props) {
   }
 
   return (
-    <div className="bg-white/70 backdrop-blur-sm rounded-2xl border border-[#E0D5C5] p-4 space-y-3">
+    <div className="bg-white/70 backdrop-blur-sm rounded-2xl border border-[var(--color-border)] p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold text-[#0F3D34] text-sm">Vote hôm nay</h3>
-        <span className="text-xs text-[#556963] bg-[#E8F5E4] px-2 py-0.5 rounded-full">
-          Còn <span className="font-bold text-[#2E7D32]">{remaining}</span>/{totalQuota}
+        <h3 className="font-semibold text-[var(--color-primary-dark)] text-sm">Vote hôm nay</h3>
+        <span className="text-xs text-[var(--color-text-muted)] bg-[var(--color-surface-tint)] px-2 py-0.5 rounded-full">
+          Còn <span className="font-bold text-[var(--color-primary)]">{remaining}</span>/{totalQuota}
         </span>
       </div>
 
@@ -75,17 +75,17 @@ export default function DailyVoteCard({ status, onDoQuiz, onLogin }: Props) {
           </div>
         ))}
         {/* Separator between base and bonus */}
-        <div className="h-6 w-px bg-[#E0D5C5] mx-0.5" />
-        <span className="text-[10px] text-[#556963] leading-tight">
+        <div className="h-6 w-px bg-[var(--color-border)] mx-0.5" />
+        <span className="text-[10px] text-[var(--color-text-muted)] leading-tight">
           +{bonusQuota} thưởng
         </span>
       </div>
 
-      <p className="text-[11px] text-[#556963]">Làm mới lúc 00:00 (giờ Việt Nam)</p>
+      <p className="text-[11px] text-[var(--color-text-muted)]">Làm mới lúc 00:00 (giờ Việt Nam)</p>
 
       {/* Quiz bonus CTA */}
       {allUsed ? (
-        <div className="text-center text-xs text-[#556963] bg-[#F4EFE6] rounded-xl py-2.5 border border-[#E0D5C5]">
+        <div className="text-center text-xs text-[var(--color-text-muted)] bg-[var(--color-surface-tint)] rounded-xl py-2.5 border border-[var(--color-border)]">
           🌙 Hẹn bạn vào ngày mai!
         </div>
       ) : allBonusClaimed ? (
@@ -97,7 +97,7 @@ export default function DailyVoteCard({ status, onDoQuiz, onLogin }: Props) {
         </div>
       ) : (
         <button onClick={onDoQuiz}
-          className="w-full flex items-center justify-between bg-gradient-to-r from-[#0F3D34] to-[#1A5C4A] hover:from-[#1A5C4A] hover:to-[#2E7D32] text-white text-xs font-semibold px-3 py-2.5 rounded-xl transition-all duration-200 group">
+          className="w-full flex items-center justify-between bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] hover:from-[var(--color-primary-hover)] hover:to-[var(--color-primary)] text-white text-xs font-semibold px-3 py-2.5 rounded-xl transition-all duration-200 group">
           <span className="flex items-center gap-2">
             <span className="text-base">🎯</span>
             Làm nhiệm vụ nhận thêm vote

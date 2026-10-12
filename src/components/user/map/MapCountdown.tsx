@@ -25,18 +25,18 @@ export default function MapCountdown() {
   }, [])
 
   if (timeLeft.ended) return (
-    <span className="text-xs font-semibold text-[#E05A36]">Đã kết thúc</span>
+    <span className="text-xs font-semibold text-[var(--color-accent)]">Đã kết thúc</span>
   )
 
   return (
     <div className="flex items-center gap-1 text-xs font-mono">
-      <span className="text-[#556963] mr-1 text-[10px]">Kết thúc:</span>
-      {timeLeft.days > 0 && <><span className="font-bold text-[#0F3D34]">{timeLeft.days}</span><span className="text-[#8B9E8A]">d</span></>}
-      <span className="font-bold text-[#0F3D34]">{pad(timeLeft.hours)}</span>
-      <span className="text-[#8B9E8A]">:</span>
-      <span className="font-bold text-[#0F3D34]">{pad(timeLeft.mins)}</span>
-      <span className="text-[#8B9E8A]">:</span>
-      <span className={`font-bold ${timeLeft.secs % 2 === 0 ? "text-[#0F3D34]" : "text-[#2E7D32]"}`}>{pad(timeLeft.secs)}</span>
+      <span className="text-[var(--color-text-muted)] mr-1 text-[10px]">Kết thúc:</span>
+      {timeLeft.days > 0 && <><span className="font-bold text-[var(--color-primary-dark)]">{timeLeft.days}</span><span className="text-[var(--color-text-muted)]">d</span></>}
+      <span className="font-bold text-[var(--color-primary-dark)]">{pad(timeLeft.hours)}</span>
+      <span className="text-[var(--color-text-muted)]">:</span>
+      <span className="font-bold text-[var(--color-primary-dark)]">{pad(timeLeft.mins)}</span>
+      <span className="text-[var(--color-text-muted)]">:</span>
+      <span className={`font-bold ${timeLeft.secs % 2 === 0 ? "text-[var(--color-primary-dark)]" : "text-[var(--color-primary)]"}`}>{pad(timeLeft.secs)}</span>
     </div>
   )
 }

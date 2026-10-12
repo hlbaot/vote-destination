@@ -10,11 +10,11 @@ import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useSta
 import * as d3Zoom from "d3-zoom"
 import * as d3Selection from "d3-selection"
 import "d3-transition"
-import { scaleThreshold } from "d3-scale"
 import { vietnamSvgPaths } from "@/data/map/vietnamSvgPaths"
 import TreeIcon from "./TreeIcon"
 import type { MapDestinationNode, ProvinceMapData } from "@/lib/api/mapService"
 import { MAP_CONFIG } from "@/lib/api/mapService"
+import { VIEWBOX, islandGroups, project } from "@/lib/map/geo"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -38,14 +38,9 @@ interface Props {
   timelineVotes?: Record<string, number>
 }
 
-// ─── Province color scale ─────────────────────────────────────────────────────
-const provinceColorScale = scaleThreshold<number, string>()
-  .domain([...MAP_CONFIG.colorThresholds])
-  .range(["#E8EDE8", "#B8CEAC", "#7BAD69", "#4A8A3F", "#1E6130"])
-
 // ─── Map viewBox ──────────────────────────────────────────────────────────────
-const VIEWBOX_W = 650
-const VIEWBOX_H = 900
+const VIEWBOX_W = VIEWBOX.width
+const VIEWBOX_H = VIEWBOX.height
 const ZOOM_MIN = 1
 const ZOOM_MAX = 10
 const PAN_ENABLE_ZOOM = 1.08
@@ -116,6 +111,14 @@ function stageName(stage: 0 | 1 | 2 | 3) {
   return ["Mầm", "Cây non", "Cây lớn", "Nở hoa"][stage]
 }
 
+function provinceRankColor(province?: ProvinceMapData) {
+  if (!province || province.totalVotes <= 0) return MAP_CONFIG.provinceRankColors.empty
+  if (province.rank <= 5) return MAP_CONFIG.provinceRankColors.top5
+  if (province.rank <= 15) return MAP_CONFIG.provinceRankColors.top15
+  if (province.rank <= 25) return MAP_CONFIG.provinceRankColors.top25
+  return MAP_CONFIG.provinceRankColors.rest
+}
+
 export default function VietnamGrowthMap({
   destinations, provinces, selectedId, onSelectDestination, onDeselectAll,
   filterRegion, searchQuery, timelineVotes,
@@ -129,8 +132,14 @@ export default function VietnamGrowthMap({
   const containerRef = useRef<HTMLDivElement>(null)
   const [hoveredProvinceId, setHoveredProvinceId] = useState<string | null>(null)
   const [hoverDestination, setHoverDestination] = useState<HoverDestinationPreview | null>(null)
+  const [isDebugMode, setIsDebugMode] = useState(false)
 
   const isLevel2 = transform.k >= MAP_CONFIG.semanticZoomThreshold
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    setIsDebugMode(new URLSearchParams(window.location.search).get("debug") === "1")
+  }, [])
 
   // Province vote lookup by name
   const provinceMap = useMemo(() => {
@@ -291,46 +300,51 @@ export default function VietnamGrowthMap({
   const gTransform = `translate(${transform.x},${transform.y}) scale(${transform.k})`
 
   return (
-    <div ref={containerRef} className="relative w-full h-full bg-gradient-to-b from-[#E8F5E4] to-[#D4EBC8] rounded-2xl overflow-hidden select-none">
+    <div ref={containerRef} className="relative w-full h-full bg-gradient-to-br from-[#F4FBF0] to-[#E3F4FB] rounded-2xl overflow-hidden select-none">
       {/* Map controls */}
       <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5">
         {/* Level toggle */}
-        <div className="flex rounded-xl overflow-hidden shadow-md border border-[#C8DBC0]">
+        <div className="flex rounded-xl overflow-hidden shadow-md border border-[var(--color-border)]">
           <button onClick={handleForceLevel1}
-            className={`px-3 py-1.5 text-xs font-semibold transition-colors ${!isLevel2 ? "bg-[#0F3D34] text-white" : "bg-white/80 text-[#0F3D34] hover:bg-[#E8F5E4]"}`}
+            className={`px-3 py-1.5 text-xs font-semibold transition-colors duration-200 ${!isLevel2 ? "bg-[var(--color-primary)] text-white" : "bg-white/80 text-[var(--color-primary-dark)] hover:bg-[var(--color-surface-tint)]"}`}
             title="Xem theo tỉnh/thành">Tỉnh</button>
           <button onClick={handleForceLevel2}
-            className={`px-3 py-1.5 text-xs font-semibold transition-colors ${isLevel2 ? "bg-[#0F3D34] text-white" : "bg-white/80 text-[#0F3D34] hover:bg-[#E8F5E4]"}`}
+            className={`px-3 py-1.5 text-xs font-semibold transition-colors duration-200 ${isLevel2 ? "bg-[var(--color-primary)] text-white" : "bg-white/80 text-[var(--color-primary-dark)] hover:bg-[var(--color-surface-tint)]"}`}
             title="Xem theo cây điểm đến">Cây</button>
         </div>
         {/* Zoom buttons */}
-        <div className="flex flex-col rounded-xl overflow-hidden shadow-md border border-[#C8DBC0]">
-          <button onClick={handleZoomIn} className="bg-white/90 hover:bg-[#E8F5E4] text-[#0F3D34] p-2 text-sm font-bold leading-none transition-colors" title="Phóng to">+</button>
-          <div className="h-px bg-[#C8DBC0]" />
-          <button onClick={handleZoomOut} className="bg-white/90 hover:bg-[#E8F5E4] text-[#0F3D34] p-2 text-sm font-bold leading-none transition-colors" title="Thu nhỏ">−</button>
+        <div className="flex flex-col rounded-xl overflow-hidden shadow-md border border-[var(--color-border)]">
+          <button onClick={handleZoomIn} className="bg-white/90 hover:bg-[var(--color-surface-tint)] text-[var(--color-primary-dark)] p-2 text-sm font-bold leading-none transition-colors" title="Phóng to">+</button>
+          <div className="h-px bg-[var(--color-border)]" />
+          <button onClick={handleZoomOut} className="bg-white/90 hover:bg-[var(--color-surface-tint)] text-[var(--color-primary-dark)] p-2 text-sm font-bold leading-none transition-colors" title="Thu nhỏ">−</button>
         </div>
-        <button onClick={handleReset} className="bg-white/90 hover:bg-[#E8F5E4] text-[#0F3D34] rounded-xl shadow-md border border-[#C8DBC0] p-2 text-xs font-medium transition-colors" title="Đặt lại">↺</button>
-        <button onClick={handleFullscreen} className="bg-white/90 hover:bg-[#E8F5E4] text-[#0F3D34] rounded-xl shadow-md border border-[#C8DBC0] p-2 text-xs transition-colors" title="Toàn màn hình">
+        <button onClick={handleReset} className="bg-white/90 hover:bg-[var(--color-surface-tint)] text-[var(--color-primary-dark)] rounded-xl shadow-md border border-[var(--color-border)] p-2 text-xs font-medium transition-colors" title="Đặt lại">↺</button>
+        <button onClick={handleFullscreen} className="bg-white/90 hover:bg-[var(--color-surface-tint)] text-[var(--color-primary-dark)] rounded-xl shadow-md border border-[var(--color-border)] p-2 text-xs transition-colors" title="Toàn màn hình">
           {isFullscreen ? "⊡" : "⊞"}
         </button>
       </div>
 
       {/* Legend */}
-      <div className="absolute bottom-3 left-3 z-20 bg-white/85 backdrop-blur-sm rounded-xl px-3 py-2 shadow-md border border-[#C8DBC0] text-xs text-[#2D5016]">
+      <div className="absolute bottom-3 left-3 z-20 bg-white/85 backdrop-blur-sm rounded-xl px-3 py-2 shadow-md border border-[var(--color-border)] text-xs text-[var(--color-primary-dark)]">
         <div className="font-semibold mb-1.5 text-[11px] uppercase tracking-wide">Chú giải</div>
         <div className="flex items-center gap-1.5 mb-1">
           <div className="flex gap-0.5">
-            {["#E8EDE8","#B8CEAC","#7BAD69","#4A8A3F","#1E6130"].map((c,i) => (
+            {[
+              MAP_CONFIG.provinceRankColors.rest,
+              MAP_CONFIG.provinceRankColors.top25,
+              MAP_CONFIG.provinceRankColors.top15,
+              MAP_CONFIG.provinceRankColors.top5,
+            ].map((c,i) => (
               <div key={i} style={{background:c}} className="w-4 h-3 rounded-sm" />
             ))}
           </div>
-          <span className="text-[10px] text-[#556963]">Ít → Nhiều phiếu</span>
+          <span className="text-[10px] text-[var(--color-text-muted)]">Hạng thấp → Top 1-5</span>
         </div>
         {isLevel2 && (
           <div className="flex items-center gap-2 flex-wrap mt-1">
             {["Mầm","Cây non","Cây lớn","Nở hoa"].map((label, i) => (
               <div key={i} className="flex items-center gap-1">
-                <div className="w-2 h-2 rounded-full" style={{background:["#B8CEAC","#7BAD69","#4A8A3F","#2E8B28"][i]}} />
+                <div className="w-2 h-2 rounded-full" style={{background:["var(--color-map-rank-top25)","var(--color-secondary)","var(--color-primary)","var(--color-primary-hover)"][i]}} />
                 <span className="text-[10px]">{label}</span>
               </div>
             ))}
@@ -350,8 +364,7 @@ export default function VietnamGrowthMap({
               const displayName = displayProvinceName(path.name)
               const pData = provinceMap[normName(displayName)]
               const voteCount = pData?.totalVotes ?? 0
-              const rankScore = pData ? Math.max(0, 35 - pData.rank) * 1000 : 0
-              const fillColor = voteCount > 0 ? provinceColorScale(rankScore) : "#D0D8CC"
+              const fillColor = provinceRankColor(pData)
               const isFiltered = filterRegion !== "all"
               const dim = isFiltered && (() => {
                 return pData && pData.region !== filterRegion
@@ -382,9 +395,9 @@ export default function VietnamGrowthMap({
                 textAnchor="middle"
                 fontSize={p.rank <= 10 ? 9 : 7}
                 fontWeight={p.rank <= 10 ? 700 : 600}
-                fill="#163D34"
+                fill="var(--color-primary-dark)"
                 paintOrder="stroke"
-                stroke="#F8F3E8"
+                stroke="var(--color-bg)"
                 strokeWidth={3 / transform.k}
                 style={{ pointerEvents: "none" }}
               >
@@ -393,12 +406,19 @@ export default function VietnamGrowthMap({
             ))}
 
             <g aria-label="Quần đảo Hoàng Sa và Trường Sa thuộc Việt Nam" style={{ pointerEvents: "none" }}>
-              <rect x={520} y={330} width={104} height={118} rx={12} fill="#F7FBF0" opacity={0.72} stroke="#83AA77" strokeDasharray="3 3" strokeWidth={0.8 / transform.k} />
-              <circle cx={556} cy={366} r={3.2} fill="#2E7D32" />
-              <circle cx={586} cy={414} r={3.2} fill="#2E7D32" />
-              <text x={572} y={349} textAnchor="middle" fontSize={8} fontWeight={700} fill="#0F3D34">Việt Nam</text>
-              <text x={556} y={379} textAnchor="middle" fontSize={6.5} fill="#0F3D34">QĐ. Hoàng Sa</text>
-              <text x={586} y={427} textAnchor="middle" fontSize={6.5} fill="#0F3D34">QĐ. Trường Sa</text>
+              {islandGroups.map((group) => {
+                const [labelX, labelY] = project(group.labelAt[0], group.labelAt[1])
+                return (
+                  <g key={group.id}>
+                    {group.points.map(([lng, lat], index) => {
+                      const [x, y] = project(lng, lat)
+                      return <circle key={`${group.id}-${index}`} cx={x} cy={y} r={2.2 / transform.k} fill="var(--color-primary)" stroke="var(--color-bg)" strokeWidth={0.8 / transform.k} />
+                    })}
+                    <text x={labelX} y={labelY} textAnchor="middle" fontSize={8 / transform.k} fontWeight={800} fill="var(--color-primary-dark)" paintOrder="stroke" stroke="var(--color-bg)" strokeWidth={2.4 / transform.k}>{group.label}</text>
+                    <text x={labelX} y={labelY + 10 / transform.k} textAnchor="middle" fontSize={6.5 / transform.k} fontWeight={700} fill="var(--color-primary-dark)" paintOrder="stroke" stroke="var(--color-bg)" strokeWidth={2 / transform.k}>{group.sublabel}</text>
+                  </g>
+                )
+              })}
             </g>
           </g>
 
@@ -412,10 +432,11 @@ export default function VietnamGrowthMap({
                 const isDimmed = selectedId !== null && !isSelected
                 const isHovered = hoverDestination?.node.id === node.id
                 const tSize = [18, 24, 30, 38][stageCur]
+                const markerScale = 1 / transform.k
                 return (
                   <g
                     key={node.id}
-                    transform={`translate(${node.mapX - tSize/2}, ${node.mapY - tSize * 0.75})`}
+                    transform={`translate(${node.mapX}, ${node.mapY}) scale(${markerScale}) translate(${-tSize / 2}, ${-tSize * 1.18})`}
                     style={{
                       cursor: "pointer",
                       transformBox: "fill-box",
@@ -439,7 +460,7 @@ export default function VietnamGrowthMap({
                     {/* Vote count label — only for high-vote trees */}
                     {votes >= MAP_CONFIG.treeStageThresholds[2] && !isDimmed && transform.k >= 2.8 && (
                       <text x={tSize/2} y={tSize + 6} textAnchor="middle"
-                        fontSize={7 / transform.k * 10} fill="#0F3D34" fontWeight="600"
+                        fontSize={11} fill="var(--color-primary-dark)" fontWeight="600"
                         style={{ pointerEvents: "none" }}>
                         {votes >= 1000 ? `${(votes/1000).toFixed(1)}K` : votes}
                       </text>
@@ -449,13 +470,28 @@ export default function VietnamGrowthMap({
               })}
             </g>
           )}
+          {isDebugMode && (
+            <g aria-label="Debug destination coordinates" pointerEvents="none">
+              {filteredDests.map((node) => (
+                <circle
+                  key={`debug-${node.id}`}
+                  cx={node.mapX}
+                  cy={node.mapY}
+                  r={3 / transform.k}
+                  fill="#E10000"
+                  stroke="#FFFFFF"
+                  strokeWidth={1 / transform.k}
+                />
+              ))}
+            </g>
+          )}
         </g>
       </svg>
 
       {/* Tooltip */}
       {tooltip && !isLevel2 && (
         <div
-          className="absolute z-30 bg-[#0F3D34] text-white text-xs rounded-lg px-3 py-2 pointer-events-none shadow-xl whitespace-pre"
+          className="absolute z-30 bg-[var(--color-primary)] text-white text-xs rounded-lg px-3 py-2 pointer-events-none shadow-xl whitespace-pre"
           style={{ left: tooltip.x + 12, top: tooltip.y - 10, maxWidth: 180 }}>
           {tooltip.content}
         </div>
@@ -464,7 +500,7 @@ export default function VietnamGrowthMap({
       {/* Destination hover preview */}
       {hoverDestination && isLevel2 && (
         <div
-          className="absolute z-40 w-[248px] overflow-hidden rounded-2xl border border-[#D8CBB6] bg-[#FFF9EE]/95 text-[#1E2927] shadow-2xl backdrop-blur-md pointer-events-none"
+          className="absolute z-40 w-[248px] overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/95 text-[var(--color-text)] shadow-2xl backdrop-blur-md pointer-events-none"
           style={{
             left: hoverDestination.x,
             top: hoverDestination.y,
@@ -474,7 +510,7 @@ export default function VietnamGrowthMap({
           aria-live="polite"
         >
           <div className="flex gap-3 p-2.5">
-            <div className="relative h-[88px] w-[92px] flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-[#CFE8C8] to-[#4A8A3F]">
+            <div className="relative h-[88px] w-[92px] flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-[var(--color-surface-tint)] to-[var(--color-primary)]">
               {hoverDestination.node.thumbnail ? (
                 <img
                   src={hoverDestination.node.thumbnail}
@@ -493,24 +529,24 @@ export default function VietnamGrowthMap({
             </div>
             <div className="min-w-0 flex-1 py-0.5">
               <div className="mb-1 flex items-center gap-1.5">
-                <span className="rounded-full bg-[#E05A36]/10 px-2 py-0.5 text-[10px] font-bold text-[#B94727]">
+                <span className="rounded-full bg-[var(--color-accent)]/15 px-2 py-0.5 text-[10px] font-bold text-[var(--color-primary-dark)]">
                   {hoverDestination.node.tag}
                 </span>
-                <span className="text-[10px] font-semibold text-[#4A8A3F]">
+                <span className="text-[10px] font-semibold text-[var(--color-primary)]">
                   {stageName(hoverDestination.stage)}
                 </span>
               </div>
-              <div className="truncate font-serif text-base font-bold leading-tight text-[#0F3D34]">
+              <div className="truncate font-serif text-base font-bold leading-tight text-[var(--color-primary-dark)]">
                 {hoverDestination.node.name}
               </div>
-              <div className="mt-0.5 truncate text-xs text-[#556963]">
+              <div className="mt-0.5 truncate text-xs text-[var(--color-text-muted)]">
                 {hoverDestination.node.province} · {hoverDestination.node.category}
               </div>
               <div className="mt-2 flex items-baseline gap-1">
-                <span className="text-lg font-black text-[#0F3D34]">
+                <span className="text-lg font-black text-[var(--color-primary-dark)]">
                   {hoverDestination.votes.toLocaleString("vi-VN")}
                 </span>
-                <span className="text-[11px] text-[#556963]">phiếu</span>
+                <span className="text-[11px] text-[var(--color-text-muted)]">phiếu</span>
               </div>
             </div>
           </div>
@@ -518,10 +554,10 @@ export default function VietnamGrowthMap({
       )}
 
       {/* Zoom level badge */}
-      <div className="absolute top-3 right-3 z-10 bg-white/70 backdrop-blur-sm rounded-lg px-2 py-1 text-[10px] text-[#556963] font-mono border border-[#C8DBC0]">
+      <div className="absolute top-3 right-3 z-10 bg-white/70 backdrop-blur-sm rounded-lg px-2 py-1 text-[10px] text-[var(--color-text-muted)] font-mono border border-[var(--color-border)]">
         {transform.k.toFixed(1)}×
       </div>
-      <div className="absolute bottom-3 right-3 z-10 max-w-[210px] rounded-xl border border-[#C8DBC0] bg-[#FFF8E8]/90 px-3 py-2 text-[10px] leading-snug text-[#556963] shadow-sm">
+      <div className="absolute bottom-3 right-3 z-10 max-w-[210px] rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)]/90 px-3 py-2 text-[10px] leading-snug text-[var(--color-text-muted)] shadow-sm">
         Vị trí cây/đảo đang dùng dữ liệu mock tối ưu giao diện; cần duyệt GIS trước khi nối backend chính thức.
       </div>
       <style>{`

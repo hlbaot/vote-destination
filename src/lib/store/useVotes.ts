@@ -14,6 +14,7 @@ import {
   TREE_STAGE_NAMES,
   DAILY_VOTE_LIMIT,
 } from "@/config/vote"
+import { authService } from "@/lib/auth/authService"
 
 export interface VoteStoreState {
   votesByDestination: Record<string, number>
@@ -38,14 +39,15 @@ export interface VoteStoreState {
     destinationName?: string,
     onStageUpgrade?: (destName: string, stageName: string) => void
   ) => Promise<{ success: boolean; error?: string; upgradedStage?: string }>
-  refreshFromStorage: () => void
+  refreshFromStorage: (userId?: string) => void
   claimQuizBonus: (bonus: number) => void
 }
 
 function getInitialState() {
   const currentVotes = typeof window !== "undefined" ? getVotes() : {}
+  const authUser = typeof window !== "undefined" ? authService.getSession() : null
   const status = typeof window !== "undefined"
-    ? getDailyVoteStatus()
+    ? getDailyVoteStatus(authUser?.id)
     : {
         baseQuota: DAILY_VOTE_LIMIT,
         bonusQuota: 0,
@@ -53,7 +55,7 @@ function getInitialState() {
         votedDestinations: [],
         quizTriesLeft: 3,
         quizBonusClaimed: false,
-        isLoggedIn: true,
+        isLoggedIn: Boolean(authUser),
       }
   const total = status.baseQuota + status.bonusQuota
   const remaining = Math.max(0, total - status.usedToday)
@@ -78,10 +80,12 @@ function getInitialState() {
 export const useVotesStore = create<VoteStoreState>((set, get) => ({
   ...getInitialState(),
 
-  refreshFromStorage: () => {
+  refreshFromStorage: (userId?: string) => {
     if (typeof window === "undefined") return
+    const authUser = authService.getSession()
+    const activeUserId = userId || authUser?.id
     const currentVotes = getVotes()
-    const status = getDailyVoteStatus()
+    const status = getDailyVoteStatus(activeUserId)
     const total = status.baseQuota + status.bonusQuota
     const remaining = Math.max(0, total - status.usedToday)
 
@@ -93,19 +97,28 @@ export const useVotesStore = create<VoteStoreState>((set, get) => ({
       votedToday: status.votedDestinations,
       quizTriesLeft: status.quizTriesLeft,
       quizBonusClaimed: status.quizBonusClaimed,
-      isLoggedIn: status.isLoggedIn,
+      isLoggedIn: Boolean(authUser),
       remainingToday: remaining,
       totalQuota: total,
       voteStatus: status,
     })
   },
 
-  claimQuizBonus: (bonus: number) => {
+  claimQuizBonus: () => {
     get().refreshFromStorage()
   },
 
   castVote: async (destinationId, destinationName, onStageUpgrade) => {
     const state = get()
+
+    // 0. Check authentication at store level
+    const authUser = authService.getSession()
+    if (!authUser) {
+      return { success: false, error: "Vui lòng đăng nhập để bình chọn." }
+    }
+    if (authUser.role === "admin") {
+      return { success: false, error: "Tài khoản quản trị viên không thể tham gia bình chọn." }
+    }
 
     // 1. Anti double-click lock
     if (state.isSubmittingVote[destinationId]) {
@@ -163,7 +176,7 @@ export const useVotesStore = create<VoteStoreState>((set, get) => ({
     try {
       // Small natural delay so spinner is visible and smooth
       await new Promise((r) => setTimeout(r, 200))
-      const res = serviceCastVote(destinationId)
+      const res = serviceCastVote(destinationId, authUser.id)
 
       if (!res.success) {
         // Rollback on service rejection
@@ -243,7 +256,12 @@ export function useVotes() {
   useEffect(() => {
     store.refreshFromStorage()
     const handleStorage = (e: StorageEvent) => {
-      if (!e.key || e.key === "map_daily_vote_v1" || e.key === "dest_votes_override_v1") {
+      if (
+        !e.key ||
+        e.key.startsWith("map_daily_vote_") ||
+        e.key === "vote_auth_session_v2" ||
+        e.key === "dest_votes_override_v1"
+      ) {
         store.refreshFromStorage()
       }
     }
@@ -253,3 +271,4 @@ export function useVotes() {
 
   return store
 }
+

@@ -6,6 +6,7 @@ import { Destination } from "@/types"
 import Icon from "@/components/shared/Icon"
 import { useVotes } from "@/lib/store/useVotes"
 import { useAppContext } from "@/context/AppContext"
+import { useAuth } from "@/context/AuthContext"
 
 export default function DestinationCard({
   item,
@@ -23,6 +24,7 @@ export default function DestinationCard({
   maxVotes?: number
 }) {
   const { addToast, handleRecordVote } = useAppContext()
+  const { user, status, openAuthPromptModal } = useAuth()
   const {
     votesByDestination,
     remainingToday,
@@ -61,12 +63,40 @@ export default function DestinationCard({
     onToggleFavorite(item.id, event)
   }
 
+  const doExecuteVote = async () => {
+    const res = await castVote(item.id, item.name, (destName, stageName) => {
+      addToast("success", `Cây ${destName} đã lên giai đoạn ${stageName}! 🎉`)
+    })
+
+    if (res.success) {
+      setShowPlusOne(true)
+      setShowBurst(true)
+      setTimeout(() => setShowPlusOne(false), 850)
+      setTimeout(() => setShowBurst(false), 800)
+
+      handleRecordVote(item.id, "explore-card", `EXP-${Date.now()}`)
+      addToast("success", `Đã bình chọn ${item.name}! 🌿`)
+    } else {
+      addToast("warning", res.error || "Không thể thực hiện bình chọn.")
+    }
+  }
+
   // Xử lý nút Bình chọn trực tiếp
   const handleVoteClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
     event.preventDefault()
 
     if (isClosed || isSubmitting) return
+
+    if (user?.role === "admin") {
+      addToast("warning", "Quản trị viên không tham gia bình chọn.")
+      return
+    }
+
+    if (status !== "authenticated") {
+      openAuthPromptModal(undefined, doExecuteVote)
+      return
+    }
 
     if (hasVotedToday) {
       addToast("info", `Bạn đã bình chọn cho ${item.name} hôm nay rồi.`)
@@ -81,23 +111,9 @@ export default function DestinationCard({
       return
     }
 
-    const res = await castVote(item.id, item.name, (destName, stageName) => {
-      addToast("success", `Cây ${destName} đã lên giai đoạn ${stageName}! 🎉`)
-    })
-
-    if (res.success) {
-      // Kích hoạt animation nhẹ
-      setShowPlusOne(true)
-      setShowBurst(true)
-      setTimeout(() => setShowPlusOne(false), 850)
-      setTimeout(() => setShowBurst(false), 800)
-
-      handleRecordVote(item.id, "explore-card", `EXP-${Date.now()}`)
-      addToast("success", `Đã bình chọn ${item.name}! 🌿`)
-    } else {
-      addToast("warning", res.error || "Không thể thực hiện bình chọn.")
-    }
+    await doExecuteVote()
   }
+
 
   return (
     <article className="destination-card">

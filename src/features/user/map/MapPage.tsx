@@ -13,6 +13,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import Link from "next/link"
 import { useAppContext } from "@/context/AppContext"
+import { useAuth } from "@/context/AuthContext"
 import MapFilterBar from "@/components/user/map/MapFilterBar"
 import DailyVoteCard from "@/components/user/map/DailyVoteCard"
 import LeaderboardPanel from "@/components/user/map/LeaderboardPanel"
@@ -123,7 +124,19 @@ export default function MapPage() {
     return () => clearInterval(id)
   }, [mapNodes, refreshFromStorage])
 
+  const { user, status: authStatus, openAuthPromptModal } = useAuth()
+
   const handleVote = useCallback(async (destId: string) => {
+    if (user?.role === "admin") {
+      pushToast("Quản trị viên không tham gia bình chọn.", "error")
+      return
+    }
+
+    if (authStatus !== "authenticated") {
+      openAuthPromptModal("/vote", () => handleVote(destId))
+      return
+    }
+
     const dest = destinations.find(d => d.id === destId)
     const result = await castVote(destId, dest?.name)
     if (!result.success) {
@@ -137,7 +150,8 @@ export default function MapPage() {
     }
     setFlashIds(new Set([destId]))
     setTimeout(() => setFlashIds(new Set()), 1500)
-  }, [destinations, castVote, handleRecordVote])
+  }, [destinations, castVote, handleRecordVote, user, authStatus, openAuthPromptModal])
+
 
   const handleShare = (id: string) => {
     const dest = destinations.find(d => d.id === id)

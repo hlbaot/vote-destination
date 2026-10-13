@@ -1,4 +1,4 @@
-export type Page = "home" | "explore" | "detail" | "vote" | "cms" | "guide"
+export type Page = "home" | "explore" | "detail" | "vote" | "cms" | "guide" | "profile"
 
 export interface ToastMessage {
   id: string

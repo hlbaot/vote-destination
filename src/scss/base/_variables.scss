@@ -63,6 +63,15 @@
   --line: var(--color-border);
   --shadow: var(--shadow-brand);
   --shadow-lg: 0 24px 60px rgba(46, 158, 63, 0.16);
+
+  /* Header Dimension Token */
+  --header-height: 80px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
 }
 
 * {

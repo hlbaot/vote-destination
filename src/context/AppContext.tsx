@@ -19,6 +19,7 @@ import {
 import { initialDestinations, refreshDestinationImages } from "@/data/destinations"
 import { initialVoteRecords } from "@/data/mock/mockVotes"
 import { initialAdminAccounts } from "@/data/mock/mockAdminAccounts"
+import { useAuth } from "@/context/AuthContext"
 
 interface AppContextType {
   destinations: Destination[]
@@ -125,6 +126,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return initialVoteRecords
   })
 
+  const { user, openAuthPromptModal, loginAdmin, logout } = useAuth()
+
   // Admin accounts mock data
   const [adminAccounts, setAdminAccounts] = useState<AdminAccount[]>(() => {
     if (typeof window !== "undefined") {
@@ -138,18 +141,28 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return initialAdminAccounts
   })
 
-  // Current logged in admin session
-  const [currentAdmin, setCurrentAdmin] = useState<AdminAccount | null>(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const saved = localStorage.getItem("dest_vote_admin_session_v1")
-        if (saved) return JSON.parse(saved)
-      } catch (e) {
-        console.error(e)
-      }
+  // Current logged in admin session derived from auth
+  const currentAdmin = React.useMemo<AdminAccount | null>(() => {
+    if (user?.role === "admin") {
+      return (
+        adminAccounts[0] || {
+          id: user.id,
+          username: "admin",
+          email: user.email,
+          passwordDemo: "admin@2025",
+          fullName: user.name,
+          role: "admin",
+          roleTitle: "Quản Trị Viên",
+          department: "Ban Quản Trị Cổng Bình Chọn",
+          avatar: user.avatarUrl,
+          status: "active",
+          lastLogin: "Vừa xong",
+          permissions: ["Toàn quyền quản trị hệ thống"],
+        }
+      )
     }
     return null
-  })
+  }, [user, adminAccounts])
 
   // Toast notifications
   const [toasts, setToasts] = useState<ToastMessage[]>([])
@@ -190,22 +203,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }, [adminAccounts])
 
-  // Persist admin session
-  useEffect(() => {
-    try {
-      if (currentAdmin) {
-        localStorage.setItem(
-          "dest_vote_admin_session_v1",
-          JSON.stringify(currentAdmin),
-        )
-      } else {
-        localStorage.removeItem("dest_vote_admin_session_v1")
-      }
-    } catch (e) {
-      console.error(e)
-    }
-  }, [currentAdmin])
-
   // Toast helper
   const addToast = useCallback((type: ToastMessage["type"], text: string) => {
     const id = Date.now().toString() + Math.random().toString(36).slice(2, 5)
@@ -237,16 +234,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
   )
 
   // Admin login / logout handlers
-  const handleLoginAdmin = (account: AdminAccount) => {
-    setCurrentAdmin(account)
-    addToast(
-      "success",
-      `Chào mừng ${account.fullName} (${account.roleTitle}) đã đăng nhập vào hệ thống quản trị!`,
-    )
+  const handleLoginAdmin = async (account: AdminAccount) => {
+    try {
+      await loginAdmin(account.username || account.email, account.passwordDemo)
+      addToast(
+        "success",
+        `Chào mừng ${account.fullName} (${account.roleTitle}) đã đăng nhập vào hệ thống quản trị!`,
+      )
+    } catch (err: any) {
+      addToast("warning", err?.message || "Đăng nhập thất bại.")
+    }
   }
 
   const handleLogoutAdmin = () => {
-    setCurrentAdmin(null)
+    logout()
     addToast("info", "Đã đăng xuất khỏi tài khoản quản trị.")
   }
 
@@ -275,6 +276,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // Toggle favorite
   const handleToggleFavorite = (id: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation()
+
+    if (!user) {
+      openAuthPromptModal({
+        reason: "lưu điểm đến yêu thích",
+        onPendingAction: () => handleToggleFavorite(id),
+      })
+      return
+    }
+
     const dest = destinations.find((d) => d.id === id)
     const destName = dest ? dest.name : "Điểm đến"
     if (favorites.includes(id)) {

@@ -176,17 +176,8 @@ export default function AdminLogin({
 
             <div className="mock-accounts-list">
               {adminAccounts.map((account) => {
-                const isSuper = account.role === "superadmin"
-                const isMod = account.role === "moderator"
-                const isEditor = account.role === "editor"
+                const roleColorClass = "role-super"
 
-                const roleColorClass = isSuper
-                  ? "role-super"
-                  : isMod
-                    ? "role-mod"
-                    : isEditor
-                      ? "role-editor"
-                      : "role-operator"
 
                 return (
                   <div

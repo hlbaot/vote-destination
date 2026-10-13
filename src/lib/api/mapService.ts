@@ -108,26 +108,41 @@ export function validateMapDestinationsDev(destinations: Destination[]) {
   warnedMissingGeoJson = true
 }
 
-const DAILY_KEY = "map_daily_vote_v1"
 interface Store { date:string; used:number; bonus:number; votedIds:string[]; quizTries:number; quizBonusClaimed:boolean }
 
-function loadStore(): Store {
+function getDailyKey(userId?: string): string {
+  if (userId) return `map_daily_vote_${userId}_v2`
+  if (typeof window !== "undefined") {
+    try {
+      const sess = localStorage.getItem("vote_auth_session_v2")
+      if (sess) {
+        const u = JSON.parse(sess)
+        if (u?.id) return `map_daily_vote_${u.id}_v2`
+      }
+    } catch {}
+  }
+  return "map_daily_vote_guest_v2"
+}
+
+function loadStore(userId?: string): Store {
+  const key = getDailyKey(userId)
   if (typeof window === "undefined") return { date: "", used: 0, bonus: 0, votedIds: [], quizTries: 0, quizBonusClaimed: false }
   const today = getVietnamDateString()
   try {
-    const r = localStorage.getItem(DAILY_KEY)
+    const r = localStorage.getItem(key)
     if (r) {
       const p = JSON.parse(r)
       if (p.date === today) return p
     }
   } catch {}
   const fresh = { date: today, used: 0, bonus: 0, votedIds: [], quizTries: 0, quizBonusClaimed: false }
-  saveStore(fresh)
+  saveStore(fresh, userId)
   return fresh
 }
 
-function saveStore(s: Store) {
-  if (typeof window !== "undefined") localStorage.setItem(DAILY_KEY, JSON.stringify(s))
+function saveStore(s: Store, userId?: string) {
+  const key = getDailyKey(userId)
+  if (typeof window !== "undefined") localStorage.setItem(key, JSON.stringify(s))
 }
 
 export function getMapDestinations(destinations: Destination[], votesOverride?: Record<string, number>): MapDestinationNode[] {
@@ -181,15 +196,37 @@ export function getProvinceMapData(destinations: Destination[], votesOverride?: 
   }))
 }
 
-export function getDailyVoteStatus(): DailyVoteStatus {
-  const s = loadStore()
+export function getDailyVoteStatus(userId?: string): DailyVoteStatus {
+  let isLoggedIn = Boolean(userId)
+  if (!isLoggedIn && typeof window !== "undefined") {
+    try {
+      const sess = localStorage.getItem("vote_auth_session_v2")
+      isLoggedIn = Boolean(sess)
+    } catch {}
+  }
+  const s = loadStore(userId)
   return { baseQuota:voteConfig.limitPerDay, bonusQuota:s.bonus, usedToday:s.used,
     votedDestinations:s.votedIds, quizTriesLeft:MAP_CONFIG.quizMaxTriesPerDay-s.quizTries,
-    quizBonusClaimed:s.quizBonusClaimed, isLoggedIn:true }
+    quizBonusClaimed:s.quizBonusClaimed, isLoggedIn }
 }
 
-export function castVote(destinationId: string): { success:boolean; error?:string; updatedVotes?:number } {
-  const s = loadStore()
+export function castVote(destinationId: string, userId?: string): { success:boolean; error?:string; updatedVotes?:number } {
+  let currentUserId = userId
+  if (!currentUserId && typeof window !== "undefined") {
+    try {
+      const sess = localStorage.getItem("vote_auth_session_v2")
+      if (sess) {
+        const u = JSON.parse(sess)
+        currentUserId = u?.id
+      }
+    } catch {}
+  }
+
+  if (!currentUserId) {
+    return { success: false, error: "Vui lòng đăng nhập để bình chọn." }
+  }
+
+  const s = loadStore(currentUserId)
   const max = voteConfig.limitPerDay + s.bonus
   if (s.used >= max) {
     return { success:false, error:"Bạn đã dùng hết lượt bình chọn hôm nay. Làm mới lúc 00:00 (giờ Việt Nam)." }
@@ -215,7 +252,7 @@ export function castVote(destinationId: string): { success:boolean; error?:strin
 
   s.used += 1
   s.votedIds = [...s.votedIds, destinationId]
-  saveStore(s)
+  saveStore(s, currentUserId)
   return { success:true, updatedVotes }
 }
 

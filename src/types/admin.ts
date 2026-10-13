@@ -1,6 +1,6 @@
 export type PortalType = "public" | "admin"
 
-export type AdminRole = "superadmin" | "moderator" | "editor" | "operator"
+export type AdminRole = "admin"
 
 export interface AdminAccount {
   id: string

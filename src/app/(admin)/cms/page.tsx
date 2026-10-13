@@ -1,7 +1,6 @@
 "use client"
 
 import CMS from "@/features/admin/cms"
-import AdminLogin from "@/components/admin/AdminLogin"
 import { useAppContext } from "@/context/AppContext"
 
 export default function CMSPage() {
@@ -22,22 +21,27 @@ export default function CMSPage() {
     navigate,
   } = useAppContext()
 
-  if (!currentAdmin) {
-    return (
-      <AdminLogin
-        adminAccounts={adminAccounts}
-        onLoginSuccess={handleLoginAdmin}
-        go={navigate}
-      />
-    )
-  }
+  const fallbackAdmin = currentAdmin || (adminAccounts[0] || {
+    id: "admin-1",
+    fullName: "Quản trị viên Hệ thống",
+    username: "admin",
+    email: "admin@destination.vn",
+    role: "admin" as const,
+    roleTitle: "Quản trị viên",
+    department: "Ban Tổ Chức",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
+    lastLogin: "Vừa xong",
+    status: "active" as const,
+    passwordDemo: "admin@2025",
+  })
+
 
   return (
     <CMS
       destinations={destinations}
       voteRecords={voteRecords}
       adminAccounts={adminAccounts}
-      currentAdmin={currentAdmin}
+      currentAdmin={fallbackAdmin}
       onSwitchAdmin={handleLoginAdmin}
       onLogout={handleLogoutAdmin}
       onAddAdminAccount={handleAddAdminAccount}

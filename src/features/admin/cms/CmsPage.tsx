@@ -58,9 +58,9 @@ export default function CMS({
   const [newAdminName, setNewAdminName] = useState("")
   const [newAdminEmail, setNewAdminEmail] = useState("")
   const [newAdminUser, setNewAdminUser] = useState("")
-  const [newAdminPassword, setNewAdminPassword] = useState("pass@2025")
-  const [newAdminRole, setNewAdminRole] = useState<AdminRole>("moderator")
-  const [newAdminDept, setNewAdminDept] = useState("Tổ Kiểm Tra & Đối Soát")
+  const [newAdminPassword, setNewAdminPassword] = useState("admin@2025")
+  const [newAdminRole, setNewAdminRole] = useState<AdminRole>("admin")
+  const [newAdminDept, setNewAdminDept] = useState("Ban Tổ Chức")
 
   // Compute stats
   const totalVotesCount = destinations.reduce((acc, d) => acc + d.rawVotes, 0)
@@ -83,26 +83,16 @@ export default function CMS({
     if (!newAdminName.trim() || !newAdminEmail.trim()) return
 
     const roleTitleMap: Record<AdminRole, string> = {
-      superadmin: "Tổng Quản Trị Cấp Cao",
-      moderator: "Kiểm Duyệt Viên Phiếu Bầu",
-      editor: "Biên Tập Viên Di Sản",
-      operator: "Kỹ Sư An Toàn Hệ Thống",
+      admin: "Quản trị viên",
     }
 
     const defaultPerms: Record<AdminRole, string[]> = {
-      superadmin: [
+      admin: [
         "Toàn quyền quản trị hệ thống",
         "Quản lý điểm đến",
         "Kiểm toán phiếu",
         "Cài đặt",
       ],
-      moderator: [
-        "Kiểm toán phiếu bầu",
-        "Kiểm tra bot OTP",
-        "Xuất báo cáo CSV",
-      ],
-      editor: ["Thêm & sửa điểm đến", "Tải ảnh danh thắng", "Biên tập lời dẫn"],
-      operator: ["Cấu hình tường lửa", "Giám sát máy chủ", "Khôi phục dữ liệu"],
     }
 
     const newAccount: AdminAccount = {
@@ -537,14 +527,7 @@ export default function CMS({
                 const isCurrent = acc.id === currentAdmin.id
                 const isLocked = acc.status === "locked"
 
-                const roleBadgeClass =
-                  acc.role === "superadmin"
-                    ? "badge-super"
-                    : acc.role === "moderator"
-                      ? "badge-mod"
-                      : acc.role === "editor"
-                        ? "badge-editor"
-                        : "badge-operator"
+                const roleBadgeClass = "badge-super"
 
                 return (
                   <div
@@ -630,7 +613,7 @@ export default function CMS({
                         className={`btn-toggle-lock ${isLocked ? "unlock" : "lock"
                           }`}
                         onClick={() => onToggleAdminStatus(acc.id)}
-                        disabled={acc.role === "superadmin"}
+                        disabled={isCurrent}
                         title={
                           isLocked ? "Mở khóa tài khoản" : "Khóa tài khoản"
                         }
@@ -862,10 +845,7 @@ export default function CMS({
                       setNewAdminRole(e.target.value as AdminRole)
                     }
                   >
-                    <option value="moderator">Kiểm Duyệt Viên Phiếu Bầu</option>
-                    <option value="editor">Biên Tập Viên Di Sản</option>
-                    <option value="operator">Kỹ Sư An Toàn Hệ Thống</option>
-                    <option value="superadmin">Tổng Quản Trị Cấp Cao</option>
+                    <option value="admin">Quản trị viên</option>
                   </select>
                 </div>
                 <div className="form-group">

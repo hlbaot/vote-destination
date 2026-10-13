@@ -1,7 +1,15 @@
 import { geoMercator, type GeoProjection } from "d3-geo"
 import type { FeatureCollection, MultiPoint } from "geojson"
 
-export const VIEWBOX = { width: 650, height: 900, pad: 28 } as const
+export const VIEWBOX = {
+  x: 220,
+  y: 15,
+  width: 670,
+  height: 975,
+  pad: 28,
+  projWidth: 650,
+  projHeight: 900,
+} as const
 
 const fitPoints: [number, number][] = [
   [102.14, 22.4],
@@ -29,7 +37,7 @@ const fitCollection: FeatureCollection<MultiPoint> = {
 export const mapProjection: GeoProjection = geoMercator().fitExtent(
   [
     [VIEWBOX.pad, VIEWBOX.pad],
-    [VIEWBOX.width - VIEWBOX.pad, VIEWBOX.height - VIEWBOX.pad],
+    [VIEWBOX.projWidth - VIEWBOX.pad, VIEWBOX.projHeight - VIEWBOX.pad],
   ],
   fitCollection,
 )

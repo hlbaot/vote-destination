@@ -31,14 +31,19 @@ interface Props {
   destinations: MapDestinationNode[]
   provinces: ProvinceMapData[]
   selectedId: string | null
+  hoveredId?: string | null
   onSelectDestination: (id: string) => void
   onDeselectAll: () => void
+  onHoverDestination?: (id: string | null) => void
   filterRegion: "all" | "Bắc" | "Trung" | "Tây Nguyên" | "Nam"
   searchQuery: string
   timelineVotes?: Record<string, number>
 }
 
 // ─── Map viewBox ──────────────────────────────────────────────────────────────
+// Fully framed to display all 63/64 provinces, Đất Mũi Cà Mau, and offshore archipelagos (Hoàng Sa, Trường Sa)
+const VIEWBOX_X = VIEWBOX.x
+const VIEWBOX_Y = VIEWBOX.y
 const VIEWBOX_W = VIEWBOX.width
 const VIEWBOX_H = VIEWBOX.height
 const ZOOM_MIN = 1
@@ -120,8 +125,8 @@ function provinceRankColor(province?: ProvinceMapData) {
 }
 
 export default function VietnamGrowthMap({
-  destinations, provinces, selectedId, onSelectDestination, onDeselectAll,
-  filterRegion, searchQuery, timelineVotes,
+  destinations, provinces, selectedId, hoveredId, onSelectDestination, onDeselectAll,
+  onHoverDestination, filterRegion, searchQuery, timelineVotes,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
   const gRef = useRef<SVGGElement>(null)
@@ -130,12 +135,28 @@ export default function VietnamGrowthMap({
   const [tooltip, setTooltip] = useState<{ x: number; y: number; content: string } | null>(null)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 })
   const [hoveredProvinceId, setHoveredProvinceId] = useState<string | null>(null)
   const [hoverDestination, setHoverDestination] = useState<HoverDestinationPreview | null>(null)
   const [isDebugMode, setIsDebugMode] = useState(false)
   const [provinceLabelPositions, setProvinceLabelPositions] = useState<Record<string, { x: number; y: number }>>({})
 
   const isLevel2 = transform.k >= MAP_CONFIG.semanticZoomThreshold
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect
+        if (width > 0 && height > 0) {
+          setDimensions({ width: Math.round(width), height: Math.round(height) })
+        }
+      }
+    })
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   useEffect(() => {
     if (typeof window === "undefined") return
@@ -206,7 +227,7 @@ export default function VietnamGrowthMap({
     if (!svgRef.current) return
     const zoom = d3Zoom.zoom<SVGSVGElement, unknown>()
       .scaleExtent([ZOOM_MIN, ZOOM_MAX])
-      .translateExtent([[0, 0], [VIEWBOX_W, VIEWBOX_H]])
+      .translateExtent([[VIEWBOX_X - VIEWBOX_W * 0.5, VIEWBOX_Y - VIEWBOX_H * 0.5], [VIEWBOX_X + VIEWBOX_W * 1.5, VIEWBOX_Y + VIEWBOX_H * 1.5]])
       .filter((event: Event) => {
         if (event.type === "wheel" || event.type === "dblclick") return true
         if (event.type === "mousedown" || event.type === "touchstart") {
@@ -264,10 +285,11 @@ export default function VietnamGrowthMap({
   // Zoom to a specific destination
   const zoomToDestination = useCallback((node: MapDestinationNode) => {
     if (!svgRef.current || !zoomBehaviorRef.current || !containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
     const k = 4
-    const x = rect.width / 2 - node.mapX * k
-    const y = rect.height / 2 - node.mapY * k
+    const cx = VIEWBOX_X + VIEWBOX_W / 2
+    const cy = VIEWBOX_Y + VIEWBOX_H / 2
+    const x = cx - node.mapX * k
+    const y = cy - node.mapY * k
     d3Selection.select(svgRef.current)
       .transition().duration(600)
       .call(zoomBehaviorRef.current.transform, d3Zoom.zoomIdentity.translate(x, y).scale(k))
@@ -336,7 +358,12 @@ export default function VietnamGrowthMap({
   const gTransform = `translate(${transform.x},${transform.y}) scale(${transform.k})`
 
   return (
-    <div ref={containerRef} className="relative w-full h-full bg-linear-to-br from-[#F4FBF0] to-[#E3F4FB] rounded-2xl overflow-hidden select-none">
+    <div
+      ref={containerRef}
+      className="relative w-full h-full bg-linear-to-br from-[#F4FBF0] to-[#E3F4FB] rounded-2xl overflow-hidden select-none"
+      style={{ overscrollBehavior: "contain" }}
+      onWheel={(e) => e.stopPropagation()}
+    >
       {/* Map controls */}
       <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5">
         {/* Level toggle */}
@@ -389,7 +416,7 @@ export default function VietnamGrowthMap({
       </div>
 
       {/* SVG */}
-      <svg ref={svgRef} width="100%" height="100%" viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`}
+      <svg ref={svgRef} width="100%" height="100%" viewBox={`${VIEWBOX_X} ${VIEWBOX_Y} ${VIEWBOX_W} ${VIEWBOX_H}`}
         preserveAspectRatio="xMidYMid meet"
         style={{ cursor: transform.k > PAN_ENABLE_ZOOM ? "grab" : "default", touchAction: transform.k > PAN_ENABLE_ZOOM ? "none" : "pan-y" }}
         onClick={() => { if (!selectedId) return; onDeselectAll() }}>
@@ -468,8 +495,8 @@ export default function VietnamGrowthMap({
                 const votes = effectiveVotes(node)
                 const stageCur = getStageFromVotes(votes)
                 const isSelected = selectedId === node.id
+                const isHovered = hoverDestination?.node.id === node.id || hoveredId === node.id
                 const isDimmed = selectedId !== null && !isSelected
-                const isHovered = hoverDestination?.node.id === node.id
                 const tSize = [18, 24, 30, 38][stageCur]
                 const markerScale = 1 / transform.k
                 return (
@@ -483,11 +510,23 @@ export default function VietnamGrowthMap({
                       transition: "filter 180ms ease, opacity 180ms ease",
                       filter: isHovered ? "drop-shadow(0 4px 8px rgba(15,61,52,0.28))" : undefined,
                     }}
-                    onMouseEnter={(e) => updateDestinationHover(node, e)}
+                    onMouseEnter={(e) => {
+                      updateDestinationHover(node, e)
+                      onHoverDestination?.(node.id)
+                    }}
                     onMouseMove={(e) => updateDestinationHover(node, e)}
-                    onMouseLeave={() => setHoverDestination((current) => current?.node.id === node.id ? null : current)}
-                    onFocus={() => updateDestinationFocus(node)}
-                    onBlur={() => setHoverDestination((current) => current?.node.id === node.id ? null : current)}
+                    onMouseLeave={() => {
+                      setHoverDestination((current) => current?.node.id === node.id ? null : current)
+                      onHoverDestination?.(null)
+                    }}
+                    onFocus={() => {
+                      updateDestinationFocus(node)
+                      onHoverDestination?.(node.id)
+                    }}
+                    onBlur={() => {
+                      setHoverDestination((current) => current?.node.id === node.id ? null : current)
+                      onHoverDestination?.(null)
+                    }}
                     onClick={(e) => { e.stopPropagation(); onSelectDestination(node.id) }}
                     role="button"
                     tabIndex={0}
@@ -596,9 +635,13 @@ export default function VietnamGrowthMap({
       <div className="absolute top-3 right-3 z-10 bg-white/70 backdrop-blur-sm rounded-lg px-2 py-1 text-[10px] text-(--color-text-muted) font-mono border border-(--color-border)">
         {transform.k.toFixed(1)}×
       </div>
-      <div className="absolute bottom-3 right-3 z-10 max-w-52.5 rounded-xl border border-(--color-border) bg-(--color-bg)/90 px-3 py-2 text-[10px] leading-snug text-(--color-text-muted) shadow-sm">
-        Vị trí cây/đảo đang dùng dữ liệu mock tối ưu giao diện; cần duyệt GIS trước khi nối backend chính thức.
-      </div>
+      {isDebugMode && (
+        <div className={`absolute bottom-3 right-3 z-10 max-w-52.5 rounded-xl border border-(--color-border) bg-(--color-bg)/90 px-3 py-2 text-[10px] leading-snug text-(--color-text-muted) shadow-sm transition-all duration-200 ${
+          dimensions.height > 0 && dimensions.height < 460 ? "hidden" : "block"
+        }`}>
+          Vị trí cây/đảo đang dùng dữ liệu mock tối ưu giao diện; cần duyệt GIS trước khi nối backend chính thức.
+        </div>
+      )}
       <style>{`
         @keyframes mapPreviewIn {
           from { opacity: 0; transform: translateY(4px) scale(0.98); }

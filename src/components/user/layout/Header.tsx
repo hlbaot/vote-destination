@@ -150,7 +150,7 @@ export default function Header({
             className="btn btn-secondary desktop-only admin-entry-btn"
             title="Đến hệ thống quản trị nội dung CMS"
           >
-            <Icon name="lock" size={14} /> Quản trị CMS
+            <Icon name="user" size={14} /> Đăng nhập
           </button>
 
           <button
@@ -183,7 +183,7 @@ export default function Header({
               className={`mobile-switch-btn ${page === "cms" ? "active" : ""}`}
               onClick={() => go("cms")}
             >
-              Hệ thống quản trị CMS
+              Đăng nhập
             </button>
           </div>
 

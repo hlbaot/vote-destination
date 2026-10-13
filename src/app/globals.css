@@ -4220,6 +4220,227 @@ h2 em {
   box-shadow: var(--shadow);
 }
 
+/* ============================================================
+   APP SHELL LAYOUT CHO /vote & /ban-do-binh-chon
+   ============================================================ */
+html:has(body.vote-page-body),
+body.vote-page-body {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden !important;
+  margin: 0;
+  padding: 0;
+}
+
+body.vote-page-body {
+  display: flex;
+  flex-direction: column;
+}
+body.vote-page-body .app-shell,
+body.vote-page-body .app-main-content {
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body.vote-page-body .site-footer {
+  display: none !important;
+}
+body.vote-page-body .site-header {
+  flex: 0 0 auto;
+  position: relative;
+  top: 0;
+}
+body.vote-page-body .site-header .header-inner {
+  height: 56px;
+  transition: height 0.2s ease;
+}
+body.vote-page-body .site-header .wander-logo-img {
+  height: 38px;
+  width: auto;
+}
+body.vote-page-body .site-header .wander-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+body.vote-page-body .site-header .wander-brand-name {
+  font-size: 13px;
+}
+body.vote-page-body .site-header .wander-brand-sub {
+  font-size: 9px;
+}
+body.vote-page-body .site-header .desktop-nav button {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+body.vote-page-body .vote-map-page {
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body.vote-page-body .vote-breadcrumb-bar {
+  flex: 0 0 auto;
+  padding: 6px 20px;
+}
+body.vote-page-body .vote-filter-bar {
+  flex: 0 0 auto;
+  padding: 6px 20px;
+}
+body.vote-page-body .vote-main-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  padding: 12px 16px;
+  gap: 16px;
+}
+body.vote-page-body .vote-map-card {
+  height: 100% !important;
+  min-height: 0 !important;
+}
+body.vote-page-body .vote-right-col {
+  height: 100% !important;
+  min-height: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+body.vote-page-body .vote-leaderboard-container {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body.vote-page-body {
+  /* Scrollbar cho danh sách xếp hạng */
+}
+body.vote-page-body .vote-leaderboard-list {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-border) 40%, #64748b) transparent;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+body.vote-page-body .vote-leaderboard-list::-webkit-scrollbar {
+  width: 6px;
+}
+body.vote-page-body .vote-leaderboard-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+body.vote-page-body .vote-leaderboard-list::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-border) 40%, #64748b);
+  border-radius: 9999px;
+}
+body.vote-page-body .vote-leaderboard-list::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+body.vote-page-body {
+  /* Desktop >=1200px: 2 cột, cột phải 360px */
+}
+@media (min-width: 1200px) {
+  body.vote-page-body .vote-main-content {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 360px !important;
+  }
+}
+body.vote-page-body {
+  /* Responsive 768px - 1199px: Cột phải 300px, giảm padding */
+}
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  body.vote-page-body .vote-breadcrumb-bar {
+    padding: 6px 14px;
+  }
+  body.vote-page-body .vote-filter-bar {
+    padding: 6px 14px;
+  }
+  body.vote-page-body .vote-main-content {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 300px !important;
+    padding: 10px 12px;
+    gap: 12px;
+  }
+}
+body.vote-page-body {
+  /* Màn hình thấp (max-height: 760px) */
+}
+@media (min-width: 768px) and (max-height: 760px) {
+  body.vote-page-body .site-header .header-inner {
+    height: 48px;
+  }
+  body.vote-page-body .site-header .wander-logo-img {
+    height: 32px;
+  }
+  body.vote-page-body .site-header .wander-brand-name {
+    font-size: 11px;
+  }
+  body.vote-page-body .site-header .wander-brand-sub {
+    font-size: 8px;
+  }
+  body.vote-page-body .site-header .desktop-nav button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  body.vote-page-body .vote-breadcrumb-bar {
+    padding: 4px 12px;
+  }
+  body.vote-page-body .vote-filter-bar {
+    padding: 4px 12px;
+  }
+  body.vote-page-body .vote-main-content {
+    padding: 8px 10px;
+    gap: 10px;
+  }
+  body.vote-page-body .vote-daily-card {
+    padding: 8px 10px;
+    height: 145px !important;
+    min-height: 140px !important;
+  }
+}
+body.vote-page-body {
+  /* Mobile (<768px): Cho phép scroll dọc bình thường */
+}
+@media (max-width: 767.98px) {
+  body.vote-page-body {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+  }
+  body.vote-page-body .app-shell,
+  body.vote-page-body .app-main-content,
+  body.vote-page-body .vote-map-page {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  body.vote-page-body .vote-main-content {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 12px !important;
+    gap: 16px !important;
+  }
+  body.vote-page-body .vote-map-card {
+    height: 60dvh !important;
+    min-height: 360px !important;
+  }
+  body.vote-page-body .vote-right-col {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  body.vote-page-body .vote-leaderboard-container {
+    height: 50dvh !important;
+    min-height: 300px !important;
+  }
+}
+
 .vote-page-v2 {
   padding: 50px 0 90px;
   background: var(--color-bg);

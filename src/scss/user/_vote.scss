@@ -827,3 +827,240 @@
   border-color: var(--deep);
   box-shadow: var(--shadow);
 }
+
+/* ============================================================
+   APP SHELL LAYOUT CHO /vote & /ban-do-binh-chon
+   ============================================================ */
+html:has(body.vote-page-body),
+body.vote-page-body {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden !important;
+  margin: 0;
+  padding: 0;
+}
+
+body.vote-page-body {
+  display: flex;
+  flex-direction: column;
+
+  .app-shell,
+  .app-main-content {
+    height: 100%;
+    min-height: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .site-footer {
+    display: none !important;
+  }
+
+  .site-header {
+    flex: 0 0 auto;
+    position: relative;
+    top: 0;
+
+    .header-inner {
+      height: 56px;
+      transition: height 0.2s ease;
+    }
+
+    .wander-logo-img {
+      height: 38px;
+      width: auto;
+    }
+
+    .wander-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wander-brand-name {
+      font-size: 13px;
+    }
+
+    .wander-brand-sub {
+      font-size: 9px;
+    }
+
+    .desktop-nav button {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+  }
+
+  .vote-map-page {
+    height: 100%;
+    min-height: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .vote-breadcrumb-bar {
+    flex: 0 0 auto;
+    padding: 6px 20px;
+  }
+
+  .vote-filter-bar {
+    flex: 0 0 auto;
+    padding: 6px 20px;
+  }
+
+  .vote-main-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+    padding: 12px 16px;
+    gap: 16px;
+  }
+
+  .vote-map-card {
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .vote-right-col {
+    height: 100% !important;
+    min-height: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+  }
+
+  .vote-leaderboard-container {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Scrollbar cho danh sách xếp hạng */
+  .vote-leaderboard-list {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--color-border) 40%, #64748b) transparent;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: color-mix(in srgb, var(--color-border) 40%, #64748b);
+      border-radius: 9999px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+  }
+
+  /* Desktop >=1200px: 2 cột, cột phải 360px */
+  @media (min-width: 1200px) {
+    .vote-main-content {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 360px !important;
+    }
+  }
+
+  /* Responsive 768px - 1199px: Cột phải 300px, giảm padding */
+  @media (min-width: 768px) and (max-width: 1199.98px) {
+    .vote-breadcrumb-bar {
+      padding: 6px 14px;
+    }
+    .vote-filter-bar {
+      padding: 6px 14px;
+    }
+    .vote-main-content {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 300px !important;
+      padding: 10px 12px;
+      gap: 12px;
+    }
+  }
+
+  /* Màn hình thấp (max-height: 760px) */
+  @media (min-width: 768px) and (max-height: 760px) {
+    .site-header .header-inner {
+      height: 48px;
+    }
+    .site-header .wander-logo-img {
+      height: 32px;
+    }
+    .site-header .wander-brand-name {
+      font-size: 11px;
+    }
+    .site-header .wander-brand-sub {
+      font-size: 8px;
+    }
+    .site-header .desktop-nav button {
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+    .vote-breadcrumb-bar {
+      padding: 4px 12px;
+    }
+    .vote-filter-bar {
+      padding: 4px 12px;
+    }
+    .vote-main-content {
+      padding: 8px 10px;
+      gap: 10px;
+    }
+    .vote-daily-card {
+      padding: 8px 10px;
+      height: 145px !important;
+      min-height: 140px !important;
+    }
+  }
+
+  /* Mobile (<768px): Cho phép scroll dọc bình thường */
+  @media (max-width: 767.98px) {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+
+    .app-shell,
+    .app-main-content,
+    .vote-map-page {
+      height: auto !important;
+      overflow: visible !important;
+    }
+
+    .vote-main-content {
+      display: flex !important;
+      flex-direction: column !important;
+      height: auto !important;
+      overflow: visible !important;
+      padding: 12px !important;
+      gap: 16px !important;
+    }
+
+    .vote-map-card {
+      height: 60dvh !important;
+      min-height: 360px !important;
+    }
+
+    .vote-right-col {
+      height: auto !important;
+      overflow: visible !important;
+    }
+
+    .vote-leaderboard-container {
+      height: 50dvh !important;
+      min-height: 300px !important;
+    }
+  }
+}
+

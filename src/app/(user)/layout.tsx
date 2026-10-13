@@ -13,7 +13,9 @@ export default function UserLayout({
         <Header />
       </Suspense>
       {children}
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </>
   )
 }

@@ -59,8 +59,9 @@ export default function MapPage() {
   const [filterRegion, setFilterRegion] = useState<FilterRegion>("all")
   const [searchQuery, setSearchQuery] = useState("")
 
-  // Map selection
+  // Map selection & hover
   const [selectedDestId, setSelectedDestId] = useState<string | null>(null)
+  const [hoveredDestId, setHoveredDestId] = useState<string | null>(null)
 
   // Timeline
   const [timelineSnapshots] = useState<TimelineSnapshot[]>(() => getMockTimeline(destinations))
@@ -73,6 +74,14 @@ export default function MapPage() {
   const [flashIds, setFlashIds] = useState<Set<string>>(new Set())
   const prevVotesRef = useRef<Record<string, number>>({})
 
+  // Body class for 100dvh app shell
+  useEffect(() => {
+    document.body.classList.add("vote-page-body")
+    return () => {
+      document.body.classList.remove("vote-page-body")
+    }
+  }, [])
+
   // Toasts
   const [toasts, setToasts] = useState<Toast[]>([])
   const pushToast = (message: string, type: Toast["type"] = "info") => {
@@ -83,7 +92,8 @@ export default function MapPage() {
 
   // Derived data using reactive votesByDestination from store
   const mapNodes = useMemo(() => getMapDestinations(destinations, votesByDestination), [destinations, votesByDestination])
-  const leaderboard = useMemo(() => getLeaderboard(destinations, 15, votesByDestination), [destinations, votesByDestination])
+  // All entries for complete scrollable list
+  const leaderboard = useMemo(() => getLeaderboard(destinations, destinations.length, votesByDestination), [destinations, votesByDestination])
   const provinceData = useMemo(() => getProvinceMapData(destinations, votesByDestination), [destinations, votesByDestination])
   const selectedNode = useMemo<MapDestinationNode | null>(() =>
     selectedDestId ? (mapNodes.find(n => n.id === selectedDestId) ?? null) : null
@@ -143,30 +153,30 @@ export default function MapPage() {
   )
 
   return (
-    <div className="min-h-screen bg-(--color-bg) flex flex-col">
-      {/* ─── Page Header ──────────────────────────────────────────── */}
-      <div className="bg-linear-to-r from-(--color-surface) to-[#F1FAEC] text-(--color-text) px-4 sm:px-6 py-3 flex items-center justify-between gap-3 flex-wrap border-b border-(--color-border) shadow-(--shadow-brand)">
-        <div className="flex items-center gap-3 min-w-0">
-          <Link href="/" className="text-(--color-primary) hover:text-(--color-primary-hover) transition-colors text-sm font-medium shrink-0">
+    <div className="vote-map-page flex-1 min-h-0 h-full w-full bg-(--color-bg) flex flex-col overflow-hidden">
+      {/* ─── Page Header / Breadcrumb Bar (flex: 0 0 auto) ──────────── */}
+      <div className="vote-breadcrumb-bar bg-linear-to-r from-(--color-surface) to-[#F1FAEC] text-(--color-text) px-3 sm:px-5 py-2 flex items-center justify-between gap-3 flex-wrap border-b border-(--color-border) shrink-0 shadow-xs">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <Link href="/" className="text-(--color-primary) hover:text-(--color-primary-hover) transition-colors text-xs sm:text-sm font-medium shrink-0">
             ← Trang chủ
           </Link>
-          <span className="text-(--color-primary) shrink-0">/</span>
-          <h1 className="font-serif text-(--color-primary-dark) font-bold text-sm sm:text-base truncate">🗺️ Bản đồ bình chọn</h1>
+          <span className="text-(--color-primary) shrink-0 text-xs">/</span>
+          <h1 className="font-serif text-(--color-primary-dark) font-bold text-xs sm:text-sm truncate">🗺️ Bản đồ bình chọn</h1>
         </div>
-        <div className="flex items-center gap-4 flex-wrap shrink-0">
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           <MapCountdown />
-          <div className="flex items-center gap-1.5 text-xs text-(--color-text-muted)">
+          <div className="flex items-center gap-1 text-xs text-(--color-text-muted)">
             <span className="font-bold text-(--color-primary-dark)">{totalVotes.toLocaleString("vi-VN")}</span>
             <span>phiếu</span>
           </div>
           <Link href="/vote"
-            className="bg-(--color-accent) hover:bg-(--color-primary-hover) text-white text-xs font-semibold px-3 py-1.5 rounded-full transition-colors whitespace-nowrap">
+            className="bg-(--color-accent) hover:bg-(--color-primary-hover) text-white text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 rounded-full transition-colors whitespace-nowrap">
             Bình chọn →
           </Link>
         </div>
       </div>
 
-      {/* ─── Filter bar ───────────────────────────────────────────── */}
+      {/* ─── Filter bar (flex: 0 0 auto) ────────────────────────────── */}
       <MapFilterBar
         activeRegion={filterRegion}
         searchQuery={searchQuery}
@@ -174,75 +184,67 @@ export default function MapPage() {
         onSearchChange={setSearchQuery}
       />
 
-      {/* ─── Main layout ──────────────────────────────────────────── */}
-      <div className="flex-1 flex flex-col overflow-hidden" style={{ minHeight: 0 }}>
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_340px] gap-3 px-3 sm:px-4 lg:px-5 pt-3 pb-0 overflow-hidden"
-          style={{ minHeight: 0, maxWidth: 1600, margin: "0 auto", width: "100%" }}>
+      {/* ─── Main content area (flex: 1 1 auto, min-height: 0) ────────── */}
+      <div className="vote-main-content flex-1 min-h-0 w-full overflow-hidden p-3 sm:p-4 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_360px] gap-3 sm:gap-4"
+        style={{ height: "100%", maxWidth: 1680, margin: "0 auto" }}>
 
-          {/* MAP AREA */}
-          <div
-            className="flex overflow-hidden rounded-2xl border border-(--color-border) shadow-(--shadow-brand)"
-            style={{
-              height: "clamp(420px, calc(100dvh - 220px), 760px)",
-              minHeight: 420,
-            }}
-          >
-            {/* Map */}
-            <div className="flex-1 min-w-0 relative">
-              <VietnamGrowthMap
-                destinations={mapNodes}
-                provinces={provinceData}
-                selectedId={selectedDestId}
-                onSelectDestination={setSelectedDestId}
-                onDeselectAll={() => setSelectedDestId(null)}
-                filterRegion={filterRegion}
-                searchQuery={searchQuery}
-                timelineVotes={timelineVotes ?? undefined}
-              />
-            </div>
-
-            {/* Destination Dock */}
-            {selectedNode && (
-              <div className="w-75 shrink-0 overflow-hidden"
-                style={{ animation: "dockSlideIn 0.25s ease-out" }}>
-                <DestinationDock
-                  node={selectedNode}
-                  votedToday={isSelectedVotedToday}
-                  hasVotesLeft={hasVotesLeft}
-                  onVote={handleVote}
-                  onClose={() => setSelectedDestId(null)}
-                  onViewProfile={(id) => { if (typeof window !== "undefined") window.open(`/destination/${id}`, "_blank") }}
-                  onShare={handleShare}
-                  currentVotes={currentVotes}
-                />
-              </div>
-            )}
-          </div>
-
-          {/* RIGHT COLUMN */}
-          <div className="flex flex-col gap-3 overflow-y-auto pb-3" style={{ scrollbarWidth: "thin" }}>
-            <DailyVoteCard
-              status={voteStatus}
-              onDoQuiz={() => setIsQuizOpen(true)}
+        {/* MAP AREA (Cột trái: 100% height, min-height: 0) */}
+        <div className="vote-map-card h-full min-h-0 flex overflow-hidden rounded-2xl border border-(--color-border) shadow-(--shadow-brand) relative bg-linear-to-br from-[#F4FBF0] to-[#E3F4FB]">
+          {/* Map */}
+          <div className="flex-1 min-w-0 h-full relative">
+            <VietnamGrowthMap
+              destinations={mapNodes}
+              provinces={provinceData}
+              selectedId={selectedDestId}
+              hoveredId={hoveredDestId}
+              onSelectDestination={setSelectedDestId}
+              onDeselectAll={() => setSelectedDestId(null)}
+              onHoverDestination={setHoveredDestId}
+              filterRegion={filterRegion}
+              searchQuery={searchQuery}
+              timelineVotes={timelineVotes ?? undefined}
             />
-            <div className="flex-1 min-h-0 overflow-hidden rounded-2xl border border-(--color-border) shadow-sm" style={{ minHeight: 300 }}>
-              <LeaderboardPanel
-                entries={leaderboard}
-                provinceEntries={provinceData}
-                selectedId={selectedDestId}
-                onSelect={(id) => setSelectedDestId(id)}
-                flashIds={flashIds}
+          </div>
+
+          {/* Destination Dock */}
+          {selectedNode && (
+            <div className="w-72 sm:w-76 shrink-0 h-full overflow-hidden z-20"
+              style={{ animation: "dockSlideIn 0.25s ease-out" }}>
+              <DestinationDock
+                node={selectedNode}
+                votedToday={isSelectedVotedToday}
+                hasVotesLeft={hasVotesLeft}
+                onVote={handleVote}
+                onClose={() => setSelectedDestId(null)}
+                onViewProfile={(id) => { if (typeof window !== "undefined") window.open(`/destination/${id}`, "_blank") }}
+                onShare={handleShare}
+                currentVotes={currentVotes}
               />
             </div>
-          </div>
+          )}
         </div>
 
-        {/* ─── Timeline ─────────────────────────────────────────── */}
-        <GrowthTimeline
-          snapshots={timelineSnapshots}
-          onDateChange={setTimelineVotes}
-          disabled={true}
-        />
+        {/* RIGHT COLUMN (Cột phải: flex column, 100% height, min-height: 0, overflow: hidden) */}
+        <div className="vote-right-col flex flex-col gap-3 h-full min-h-0 overflow-hidden">
+          {/* Panel "Vote hôm nay" (flex: 0 0 auto) */}
+          <DailyVoteCard
+            status={voteStatus}
+            onDoQuiz={() => setIsQuizOpen(true)}
+          />
+
+          {/* Panel "Vườn cây nổi bật" (flex: 1 1 auto, min-height: 0) */}
+          <div className="vote-leaderboard-container flex-1 min-h-0 overflow-hidden rounded-2xl border border-(--color-border) shadow-xs">
+            <LeaderboardPanel
+              entries={leaderboard}
+              provinceEntries={provinceData}
+              selectedId={selectedDestId}
+              hoveredId={hoveredDestId}
+              onSelect={(id) => setSelectedDestId(id)}
+              flashIds={flashIds}
+              filterKey={`${filterRegion}-${searchQuery}`}
+            />
+          </div>
+        </div>
       </div>
 
       {/* ─── Toast stack ──────────────────────────────────────────── */}

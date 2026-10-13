@@ -1,12 +1,18 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import { Page } from "@/types"
 import { Logo } from "@/components/user/layout/Header"
 import { useAppContext } from "@/context/AppContext"
 
 export default function Footer({ go: propGo }: { go?: (page: Page) => void } = {}) {
+  const pathname = usePathname()
   const context = useAppContext()
   const go = propGo || context?.navigate || (() => { })
+
+  if (pathname === "/vote" || pathname === "/ban-do-binh-chon") {
+    return null
+  }
 
   return (
     <footer className="site-footer">
